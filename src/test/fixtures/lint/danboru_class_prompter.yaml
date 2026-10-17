@@ -1,0 +1,1906 @@
+danboru-character-prompter:
+    generic:
+      spells:
+          colors:
+            - purple_robe, ornate
+            - blue_robe, dark, star_print
+            - red_robe
+            - white_robe
+            - black_robe
+            - green_robe
+            - grey_robe
+            - brown_robe
+          clothing:
+            - white_robe, gold_trim
+            - black_robe, glowing
+            - green_robe, leaf
+            - grey_robe, torn_clothes
+            - brown_robe, hood
+            - armor, robe
+            - robe, glowing
+          accessory:
+            - wooden_staff, crystal, glowing
+            - staff, orb, floating
+            - wooden_staff
+            - staff, silver_trim, glowing
+            - staff, skull, dark
+            - wand, ornate, gem
+            - floating_book, open_book, glowing
+            - wooden_staff, vines
+            - staff, bone, sinister
+            - orb, floating, energy
+          hair:
+            - long_beard, white_hair
+            - long_hair
+            - bald
+            - short_hair, grey_hair
+            - messy_hair, unkempt, white_hair
+            - ponytail
+            - grey_hair, braid
+            - beard, braid, grey_hair
+            - brown_hair
+            - black_hair, straight_hair, long_hair
+          facial:
+            - glowing_eyes, blue_eyes
+            - piercing
+            - glowing_eyes, purple_eyes
+            - wrinkled_skin
+            - piercing
+            - glowing_eyes, green_eyes
+            - wrinkled_skin
+            - scar_on_face
+            - facial_tattoo, glowing
+            - glowing_eyes, yellow_eyes
+          pose:
+            - standing, holding_staff
+            - walking, wind_lift
+            - sitting, meditation, indian_style
+            - standing
+            - hunched_over, wrinkled_skin, holding_staff
+            - floating, levitation
+            - kneeling, ritual, magic_circle
+            - running, fleeing
+          casting-pose:
+            - arms_up, casting_spell
+            - outstretched_arm, casting_spell
+            - holding_staff, arms_up, casting_spell
+            - spread_arms, casting_spell
+            - kneeling, magic_circle, casting_spell, ritual
+            - floating, casting_spell, levitation
+            - holding_staff, casting_spell
+            - casting_spell, clenched_hand
+            - spread_arms, casting_spell
+            - hand_up, casting_spell
+          detail:
+            - wind_lift, wind
+            - floating_hair, aura
+            - sparkle
+            - magic_circle, glowing
+            - floating_book
+            - scroll, reading
+            - potion, belt_pouch
+            - familiar, watching
+            - shadow
+            - aura, glowing
+          magic-aura:
+            - aura, glowing
+            - aura, light_particles
+            - aura, glowing
+            - dark_aura
+            - energy
+            - glowing
+            - light_particles, floating
+          spell-effect:
+            base:
+              - __danboru-character-prompter/generic/spells/spell-effect/fire__
+              - __danboru-character-prompter/generic/spells/spell-effect/ice__
+              - __danboru-character-prompter/generic/spells/spell-effect/lightning__
+              - __danboru-character-prompter/generic/spells/spell-effect/dark__
+              - __danboru-character-prompter/generic/spells/spell-effect/holy__
+              - __danboru-character-prompter/generic/spells/spell-effect/nature__
+              - __danboru-character-prompter/generic/spells/spell-effect/arcane__
+              - __danboru-character-prompter/generic/spells/spell-effect/psychic__
+              - __danboru-character-prompter/generic/spells/spell-effect/summoning__
+              - __danboru-character-prompter/generic/spells/spell-effect/wind__
+              - __danboru-character-prompter/generic/spells/spell-effect/water__
+            fire:
+              - >-
+                casting_spell, fire, fireball, explosion{, embers|, smoke|, glowing|}
+              - >-
+                casting_spell, fire, energy_beam{, smoke|, embers|}
+              - >-
+                casting_spell, fire, sparks{, embers|, glowing|}
+              - >-
+                casting_spell, meteor, fire, explosion{, smoke|, embers|}
+              - >-
+                casting_spell, fire, energy_barrier{, embers|, glowing|}
+              - >-
+                casting_spell, phoenix, fire, wings{, feathered_wings|, glowing|}
+              - >-
+                casting_spell, fire, aura{, embers|, glowing|}
+            ice:
+              - >-
+                casting_spell, ice, frozen, icicle{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, snow, ice, blizzard, wind{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, ice, spear, frozen{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, ice, orb, floating{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, ice, energy_barrier, frozen{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, ice, explosion{, ice_crystal|, glowing|}
+              - >-
+                casting_spell, ice, rock{, ice_crystal|, glowing|}
+            lightning:
+              - >-
+                casting_spell, lightning, electricity{, thunder|, sparks|}
+              - >-
+                casting_spell, lightning, electricity, sparks
+              - >-
+                casting_spell, lightning, explosion, shockwave{, thunder|, sparks|}
+              - >-
+                casting_spell, lightning, storm, cloud{, thunder|, sparks|}
+              - >-
+                casting_spell, electricity, orb, floating{, sparks|, glowing|}
+              - >-
+                casting_spell, lightning, electricity{, sparks|, glowing|}
+              - >-
+                casting_spell, lightning, electricity, energy_beam{, thunder|, sparks|}
+            dark:
+              - >-
+                casting_spell, dark, shadow{, dark_aura|, glowing_eyes|}
+              - >-
+                casting_spell, darkness, shadow{, dark_aura|, smoke|}
+              - >-
+                casting_spell, dark, skull, energy_beam{, dark_aura|, glowing|}
+              - >-
+                casting_spell, dark, skull, magic_circle{, dark_aura|, glowing_eyes|}
+              - >-
+                casting_spell, dark, tentacles{, dark_aura|, glowing_eyes|}
+              - >-
+                casting_spell, dark, orb, floating{, dark_aura|, shadow|}
+              - >-
+                casting_spell, dark, aura{, dark_aura|, shadow|}
+            holy:
+              - >-
+                casting_spell, halo, light_particles, energy_beam{, glowing|, sparkle|}
+              - >-
+                casting_spell, cross, explosion{, light_particles|, glowing|}
+              - >-
+                casting_spell, fire, cross{, light_particles|, glowing|}
+              - >-
+                casting_spell, halo, glowing, light_particles{, sparkle|, cross|}
+              - >-
+                casting_spell, cross, magic_circle{, light_particles|, glowing|}
+              - >-
+                casting_spell, cross, explosion, light_particles{, glowing|, sparkle|}
+              - >-
+                casting_spell, cross, energy_barrier, glowing{, light_particles|, halo|}
+            nature:
+              - >-
+                casting_spell, vines, tentacles{, thorns|, leaf|}
+              - >-
+                casting_spell, plant_roots, vines{, thorns|, leaf|}
+              - >-
+                casting_spell, thorns, vines{, leaf|, petals|}
+              - >-
+                casting_spell, vines, nature{, leaf|, thorns|}
+              - >-
+                casting_spell, rock, spikes{, vines|, leaf|}
+              - >-
+                casting_spell, tree, nature{, vines|, leaf|}
+              - >-
+                casting_spell, poison, smoke{, vines|, leaf|}
+            arcane:
+              - >-
+                casting_spell, magic, glowing, energy_ball{, sparkle|, light_particles|}
+              - >-
+                casting_spell, magic, explosion, energy{, sparkle|, glowing|}
+              - >-
+                casting_spell, magic, shockwave, energy{, sparkle|, glowing|}
+              - >-
+                casting_spell, magic, energy_ball, orb{, sparkle|, glowing|}
+              - >-
+                casting_spell, magic, energy, rainbow, explosion{, sparkle|, glowing|}
+              - >-
+                casting_spell, magic, energy_beam{, sparkle|, glowing|}
+              - >-
+                casting_spell, magic, energy_barrier{, sparkle|, glowing|}
+            psychic:
+              - >-
+                casting_spell, psychic, energy_beam{, glowing_eyes|, sparkle|}
+              - >-
+                casting_spell, psychic, shockwave{, glowing_eyes|, sparkle|}
+              - >-
+                casting_spell, psychic, spikes{, glowing_eyes|, sparkle|}
+              - >-
+                casting_spell, psychic, telekinesis, floating{, glowing_eyes|, sparkle|}
+              - >-
+                casting_spell, mind_control, glowing_eyes{, psychic|, sparkle|}
+              - >-
+                casting_spell, psychic, explosion{, glowing_eyes|, sparkle|}
+              - >-
+                casting_spell, psychic, clone, afterimage{, glowing_eyes|, sparkle|}
+            summoning:
+              - >-
+                casting_spell, magic_circle, pentagram, ritual, glowing{, sparkle|, light_particles|}
+              - >-
+                casting_spell, magic_circle, glowing{, sparkle|, light_particles|}
+              - >-
+                casting_spell, magic_circle, smoke{, glowing|, sparkle|}
+              - >-
+                casting_spell, magic_circle, energy{, glowing|, sparkle|}
+              - >-
+                casting_spell, pentagram, dark, smoke, demon{, glowing_eyes|, dark_aura|}
+              - >-
+                casting_spell, magic_circle, creature{, glowing|, sparkle|}
+              - >-
+                casting_spell, magic_circle, golem, rock{, glowing|, sparkle|}
+            wind:
+              - >-
+                casting_spell, wind{, sparkle|, glowing|}
+              - >-
+                casting_spell, tornado, wind{, sparkle|, glowing|}
+              - >-
+                casting_spell, wind, shockwave{, sparkle|, glowing|}
+              - >-
+                casting_spell, wind, shield, energy_barrier{, sparkle|, glowing|}
+              - >-
+                casting_spell, wind, floating{, sparkle|, glowing|}
+              - >-
+                casting_spell, wind, energy_ball{, sparkle|, glowing|}
+              - >-
+                casting_spell, storm, wind, rain, lightning{, sparkle|, glowing|}
+            water:
+              - >-
+                casting_spell, water, wave{, splashing|, ripples|}
+              - >-
+                casting_spell, water, whirlpool{, bubble|, splashing|}
+              - >-
+                casting_spell, water, waterfall{, ripples|, splashing|}
+              - >-
+                casting_spell, water, fountain{, water_drop|, ripples|}
+              - >-
+                casting_spell, water, bubble{, dripping|, ripples|}
+              - >-
+                casting_spell, water, splashing{, wave|, bubble|}
+              - >-
+                casting_spell, water, ice, frozen{, ripples|, glowing|}
+            fire-ice:
+              - >-
+                casting_spell, fire, ice, steam{, glowing|, sparkle|}
+            lightning-water:
+              - >-
+                casting_spell, lightning, water, electricity{, glowing|, sparkle|}
+            multi-element:
+              - >-
+                casting_spell, rainbow, magic, energy{, glowing|, sparkle|}
+          holy-magic:
+            - __danboru-character-prompter/generic/spells/spell-effect/holy__
+            - __danboru-character-prompter/generic/spells/spell-effect/water__
+          necromantic-magic:
+            - __danboru-character-prompter/generic/spells/spell-effect/dark__
+            - __danboru-character-prompter/generic/spells/spell-effect/summoning__
+          druidic-magic:
+            - __danboru-character-prompter/generic/spells/spell-effect/nature__
+            - __danboru-character-prompter/generic/spells/spell-effect/water__
+            - __danboru-character-prompter/generic/spells/spell-effect/wind__
+          arcane-magic:
+            - __danboru-character-prompter/generic/spells/spell-effect/arcane__
+            - __danboru-character-prompter/generic/spells/spell-effect/psychic__
+          elemental-magic:
+            - __danboru-character-prompter/generic/spells/spell-effect/fire__
+            - __danboru-character-prompter/generic/spells/spell-effect/ice__
+            - __danboru-character-prompter/generic/spells/spell-effect/lightning__
+            - __danboru-character-prompter/generic/spells/spell-effect/wind__
+            - __danboru-character-prompter/generic/spells/spell-effect/water__
+          wizard-magic:
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/fire__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/ice__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/lightning__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/wind__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/water__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/arcane__
+            - magic, __danboru-character-prompter/generic/spells/spell-effect/psychic__
+      meelee-weapons:
+          native-american:
+            - tomahawk
+          chinese:
+            - sword, dao
+            - sword, jian \(weapon\)
+            - polearm, guan_dao
+          assassin:
+            - jamadhar
+            - kunai
+            - shuriken
+            - nunchaku
+            - sai_\(weapon\)
+            - sickle
+            - short_sword, kodachi
+            - short_sword, ninjatou
+            - short_sword, tantou
+          wizard:
+            - holding_staff, {mage|wooden}_staff, {crystal,|orb,|}
+            - holding_staff, {mage|wooden}_staff,{ floating,|} grimoire, open_book, glowing
+            - wooden_staff, crystal, glowing
+            - mage_staff, orb, floating
+            - wand, ornate, gem {{orb,|grimoire, open_book,} floating|}
+          necromancer:
+            - holding_staff, {mage_|}staff, skull, dark, {floating, glowing, glowing_eyes, }
+            - holding_staff, {mage_|}staff, bone, sinister, {floating, glowing, grimoire, open_book,| }
+            - grimoire, open_book, glowing, skull,
+            - mage_staff, holding_staff, bone, orb, floating, energy,
+          druid:
+            - wooden_staff, holding_staff, {vines|}
+          priest: 
+            - crosier, holding_staff
+          monk:
+            - bo staff
+          samurai:
+            - polearm, naginata
+            - polearm, yari
+            - sword, katana
+            - sword, chokutou
+            - sword, ootachi
+            - sword, tachi_\(weapon\)
+            - club, holding_club, kanabou
+          medieval:
+            - axe
+            - battle axe
+            - double-sided axe
+            - hatchet \(axe\)
+            - flail
+            - club, holding_club,
+            - hammer, war hammer
+            - dagger
+            - mace, {flnaged_mace|spiked_mace}, holding_mace
+            - polearm, halberd
+            - polearm, glaive_\(polearm\),
+            - polearm, spear
+            - polearm, lance
+            - sword,
+            - sword, greatsword
+            - sword, zweihander
+            - sword, long_sword
+            - short_sword
+          unique:
+            - double blade
+            - polearm, scythe, holding scythe 
+            - polearm, bident
+            - sword, cutlass
+            - sword, rapier
+            - sword, saber_\(weapon\)
+            - sword, scimitar
+            - short_sword, gladius  
+          named: 
+            - caliburn_\(fate\)  
+            - dragonslayer_\(sword\)
+            - excalibur_\(fate/stay_night\)
+            - blood_sword
+            - buster_sword
+            - caliburn_\(fate\)
+            - yamato_\(sword\)
+            - rebellion_\(sword\)
+            - mjolnir_\(marvel\),
+      ranged-weapons:
+        medieval:
+            - bow_\(weapon\), arrow, quiver, {drawing_bow|}, {holding_bow_\(weapon\),|}
+            - crossbow, crossbow_bolt, {crossbow_windlass,|}, {holding crossbow|}
+        oriental:
+            - bow_\(weapon\), yumi_\(bow\)
+            - crossbow, repeating_crossbow, crossbow_bolt, holding crossbow,
+      apparel:
+        knight:
+          - knight, pauldrons, {{dark |}armor|plate_armor|full armor},{tattered cloth,|} sabaton, gauntlets, {cape,|} {breastplate,|} {ornate armor,|} {belt_buckle|}
+          - knight, sabaton, {{dark |}armor|plate_armor}, breastplate, gauntlets, {cape,|} {pauldrons,|} {ornate armor,|} {belt_buckle|}
+          - knight, pauldrons, {{dark |}armor|full armor}, pauldrons, shoulder armor, gauntlets, sabaton, {fingerless gloves,|leather gloves,|} {ornate armor,|} {belt_buckle|}
+        black-knight: 
+          - elegant gothic armor with silver accents, sharp pauldrons, intricate engravings, dark flowing fabrics, {ornate armor,|}
+          - black knight, dark armor, dripping smeared blood, tattered cloth, {cape,|} chainmail, full armor
+        viking:
+          - viking, chainmail, fur_collar, {armor|scale armor}, {{horned|} helmet|}, {leather gloves,|} {leather boots,|} {shoulder armor,|}, runes, tattoo, {fur cape,|} {belt_buckle,|}
+          - viking, chainmail, {armor|lamellar armor}, {{horned|} helmet|}, {unworn helmet, holding_helmet,|} {fur collar,|} {gauntlets,|}, runes, tattoo, {fur cape,|} {belt_buckle,|}
+          - viking, leather boots, {armor|scale armor}, chainmail, {bear_pelt|fur_collar}, {{horned|} helmet|} {cape,|} {ornate armor,|}, runes, tattoo, {fur cape,|} {belt_buckle,|}
+        barbarian:  
+          - barbarian, fur collar, leather gloves, {shoulder armor,|} {bare shoulders,|} {fingerless gloves,|},{fur cape,|}
+          - barbarian, bare shoulders, leather boots, {fur collar,|} {spikes,|} {shoulder armor,|},
+          - barbarian, fingerless gloves, leather boots, {bare shoulders,|} {fur collar,|} {gauntlets,|},
+          - barbarian, wearing torn animal hide armor, fur-lined armor, bone arm rings,
+          - tribal barbarian, wearing layered hide and metal patchwork armor, crown of antlers, 
+        chinese:
+          - chinese armor, chinese clothes, {lamellar armor,|scale armor,|} {pauldrons,|} {belt,|} {cape,|} {ornate armor,|}
+          - chinese armor, lamellar armor, {vambraces,|arm guards,|} {greaves,|} {belt,|} {full armor,|}
+          - chinese clothes, leather armor, {chinese armor,|} {gauntlets,|} {cape,|} {belt,|} {ornate armor,|}
+        greek:
+          - greek_armor, greaves, {linothorax|scale armor},  {helm,|} {cape,|} {sandals,|}
+          - greek_armor, cuirass, greaves, {buckler,|shield,|} {helm,|} {belt,|} {cape,|} {ornate armor,|}
+          - greek_armor, linothorax, cuirass, {greaves,|} {sandals,|} {belt,|} {ornate armor,|}
+        roman:
+          - roman armor, legionnaire, {cuirass,|} {greaves,|} {cape,|} {belt,|} {ornate armor,|}
+          - cuirass, greaves, {roman armor|scale armor},{helm,|} {cape,|} {sandals,|} {ornate armor,|}
+          - legionnaire, cuirass, {roman armor,|scale armor,|} {greaves,|} {belt,|} {cape,|}
+        soldiers:
+          - soldier, {armor|plate_armor}, gorget, {arm guards,|vambraces,|} {belt,|} {boots,|}
+          - soldier, {leather armor|scale armor}, {gorget,|} {arm guards,|} {shin guards,|} {belt,|}
+          - soldier, {armor|full armor}, {shoulder armor,|} {greaves,|} {belt,|} {cape,|} {ornate armor,|}
+        samurai:
+          - japanese armor, kabuto \(helmet\), kusazuri, sode, {kote,|} {dou,|} {lamellar armor,|}
+          - japanese armor, dou, sode, kusazuri, {shikoro,|} {suneate,|} {ornate armor,|}
+          - japanese armor, kote, kusazuri, {kabuto \(helmet\),|} {japanese clothes,|} {hakama,|} {full armor,|}
+        assassin:
+          - hood, leather armor, arm guards, {fingerless gloves,|} {belt,|} {cape,|}
+          - mask, leather armor, {hood,|} {bracer,|} {belt,|} {boots,|}
+          - hood, cape, {leather armor,|} {fingerless gloves,|} {belt,|}
+        bandit:
+          - leather armor, vest, {fingerless gloves,|} {belt,|} {boots,|}
+          - hood, leather armor, {vest,|} {belt,|} {fingerless gloves,|}
+          - cape, leather armor, {hood,|} {vest,|} {belt,|} {boots,|}      
+        warrior-monk:
+          - robe, hakama, {bald,|} {belt,|} {sandals,|}
+          - robe, {bare chest,|} {hakama,|} {belt,|} {bald,|}
+          - hakama, robe, {gauntlets,|arm guards,|} {belt,|} {sandals,|}
+        paladin:
+          - paladin, {armor|plate_armor}, pauldrons, sabaton, cross, {white cloak,|} {holy,|}
+          - paladin, cross, holy, {armor|full armor}, {white cloak,|} {breastplate,|}
+          - paladin, armor, pauldrons, cross, {holy,|} {white cloak,|} {ornate armor,|}
+        archer:
+          - leather armor, hood, vambraces, {cape,|} {fingerless gloves,|} {belt,|}, {quiver,|}
+          - leather armor, {hood,|} {cape,|} {arm guards,|} {boots,|} {belt,|}, {quiver,|}
+          - hood, cape, {leather armor,|} {fingerless gloves,|} {vambraces,|} {belt,|}, {quiver,|}
+        druid:
+          - robe, fur collar, {barefoot,|} {vines,|} {belt,|} {hood,|}
+          - robe, {leaf,|} {fur collar,|} {barefoot,|} {belt,|} {hood,|}
+          - fur collar, robe, {vines,|leaf,|} {barefoot,|} {sandals,|} {hood,|}
+        wizard:
+          - robe, witch hat, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - white_robe, gold_trim, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - glowing, {black|red}_robe,  {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - green_robe, leaf, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - grey_robe, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - brown_robe, hood, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - armor, robe, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+        necromancer:
+          - grey_robe, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+          - armor, robe, {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}, bone, ornate,
+          - glowing, {black|red}_robe,  {belt,|} {cape,|} {fur collar,|},{ scroll,|}{ potion, belt_pouch|}
+        priest:
+          - robe, cross, {belt,|} {halo,|} {sandals,|}
+          - robe, {cross,|} {belt,|} {hood,|} {sandals,|}
+          - cross, robe, {halo,|} {belt,|} {hood,|}
+      apparel-female-only:
+        amazon:
+          - bikini armor, greaves, {arm guards,|gauntlets,|} {cape,|} {belt,|} {ornate armor,|}
+          - bikini armor, midriff, {greaves,|} {arm guards,|} {sandals,|} {scale armor,|}
+          - bikini armor, greaves, gauntlets, {cape,|} {belt,|} {sandals,|} {ornate armor,|}
+          - wearing torn animal hide bikini top, fur-lined battle skirt, bone arm rings,
+      body-type:
+        weight:
+          - skinny
+          - slim
+          - toned
+          - curvy
+        muscle:
+          - toned
+          - muscular
+          - abs
+          - muscular, abs
+          - pectorals, muscular
+        height:
+          - tall
+          - short
+          - petite
+        female-proportions:
+          - wide hips
+          - narrow_waist
+          - thick thighs
+          - slim legs
+          - wide hips, thick thighs
+          - hourglass figure
+        male:
+          - >-
+              {__danboru-character-prompter/generic/body-type/weight__,|} {__danboru-character-prompter/generic/body-type/muscle__,|} {__danboru-character-prompter/generic/body-type/height__,|}
+        female:
+          -  __danboru-character-prompter/generic/body-type/female-proportions__, {__danboru-character-prompter/generic/body-type/weight__,|} {__danboru-character-prompter/generic/body-type/muscle__,|} {__danboru-character-prompter/generic/body-type/height__,|}
+      races:
+        angel:
+          - angel, halo, angel wings, {yellow eyes,|} {light rays,|}
+          - angel, halo, feathered wings, {white wings,|} {yellow eyes,|}
+          - halo, angel wings, angel, {light rays,|} {glowing eyes,|}
+        demon:
+          - demon horns, demon tail, {bat wings,|} {red skin,|} {spikes,|}
+          - demon horns, bat wings, demon tail, {red skin,|}
+          - demon tail, demon horns, {bat wings,|} {spikes,|} {glowing eyes,|}
+        minotaur:
+          - minotaur, cow horns, {hooves,|} {body fur,|} {muscular,|}
+          - minotaur, cow horns, muscular, {tail,|} {hooves,|}
+          - cow horns, minotaur, body fur, {muscular,|} {tail,|}
+        werewolf:
+          - werewolf, fang, {body fur,|} {sharp teeth,|} {tail,|}
+          - werewolf, sharp teeth, {fang,|} {body fur,|} {tail,|}
+          - fang, sharp teeth, werewolf, {body fur,|} {tail,|}
+        human:
+          - human, {scar,|} {freckles,|} {tattoo,|}
+          - human, {heterochromia,|} {scar,|} {freckles,|}
+          - human, {tattoo,|} {heterochromia,|} {scar,|}
+        vampire:
+          - vampire, fang, red eyes, {pale skin,|} {slit pupils,|} {blood on face,|}, {red|3::white|2::black|gold|} hair, 
+          - vampire, red eyes, pale skin, {fang,|} {bat wings,|}, {red|3::white|2::black|gold|} hair, 
+          - vampire, fang, slit pupils, {red eyes,|} {pale skin,|} {blood on face,|}, {red|3::white|2::black|gold|} hair, 
+        orc:
+          - orc, tusks, green skin, {muscular,|} {pointy ears,|} {claws,|}
+          - orc, green skin, muscular, {tusks,|} {snout,|}
+          - tusks, orc, pointy ears, {green skin,|} {muscular,|} {claws,|}
+        elf:
+          - elf, pointy ears, {dark elf,|} {purple skin,|} {dark skin,|}
+          - elf, pointy ears, {blood elf,|}
+          - pointy ears, elf, {dark elf,|purple skin,|}
+        dwarf:
+          - dwarf, beard, {short,|} {muscular,|}
+          - dwarf, short, {beard,|} {muscular,|}
+          - beard, dwarf, {short,|} {stubble,|}
+        goblin:
+          - goblin, green skin, {pointy ears,|} {fang,|} {claws,|}
+          - goblin, pointy ears, green skin, {short,|} {claws,|}
+          - green skin, goblin, {fang,|} {pointy ears,|} {short,|}
+        halfling:
+          - halfling, short, {barefoot,|} {freckles,|}
+          - halfling, barefoot, {short,|} {curly hair,|}
+          - short, halfling, {barefoot,|} {freckles,|}
+      class-prompter:
+        knight-with-weapon:
+          - __danboru-character-prompter/generic/apparel/knight__, __danboru-character-prompter/generic/meelee-weapons/medieval__
+        black-knight-with-weapon:
+          - __danboru-character-prompter/generic/apparel/black-knight__, {__danboru-character-prompter/generic/meelee-weapons/named__|__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/unique__}
+        viking-with-weapon:
+          - __danboru-character-prompter/generic/apparel/viking__, __danboru-character-prompter/generic/meelee-weapons/medieval__
+        barbarian-with-weapon:
+          - __danboru-character-prompter/generic/apparel/barbarian__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/native-american__}
+        chinese-with-weapon:
+          - __danboru-character-prompter/generic/apparel/chinese__, __danboru-character-prompter/generic/meelee-weapons/chinese__
+        greek-with-weapon:
+          - __danboru-character-prompter/generic/apparel/greek__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/unique__}
+        roman-with-weapon:
+          - __danboru-character-prompter/generic/apparel/roman__, {__danboru-character-prompter/generic/meelee-weapons/unique__|__danboru-character-prompter/generic/meelee-weapons/medieval__}
+        soldier-with-weapon:
+          - __danboru-character-prompter/generic/apparel/soldiers__, __danboru-character-prompter/generic/meelee-weapons/medieval__
+        samurai-with-weapon:
+          - __danboru-character-prompter/generic/apparel/samurai__, __danboru-character-prompter/generic/meelee-weapons/samurai__
+        assassin-with-weapon:
+          - __danboru-character-prompter/generic/apparel/assassin__, __danboru-character-prompter/generic/meelee-weapons/assassin__
+        bandit-with-weapon:
+          - __danboru-character-prompter/generic/apparel/bandit__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/assassin__}
+        amazon-with-weapon:
+          - __danboru-character-prompter/generic/apparel-female-only/amazon__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/unique__}
+        warrior-monk-with-weapon:
+          - __danboru-character-prompter/generic/apparel/warrior-monk__, __danboru-character-prompter/generic/meelee-weapons/monk__
+        paladin-with-weapon:
+          - __danboru-character-prompter/generic/apparel/paladin__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/named__}
+        archer-with-weapon:
+          - __danboru-character-prompter/generic/apparel/archer__, {__danboru-character-prompter/generic/meelee-weapons/medieval__|__danboru-character-prompter/generic/meelee-weapons/assassin__|3::}
+        druid-with-weapon:
+          - druid, __danboru-character-prompter/generic/apparel/druid__, __danboru-character-prompter/generic/meelee-weapons/druid__{, __danboru-character-prompter/generic/spells/druidic-magic__|}
+        wizard-with-weapon:
+          - __danboru-character-prompter/generic/apparel/wizard__, __danboru-character-prompter/generic/meelee-weapons/wizard__{, __danboru-character-prompter/generic/spells/wizard-magic__|}{, __danboru-character-prompter/generic/spells/magic-aura__|}
+        priest-with-weapon:
+          - __danboru-character-prompter/generic/apparel/priest__, __danboru-character-prompter/generic/meelee-weapons/priest__, {, __danboru-character-prompter/generic/spells/holy-magic__|}
+        female:
+          - __danboru-character-prompter/generic/class-prompter/knight-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/black-knight-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/viking-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/barbarian-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/chinese-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/greek-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/roman-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/soldier-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/samurai-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/assassin-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/bandit-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/amazon-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/warrior-monk-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/paladin-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/archer-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/druid-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/wizard-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/priest-with-weapon__
+        any:
+          - __danboru-character-prompter/generic/class-prompter/knight-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/black-knight-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/viking-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/barbarian-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/chinese-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/greek-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/roman-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/soldier-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/samurai-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/assassin-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/bandit-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/warrior-monk-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/paladin-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/archer-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/druid-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/wizard-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/priest-with-weapon__
+        magicians:
+          - __danboru-character-prompter/generic/class-prompter/druid-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/wizard-with-weapon__
+          - __danboru-character-prompter/generic/class-prompter/priest-with-weapon__
+    scenes:
+        - weapon, blood, blood on clothes, blood on weapon, holding weapon, {spot color|}, solo, {1girl, __danboru-character-prompter/generic/body-type/female__|1boy, __danboru-character-prompter/generic/body-type/male__}, __danboru-character-prompter/generic/races/*__, __danboru-character-prompter/generic/class-prompter/any__, exhausted, after battle, fantasy, {forest,| battlefield,| ruins,| dungeon,| hell,| heaven||||}, {glowing eyes,|}, {spot color|}
+        - __danboru-character-prompter/prompt-female__
+        - __danboru-character-prompter/prompt-male__
+    prompt-female:
+        -  __danboru-character-prompter/custom/female/*/prompt-*-with-location__
+        - 1girl, __danboru-character-prompter/generic/body-type/female__, __danboru-character-prompter/generic/races/*__, __danboru-character-prompter/generic/class-prompter/any__
+    prompt-male:
+        -  __danboru-character-prompter/custom/male/*/prompt-*-with-location__
+        - 1boy, __danboru-character-prompter/generic/body-type/male__, __danboru-character-prompter/generic/races/*__, __danboru-character-prompter/generic/class-prompter/any__
+    custom:
+      female:
+        fantasy:
+          dragonlike:
+            - 1girl, dragon_girl, dragon_horns, horn_ornament, dragon_tail, scales, slit_pupils, multicolored_eyes, glowing_eyes, thick_eyelashes, lipstick, makeup, muscular_female, armor, jewelry, dragon_wings
+          dragonlike-locations:
+            - mountain, cave
+            - treasure_chest, gold_trim
+            - volcano, lava
+            - cliff, sky
+            - nest, mountain
+            - ruins, fire
+            - cave, embers
+            - sky, storm
+          prompt-dragonlike-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/dragonlike__, __danboru-character-prompter/custom/female/fantasy/dragonlike-locations__
+          bakaneko:
+            - 1girl, bakeneko, cat_ears, japanese_clothes, {black_hair, long_hair|white_hair, bob_cut|grey_hair, wavy_hair|pink_hair}, {yellow_eyes, slit_pupils|heterochromia|glowing_eyes, red_eyes}, {kimono, torn_kimono|black_kimono, goth_fashion|black_robe, lace|miko, torn_clothes}, {neck_bell|clawed_gauntlets|ofuda|kanzashi}, {moonlight, alley|shrine, abandoned|night, street}
+            - 1girl, bakeneko, traditional_youkai, cat_tail, {twintails, black_hair|messy_hair, grey_hair|straight_hair, blue_hair}, {yukata, cat_print|witch, robe|japanese_armor, pauldrons, gauntlets|leather_gloves, obi, thigh_boots}, white_fur, fur_trim, {lantern, night_sky|forest, dark}
+            - 1girl, bakeneko, cat_ears, cat_tail, {long_hair, white_hair|black_hair, streaked_hair|curly_hair, grey_hair}, {kimono, spider_web_print|sleeveless_kimono, bell|miko, robe|torn_kimono, goth_fashion}, {hoop_earrings|bone, necklace|neck_bell}, {autumn_leaves|snow|rain}, sparkle
+            - 1girl, bakeneko, witch, {wavy_hair, black_hair|ponytail, grey_hair|red_hair}, {kimono, magic_circle|kimono, print_kimono|lace, robe|kimono, armored_dress}, {ring, claws|talisman, necklace|bracelet}, glowing_weapon, sparkle, {festival, night|market, abandoned}
+            - 1girl, bakeneko, cat_ears, cat_tail, {short_hair, white_hair|black_hair, braid|streaked_hair, purple_hair}, {japanese_armor, fur_trim|japanese_armor, robe|gauntlets, sode, armored_skirt|leather, harness, strap}
+          bakaneko-locations:
+            - moonlight, alley
+            - shrine, abandoned
+            - night, street
+            - lantern, night_sky
+            - forest, dark
+            - festival, night
+            - market, abandoned
+            - torii, shrine
+            - starry_sky, night
+          prompt-bakaneko-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/bakaneko__, __danboru-character-prompter/custom/female/fantasy/bakaneko-locations__
+          darkelf:
+            - 1girl, dark_elf, pointy_ears, {long_hair, grey_hair|short_hair, white_hair|braid, purple_hair|very_long_hair, blue_hair}, {red_eyes|purple_eyes, slit_pupils|yellow_eyes, slit_pupils}, {dress, lace|black_bodysuit|black_robe|gown}, {thigh_boots|sandals|armored_boots}, {circlet|tiara, bone|hairpin|earrings, gem}, tattoo
+            - 1girl, dark_elf, pointy_ears, {straight_hair, grey_hair|wavy_hair, black_hair|purple_hair}, {black_bodysuit|corset, cape|robe, magic_circle|pauldrons, armored_boots, corset|harness, gloves, belt}, {necklace|ring}, armor
+            - 1girl, dark_elf, pointy_ears, {braid, white_hair|bob_cut, black_hair|undercut, purple_hair}, {dress, skirt|gown|bodysuit, chain|hood}, {wrist_cuffs|choker|bone|earrings}, goth_fashion
+            - 1girl, dark_elf, pointy_ears, witch, {floating_hair, white_hair|twin_braids, black_hair|curly_hair, purple_hair}, {robe|gown|bodysuit|armor}, {magic_circle|spider_web_print|glowing_weapon}, gem
+            - 1girl, dark_elf, pointy_ears, warrior, {ponytail, grey_hair|floating_hair, black_hair|curly_hair, purple_hair}, {armor, silver_trim|armor|leather_armor|plate_armor, gauntlets, pauldrons|gloves, belt}, thigh_boots
+            - 1girl, dark_elf, pointy_ears, grey_skin, {red_eyes|grey_eyes}, glowing_eyes, eye_trail, (scar_on_face:1.15), white_hair, (messy_hair:1.1), medium_hair, sidelocks, side_braid, paladin, armor, huge_breasts
+          darkelf-locations:
+            - moonlight, night
+            - cave, glowing
+            - underground, dark
+            - ruins, dark
+            - forest, night
+            - castle, dark
+            - graveyard, fog
+            - hallway, candlelight
+          prompt-darkelf-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/darkelf__, __danboru-character-prompter/custom/female/fantasy/darkelf-locations__
+          dwarf:
+            - 1girl, dwarf, {braid, brown_hair|curly_hair, black_hair|twin_braids, blonde_hair|braid, red_hair}, {green_eyes|yellow_eyes|brown_eyes}, {plate_armor|leather_armor|fur_trim|dress, embroidery}, {hair_beads|earrings}, muscular_female
+            - 1girl, dwarf, {short_hair, messy_hair, red_hair|braid, brown_hair|hair_bun, blonde_hair}, {apron|leather_armor, boots|apron|gauntlets, pauldrons, breastplate|leather_armor, gloves, belt}, dirty, muscular_female
+            - 1girl, dwarf, {braid|ponytail, hair_beads|short_hair, wavy_hair}, {fur_cloak, leather_armor|leather_armor, silver_trim|cloak|leather_armor}, {crossbow|axe|bow_(weapon)}
+            - 1girl, dwarf, {floating_hair, blonde_hair|braid, red_hair|very_long_hair, black_hair}, {dress, embroidery|gown|robe, gem|tunic, skirt}, jewelry, crown
+            - 1girl, dwarf, {braid, red_hair|braid, black_hair, hair_beads|bob_cut, blonde_hair}, {plate_armor|armor, shield|chainmail, fur_trim|gauntlets, shield, greaves|bracer, belt}, muscular_female
+          dwarf-locations:
+            - stone_wall, indoors
+            - fire, indoors
+            - forest, mountain
+            - throne_room, candlelight
+            - mountain, outdoors
+            - cave, stalactite
+            - valley, mountain
+            - treasure_chest, gold_trim
+          prompt-dwarf-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/dwarf__, __danboru-character-prompter/custom/female/fantasy/dwarf-locations__
+          kitsune:
+            - 1girl, kitsune, fox_ears, fox_tail, {long_hair, red_hair|white_hair|blonde_hair|gradient_hair, orange_hair}, {yellow_eyes|red_eyes|yellow_eyes, slit_pupils}, {kimono|miko|robe|dress, fox_ears}, multiple_tails, {ofuda|fire}
+            - 1girl, kitsune, fox_ears, fox_tail, witch, {very_long_hair, white_hair|messy_hair, orange_hair|braid, blonde_hair}, {kimono, floral_print|kimono, gold_trim|robe, magic_circle|kimono, gauntlets|armor, gloves, belt}, {mask|fire|hair_beads}
+            - 1girl, kitsune, fox_ears, fox_tail, {short_hair, orange_hair|very_long_hair, white_hair|wavy_hair, blonde_hair}, {gown|dress|miko|armor, fox_ears}, {tail_ornament|choker, gold_trim|earrings}
+            - 1girl, kitsune, fox_ears, fox_tail, priestess, {grey_hair|braid, brown_hair|wavy_hair, white_hair}, {miko|kimono|robe, magic_circle|armor}, ofuda, glowing
+            - 1girl, kitsune, fox_ears, fox_tail, warrior, {ponytail, orange_hair|bob_cut, white_hair|blonde_hair, gradient_hair}, {japanese_armor, fox_ears|leather_armor, fur_trim|leather_armor|armor, boots, armored_skirt|leather_armor, gloves, belt, boots}
+          kitsune-locations:
+            - torii, shrine
+            - forest, autumn_leaves
+            - shrine, moonlight
+            - temple, torch
+            - starry_sky, night
+            - battlefield, fog
+            - garden, sunset
+            - shrine, full_moon
+          prompt-kitsune-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/kitsune__, __danboru-character-prompter/custom/female/fantasy/kitsune-locations__
+          witch:
+            - 1girl, witch, curvy, mature_female, narrow_waist, wide_hips, long_hair, black_hair, straight_hair, purple_eyes, pale_skin, goth_fashion, witch_hat, tattoo, skull, corset, navel, skirt, fishnets, wand
+            - 1girl, witch, {long_hair, {black_hair|purple_hair|grey_hair}|curly_hair, {red_hair|black_hair}|straight_hair, {black_hair|blue_hair}}, {green_eyes|yellow_eyes|purple_eyes}, {robe, silver_trim|dress, corset|robe, cape}, {witch_hat|circlet|veil}, {wooden_staff|cat|cauldron}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, witch, messy_hair, {brown_hair, leaf|red_hair, braid|black_hair}, {yellow_eyes|green_eyes|brown_eyes}, {robe, belt|dress, apron|robe}, {head_wreath|witch_hat, feathers|circlet}, {wooden_staff|wand|dagger}, large_breasts, bare_shoulders, collarbone, navel
+            - 1girl, witch, {long_hair, {light_blue_hair|blue_hair|grey_hair}|black_hair, hairpin|floating_hair, {light_blue_hair|blue_hair}}, {blue_eyes|green_eyes|grey_eyes}, {robe, torn_clothes|dress|gown}, {crown|wooden_staff|talisman}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, witch, {long_hair, red_hair|black_hair, streaked_hair, red_hair|black_hair}, {red_eyes|red_eyes|brown_eyes}, {black_robe|dress, sash|coat, red_trim}, {circlet, red_trim|crown, gem|choker, gem}, {crystal_ball|book|dagger}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, witch, mature_female, {long_hair, grey_hair|updo, black_hair|floating_hair, grey_hair}, {yellow_eyes|grey_eyes|purple_eyes}, {robe, embroidery|gown, embroidery|dress}, {crown|tiara|tiara, gem}, {wooden_staff, gem|book|crystal_ball}, large_breasts, cleavage, bare_shoulders
+          witch-locations:
+            - forest, night
+            - forest, fire
+            - ocean, cave
+            - dungeon, candlelight
+            - throne_room, night
+            - wetland, fog
+            - graveyard, full_moon
+            - cottage, night
+          prompt-witch-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/witch__, __danboru-character-prompter/custom/female/fantasy/witch-locations__
+          valkyrie:
+            - 1girl, valkyrie, {long_hair, braid, blonde_hair|floating_hair, blonde_hair|braid, hair_beads}, {blue_eyes|grey_eyes|grey_eyes}, {breastplate, pauldrons|plate_armor, gold_trim|armor, silver_trim}, {winged_helmet|horned_helmet|crown}, {spear, shield|sword, shield|lance}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, valkyrie, {long_hair, black_hair|floating_hair, grey_hair|braid, black_hair}, {red_eyes|purple_eyes|grey_eyes}, {black_armor, bat_wings|black_armor|plate_armor}, {winged_helmet|crown, gem|horned_helmet}, {spear|sword|shield}, large_breasts, cleavage, bare_shoulders
+            - 1girl, valkyrie, angel_wings, {floating_hair, white_hair|braid, grey_hair|floating_hair, blonde_hair}, {yellow_eyes|blue_eyes|grey_eyes}, {plate_armor, gold_trim|dress, gold_trim|plate_armor, feathered_wings}, {crown|winged_helmet|halo}, {lance|sword, shield|staff}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, valkyrie, {braid, brown_hair|braid, red_hair|floating_hair, brown_hair}, {green_eyes|yellow_eyes|grey_eyes}, {leather_armor, chainmail|chainmail, fur_trim|breastplate, bracer}, {circlet|fur_hat|helmet}, {shield, axe|spear, knife|sword, buckler}, muscular_female, abs, large_breasts, bare_shoulders, collarbone, scar
+            - 1girl, valkyrie, swan, feathered_wings, {floating_hair, white_hair|floating_hair, grey_hair|updo, blonde_hair}, {blue_eyes|grey_eyes|white_eyes}, {dress, feathers|armor, feathered_wings|gown, armor}, {crown, feathers|circlet|tiara}, {lance|sword|bow_(weapon)}, large_breasts, bare_shoulders, thighs, collarbone
+          valkyrie-locations:
+            - sky, storm
+            - graveyard, dark
+            - sky, cloud
+            - snow, village
+            - lake, dusk
+            - battlefield, lightning
+            - mountain, aurora
+            - castle, throne_room
+          prompt-valkyrie-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/valkyrie__, __danboru-character-prompter/custom/female/fantasy/valkyrie-locations__
+          ranger:
+            - 1girl, {braid, brown_hair|ponytail, red_hair|short_hair, black_hair}, {green_eyes|yellow_eyes|brown_eyes}, {leather_armor|leather_armor|leather_armor, embroidery}, {bracer|arm_guards|fingerless_gloves}, {bow_(weapon), quiver|bow_(weapon), quiver|crossbow}, large_breasts, cleavage, collarbone, thighs
+            - 1girl, elf, pointy_ears, {floating_hair, grey_hair|floating_hair, blonde_hair|braid, blonde_hair}, {green_eyes|grey_eyes|blue_eyes}, {leather_armor|armor|armor}, leaf, {bow_(weapon)|dagger|quiver}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, {messy_hair, red_hair|ponytail, brown_hair|short_hair, black_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {leather_armor, fur_trim|leather_armor|leather_armor}, {necklace|bracelet|earrings}, {bow_(weapon)|knife|axe}, muscular_female, abs, large_breasts, bare_shoulders, collarbone, navel
+            - 1girl, {short_hair, black_hair|braid, grey_hair|hood_up, black_hair}, {grey_eyes|purple_eyes|grey_eyes}, {leather_armor|coat, black_armor|armor}, {cloak|hood|mask}, {bow_(weapon)|dagger|crossbow}, large_breasts, collarbone, thighs
+            - 1girl, {floating_hair, white_hair|floating_hair, grey_hair|short_hair, white_hair}, {grey_eyes|blue_eyes|white_eyes}, {cloak|coat|leather_armor, blue_trim}, {bracer|pendant|bracer}, {bow_(weapon)|spear|bow_(weapon)}, large_breasts, bare_shoulders, collarbone, thighs
+          ranger-locations:
+            - forest, outdoors
+            - forest, tree
+            - tent, fire
+            - rooftop, night
+            - cliff, storm
+            - river, forest
+            - mountain, valley
+            - village, dusk
+          prompt-ranger-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/ranger__, __danboru-character-prompter/custom/female/fantasy/ranger-locations__
+          barbarian:
+            - 1girl, barbarian, {messy_hair, red_hair|messy_hair, blonde_hair|messy_hair, brown_hair|dreadlocks, black_hair}, {green_eyes|yellow_eyes|grey_eyes}, {fur_trim, armor|bikini_armor|fur_trim, pauldrons}, {loincloth, bone|skirt, fur_trim|shorts}, {bracer|bone, bracelet|bracer}, muscular_female, abs, bare_shoulders, navel, scar
+            - 1girl, barbarian, {braid, red_hair|floating_hair, blonde_hair|floating_hair, red_hair}, {blue_eyes|orange_eyes|purple_eyes}, {fur_cloak|fur_trim|fur_trim, pauldrons}, {harness|armor|corset}, {axe|sword|spear}, muscular_female, thick_thighs, large_breasts, tattoo, scar
+            - 1girl, barbarian, {curly_hair, red_hair, hair_beads|messy_hair, black_hair|messy_hair, blonde_hair}, {leather_armor|fur_trim|bandages}, {skirt|skirt, fur_trim|leggings}, {necklace, skull|earrings|armlet}, muscular_female, abs, navel, large_breasts, cleavage, barefoot, blood
+            - 1girl, barbarian, {floating_hair, black_hair, streaked_hair, grey_hair|braid, red_hair|floating_hair, red_hair}, {yellow_eyes|red_eyes|green_eyes}, {leather_armor, bone|armor|fur_trim, armor}, {crown, antlers|headdress, skull|circlet}, muscular_female, tattoo, large_breasts, bare_shoulders
+            - 1girl, barbarian, {floating_hair, blonde_hair|braid, red_hair|floating_hair, white_hair}, {blue_eyes|grey_eyes|green_eyes}, {bikini_armor, fur_trim|leather_armor|fur_trim}, {greaves|boots, fur_trim|greaves}, {axe|shield|spear}, muscular_female, abs, thick_thighs, collarbone, navel, facepaint
+          barbarian-locations:
+            - snow, mountain
+            - sky, storm
+            - battlefield, blood
+            - ruins, dusk
+            - snow, outdoors
+            - wasteland, fire
+            - canyon, outdoors
+            - tent, bonfire
+          prompt-barbarian-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/barbarian__, __danboru-character-prompter/custom/female/fantasy/barbarian-locations__
+          priestess:
+            - 1girl, priestess, {floating_hair, blonde_hair|long_hair, grey_hair|very_long_hair, white_hair|wavy_hair, brown_hair}, {blue_eyes|purple_eyes|yellow_eyes|green_eyes}, {robe, gold_trim|robe, embroidery|robe, silver_trim}, {circlet|veil, gem|head_wreath}, {prayer_beads|pendant|wooden_staff, gem}, large_breasts, cleavage, collarbone
+            - 1girl, priestess, {floating_hair, blonde_hair|very_long_hair, red_hair|floating_hair, white_hair|floating_hair, blonde_hair}, {yellow_eyes|yellow_eyes|blue_eyes}, {dress, embroidery|robe, embroidery|dress}, {crown|circlet, gem|headdress}, {wooden_staff, glowing|pendant|orb}, large_breasts, bare_shoulders, thighs, navel
+            - 1girl, elf, pointy_ears, priestess, {floating_hair, grey_hair|very_long_hair, blonde_hair|floating_hair, white_hair}, {grey_eyes|grey_eyes|blue_eyes}, {gown, embroidery|robe, silver_trim|gown, leaf}, {circlet, gem|tiara|crown, flower, gem}, {wooden_staff, crystal|pendant|prayer_beads}, large_breasts, cleavage, bare_shoulders
+            - 1girl, priestess, {braid, brown_hair|bob_cut, grey_hair|floating_hair, black_hair}, {yellow_eyes|purple_eyes|grey_eyes}, {robe, pauldrons|robe, breastplate|plate_armor}, {winged_helmet|circlet|veil, chainmail}, {mace, shield|war_hammer|spear}, large_breasts, cleavage, thighs, collarbone
+            - 1girl, priestess, {long_hair, black_hair|straight_hair, purple_hair|very_long_hair, black_hair, streaked_hair, grey_hair}, {red_eyes|purple_eyes|grey_eyes}, {black_robe|robe, silver_trim|robe, black_armor, gold_trim}, {crown|circlet|tiara}, {wooden_staff|pendant|orb}, large_breasts, cleavage, bare_shoulders, thighs
+          priestess-locations:
+            - temple, indoors
+            - altar, indoors
+            - forest, moonlight
+            - battlefield, indoors
+            - shrine, candlelight
+            - cathedral, sunbeam
+            - garden, sunrise
+            - temple, pillar
+          prompt-priestess-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/priestess__, __danboru-character-prompter/custom/female/fantasy/priestess-locations__
+          monk:
+            - 1girl, monk, {short_hair, black_hair|undercut|hair_bun|short_hair, grey_hair}, {brown_eyes|yellow_eyes|grey_eyes|brown_eyes}, bandages, {tunic|sleeveless|sash}, {pants|pants, belt|hakama}, bare_shoulders, barefoot, muscular_female, abs, navel, collarbone
+            - 1girl, monk, {hair_bun, black_hair|twin_braids|short_hair, brown_hair|messy_hair, brown_hair}, {yellow_eyes|grey_eyes|green_eyes}, {robe, torn_clothes|armor, bandages|tunic, sash}, {sandals|barefoot|shoes}, bandages, muscular_female, abs, collarbone, navel
+            - 1girl, monk, {very_long_hair, white_hair|floating_hair, grey_hair|hair_bun, blonde_hair}, {blue_eyes|grey_eyes|white_eyes}, {white_robe, cloud|white_robe, gold_trim|see-through_clothes}, {prayer_beads|bracelet|bracer, glowing}, barefoot, bandages, collarbone, abs
+            - 1girl, monk, {short_hair, black_hair|hair_bun, black_hair|short_hair, black_hair}, {purple_eyes|grey_eyes|red_eyes}, {sleeveless, black_robe|armor, black_armor, hood|bandages}, {bracer|bracer, leather|ring}, barefoot, muscular_female, abs, collarbone
+            - 1girl, monk, {messy_hair, brown_hair|hair_bun, red_hair|short_hair, black_hair}, {brown_eyes|green_eyes|yellow_eyes}, {robe|robe, belt|cloak}, {sandals|barefoot|shoes}, bandages, wooden_staff, muscular_female, abs, collarbone, navel
+          monk-locations:
+            - dojo, indoors
+            - mountain, outdoors
+            - mountain, temple
+            - town, night
+            - outdoors, dusk
+            - waterfall, mountain
+            - garden, sunrise
+            - bridge, fog
+          prompt-monk-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/monk__, __danboru-character-prompter/custom/female/fantasy/monk-locations__
+          bard:
+            - 1girl, bard, {wavy_hair, red_hair|curly_hair, black_hair|floating_hair, blonde_hair}, {blue_eyes|green_eyes|yellow_eyes}, {tunic, puffy_sleeves|coat, embroidery|dress, corset}, {head_wreath|hat|hairpin}, {harp|violin|drum}, large_breasts, cleavage, bare_shoulders, collarbone, thighs
+            - 1girl, bard, {braid, blonde_hair|floating_hair, red_hair|twintails, hair_ribbon}, {yellow_eyes|purple_eyes|blue_eyes}, {coat|dress, corset|cape, tunic}, {fingerless_gloves|arm_guards|bracelet}, {boots|heels|shoes}, large_breasts, collarbone, navel
+            - 1girl, bard, {updo, blonde_hair|very_long_hair, black_hair|floating_hair, red_hair}, {grey_eyes|blue_eyes|yellow_eyes}, {gown, skirt|dress, embroidery|coat}, {hairpin, gem|circlet, gold_trim|headband}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, elf, pointy_ears, bard, {floating_hair, grey_hair|floating_hair, purple_hair}, {blue_eyes|purple_eyes|grey_eyes}, {robe, leaf|tunic, embroidery|dress}, {harp|flute|violin}, large_breasts, bare_shoulders, collarbone
+            - 1girl, bard, {messy_hair, black_hair|braid, red_hair|hair_bun, blonde_hair}, {green_eyes|yellow_eyes|grey_eyes}, {leather_armor|coat, hood|sleeveless, vest}, {fingerless_gloves|dagger|bracelet}, large_breasts, collarbone, thighs
+          bard-locations:
+            - tavern, candlelight
+            - town, festival
+            - ballroom, chandelier
+            - forest, stage
+            - tavern, night
+            - town, cobblestone
+            - garden, sunset
+            - stage, indoors
+          prompt-bard-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/bard__, __danboru-character-prompter/custom/female/fantasy/bard-locations__
+          druid:
+            - 1girl, {floating_hair, brown_hair, leaf|wavy_hair, blonde_hair|messy_hair, red_hair}, {yellow_eyes|green_eyes|yellow_eyes}, {leather_armor|leather_armor|robe, leaf}, {antlers|head_wreath|circlet}, {wooden_staff|spear|crystal, wooden_staff}, large_breasts, bare_shoulders, navel, collarbone
+            - 1girl, {braid, brown_hair, hair_beads|braid, red_hair|floating_hair, blonde_hair}, {green_eyes|brown_eyes|yellow_eyes}, {leather_armor, vines|robe|tunic}, {fox|fox|crow}, large_breasts, cleavage, collarbone, thighs
+            - 1girl, {messy_hair, black_hair, bone|messy_hair, red_hair, feathers|floating_hair, white_hair}, {yellow_eyes|yellow_eyes|green_eyes}, facepaint, {leather_armor|leather_armor, fur_trim|armor}, {necklace|bracelet|talisman}, muscular_female, abs, bare_shoulders, navel, tattoo
+            - 1girl, {floating_hair, light_blue_hair|floating_hair, grey_hair|floating_hair, blonde_hair}, {blue_eyes|green_eyes|grey_eyes}, {leather_armor|robe|robe, shell}, {wooden_staff|wand|trident}, large_breasts, bare_shoulders, thighs, collarbone
+            - 1girl, {floating_hair, white_hair|short_hair, grey_hair|braid, grey_hair}, {blue_eyes|grey_eyes|grey_eyes}, {leather_armor, fur_trim|robe|armor}, {crystal, gem|antlers, gem|wooden_staff}, large_breasts, cleavage, bare_shoulders, collarbone
+          druid-locations:
+            - forest, outdoors
+            - forest, sunset
+            - ruins, dusk
+            - ocean, cliff
+            - snow, forest
+            - meadow, sunrise
+            - river, forest
+            - jungle, outdoors
+          prompt-druid-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/druid__, __danboru-character-prompter/custom/female/fantasy/druid-locations__
+          necromancer:
+            - 1girl, necromancer, {long_hair, black_hair|straight_hair, black_hair, streaked_hair, grey_hair|black_hair, streaked_hair, purple_hair}, {red_eyes|purple_eyes|grey_eyes}, {robe, torn_clothes|dress, bone|robe, hood}, {staff, skull|wand, bone|scepter, gem}, {choker, bone|necklace|collar}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, necromancer, pale_skin, {floating_hair, grey_hair|straight_hair, black_hair|grey_hair, streaked_hair}, {glowing_eyes, purple_eyes|glowing_eyes, blue_eyes|glowing_eyes, red_eyes}, {robe|coat, black_armor|robe, embroidery}, {book|skull, wooden_staff|wand}, {ring|bracer|bracer, glowing}, large_breasts, cleavage, collarbone, thighs
+            - 1girl, witch, necromancer, {messy_hair, black_hair, purple_hair|very_long_hair, black_hair|floating_hair, white_hair, streaked_hair}, {red_eyes|yellow_eyes|grey_eyes}, {robe, skull|dress, bone|robe, torn_clothes}, {witch_hat|crown, bone|veil}, {cat|crow|skeleton}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, necromancer, pale_skin, {braid, black_hair|floating_hair, grey_hair|updo, black_hair}, {glowing_eyes, red_eyes|glowing_eyes, purple_eyes|red_eyes}, {black_dress|robe, pauldrons|dress, armor}, {crown, bone|tiara|mask}, {gauntlets|ring|bracelet}, large_breasts, cleavage, bare_shoulders
+            - 1girl, necromancer, {messy_hair, black_hair|messy_hair, brown_hair|messy_hair, grey_hair}, {yellow_eyes|green_eyes|grey_eyes}, {coat, robe|plague_doctor, robe|robe, torn_clothes}, {gas_mask|skull_mask|mask}, {wooden_staff|wand|book}, large_breasts, collarbone, thighs
+          necromancer-locations:
+            - graveyard, candlelight
+            - library, indoors
+            - graveyard, moonlight
+            - throne_room, dark
+            - wetland, dark
+            - grave, fog
+            - dungeon, candlelight
+            - ruins, full_moon
+          prompt-necromancer-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/necromancer__, __danboru-character-prompter/custom/female/fantasy/necromancer-locations__
+          pirate-queen:
+            - 1girl, pirate, {floating_hair, black_hair|floating_hair, red_hair|messy_hair, brown_hair}, {green_eyes|yellow_eyes|blue_eyes}, {coat, corset|coat, gold_trim|dress, belt}, {pirate_hat, feathers|bandana, pirate_hat|pirate_hat}, {cutlass|gun|axe}, large_breasts, cleavage, bare_shoulders, thighs, collarbone
+            - 1girl, pirate, {braid, black_hair, gold_trim|floating_hair, red_hair, hairpin|floating_hair, black_hair, coin}, {brown_eyes|yellow_eyes|green_eyes}, {coat, gold_trim|coat, corset|coat, sash}, {pirate_hat, gold_trim|bandana, coin|pirate_hat, feathers}, {sword|flintlock|cutlass}, large_breasts, cleavage, navel, bare_shoulders, thighs, jewelry, earrings
+            - 1girl, pirate, witch, {floating_hair, light_blue_hair|floating_hair, black_hair|floating_hair, blue_hair}, {blue_eyes|green_eyes|grey_eyes}, {coat, torn_clothes|dress|coat, corset}, {pirate_hat|bone|hairpin}, {cutlass|flintlock|trident}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, pirate, {updo, black_hair|floating_hair, red_hair|floating_hair, black_hair, hairpin}, {blue_eyes|purple_eyes|yellow_eyes}, {coat, embroidery|dress|coat, gold_trim}, {pirate_hat, gem|crown|pirate_hat}, {rapier|gun|cutlass}, large_breasts, cleavage, collarbone, thighs, necklace, ring
+            - 1girl, pirate, {short_hair, black_hair|ponytail, red_hair, braid|messy_hair, brown_hair}, {green_eyes|grey_eyes|yellow_eyes}, {coat, chainmail|coat, pauldrons|coat, torn_clothes}, {bandana|pirate_hat|pirate_hat}, {cutlass|gun|axe}, muscular_female, abs, large_breasts, bare_shoulders, collarbone, tattoo
+          pirate-queen-locations:
+            - ship, outdoors
+            - island, sunset
+            - ship, fog
+            - indoors, candlelight
+            - ship, storm
+            - shipwreck, ocean
+            - island, jungle
+            - tavern, night
+          prompt-pirate-queen-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/pirate-queen__, __danboru-character-prompter/custom/female/fantasy/pirate-queen-locations__
+          demon-hunter:
+            - 1girl, {long_hair, black_hair|short_hair, black_hair|black_hair, streaked_hair, grey_hair}, {glowing_eyes, purple_eyes|glowing_eyes, red_eyes|glowing_eyes, grey_eyes}, {leather_armor, black_armor|coat, black_armor|plate_armor, leather_armor}, {bracer, silver_trim|bracer, bone|arm_guards}, {greatsword|sword|crossbow}, large_breasts, cleavage, bare_shoulders, thighs, tattoo
+            - 1girl, {updo, black_hair|short_hair, black_hair|hair_slicked_back, black_hair}, {grey_eyes|grey_eyes|blue_eyes}, {coat, black_armor, silver_trim|armor|robe, pauldrons}, {choker, silver_trim|pendant|tattoo}, {gun, sword|whip|spear}, large_breasts, collarbone, thighs
+            - 1girl, demon_girl, {messy_hair, black_hair|messy_hair, red_hair|floating_hair, black_hair}, {red_eyes, glowing_eyes|heterochromia, red_eyes, grey_eyes|red_eyes, glowing_eyes}, {armor, torn_clothes|coat, armor|armor, claws}, {bracer|claws|bracer, bone}, {sword|claws|axe}, large_breasts, bare_shoulders, thighs
+            - 1girl, {short_hair, black_hair|braid, black_hair|hair_bun, grey_hair}, {purple_eyes|red_eyes|grey_eyes}, {bodysuit, black_armor|armor|bodysuit}, {cloak|hood|mask}, {dagger|crossbow|sword}, large_breasts, collarbone, thighs, abs
+            - 1girl, {long_hair, white_hair|floating_hair, blonde_hair|braid, white_hair, hairpin}, {yellow_eyes|blue_eyes|white_eyes}, {white_armor, silver_trim|leather_armor, gold_trim|plate_armor, leather_armor}, {bracer, gold_trim|bracer|arm_guards}, {sword|lance|sword}, large_breasts, cleavage, bare_shoulders, thighs, tattoo
+          demon-hunter-locations:
+            - city, night
+            - cathedral, candlelight
+            - ruins, dark
+            - ruins, night
+            - ruins, sunset
+            - graveyard, fog
+            - city, rooftop
+            - cathedral, window
+          prompt-demon-hunter-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/demon-hunter__, __danboru-character-prompter/custom/female/fantasy/demon-hunter-locations__
+          oracle:
+            - 1girl, blindfold, {long_hair, white_hair|floating_hair, grey_hair|floating_hair, white_hair}, {glowing_eyes, white_eyes|glowing_eyes, grey_eyes|glowing_eyes, yellow_eyes}, {white_robe, embroidery|robe, see-through_clothes|gown, embroidery}, {third_eye|circlet, star_(symbol)|tiara, gem}, {crystal_ball|book|glowing}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, blindfold, {long_hair, black_hair|long_hair, purple_hair|long_hair, black_hair, streaked_hair, grey_hair}, {glowing_eyes, purple_eyes|glowing_eyes, red_eyes|glowing_eyes, grey_eyes}, {black_robe, star_(symbol)|gown, black_armor|robe, black_armor}, {third_eye|circlet, crescent_moon|circlet, star_(symbol)}, {crystal_ball|book|glowing}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, blindfold, {short_hair, white_hair|short_hair, blonde_hair|floating_hair, blonde_hair}, {glowing_eyes, yellow_eyes|glowing_eyes, blue_eyes}, {armor, robe|armor, robe, embroidery|armor}, {crown, third_eye|circlet, gem|headdress}, {lance|wooden_staff|shield, third_eye}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, blindfold, {long_hair, white_hair, star_(symbol)|white_hair, star_(symbol)|floating_hair, blonde_hair}, {glowing_eyes, blue_eyes|glowing_eyes, white_eyes|glowing_eyes, yellow_eyes}, {robe, star_(symbol)|robe, embroidery|gown, star_(symbol)}, {crown, star_(symbol)|circlet, star_(symbol)|third_eye}, {crystal_ball, star_(symbol)|book|orb}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, mature_female, blindfold, {long_hair, grey_hair|floating_hair, blonde_hair|streaked_hair, white_hair, grey_hair}, {white_eyes|grey_eyes}, {robe, torn_clothes|robe|gown, torn_clothes}, {wooden_staff, bone|wooden_staff|wooden_staff}, {ring|bracelet|pendant}, large_breasts, collarbone, bare_shoulders
+          oracle-locations:
+            - temple, indoors
+            - ruins, night
+            - ruins, storm
+            - sky, nebula
+            - cave, bonfire
+            - temple, starry_sky
+            - ruins, fog
+            - sky, constellation
+          prompt-oracle-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/oracle__, __danboru-character-prompter/custom/female/fantasy/oracle-locations__
+          shrine-maiden:
+            - 1girl, miko, {long_hair, black_hair|black_hair, ponytail|long_hair, black_hair, hair_ribbon}, {brown_eyes|grey_eyes|yellow_eyes}, {haori, hakama|miko|miko, embroidery}, {hair_ribbon|kanzashi|hair_ornament}, {bow_(weapon), ofuda|wand|ofuda}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, miko, {braid, black_hair|ponytail, brown_hair|short_hair, black_hair}, {brown_eyes|yellow_eyes|grey_eyes}, {miko, pauldrons|miko|armor, hakama}, {kanzashi|hairpin|hair_ribbon}, {naginata|bow_(weapon)|ofuda}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, miko, kitsune, fox_ears, fox_tail, {long_hair, grey_hair|floating_hair, blonde_hair|floating_hair, white_hair}, {yellow_eyes|yellow_eyes|yellow_eyes}, {miko, gold_trim|miko, fox_ears|miko, white_robe}, {fox_ears|kanzashi, gold_trim|mask}, {fire|bell|ofuda}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, miko, {long_hair, black_hair, purple_hair|straight_hair, black_hair|black_hair, streaked_hair}, {red_eyes|purple_eyes|grey_eyes}, {black_robe|robe, black_armor|robe, embroidery}, {kanzashi, gem|hair_ornament|hairpin}, {ofuda|wand|bow_(weapon)}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, miko, {long_hair, white_hair|floating_hair, blonde_hair, star_(symbol)|floating_hair, white_hair}, {blue_eyes|grey_eyes|yellow_eyes}, {miko, gold_trim|miko, star_(symbol)|miko, embroidery}, {kanzashi, star_(symbol)|hair_ornament, crescent_moon|hairpin, star_(symbol)}, {bow_(weapon)|wooden_staff, bell|ofuda, star_(symbol)}, large_breasts, bare_shoulders, collarbone, thighs
+          shrine-maiden-locations:
+            - shrine, outdoors
+            - shrine, storm
+            - shrine, moonlight
+            - shrine, dark
+            - sky, cloud
+            - torii, shrine
+            - garden, sunrise
+            - shrine, full_moon
+          prompt-shrine-maiden-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/shrine-maiden__, __danboru-character-prompter/custom/female/fantasy/shrine-maiden-locations__
+          blood-knight:
+            - 1girl, {long_hair, black_hair, red_hair|floating_hair, red_hair, streaked_hair|floating_hair, black_hair, red_trim}, {glowing_eyes, red_eyes|glowing_eyes, red_eyes|glowing_eyes, yellow_eyes}, {plate_armor, red_trim|black_armor|armor, red_trim}, {pauldrons, red_trim|crown, gem|helmet}, {greatsword|sword, shield|lance}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, paladin, {long_hair, black_hair|short_hair, red_hair|black_hair, gold_trim}, {red_eyes|yellow_eyes|grey_eyes}, {armor, red_trim|plate_armor|armor, blood}, {crown|circlet|helmet}, {sword|shield|sword}, large_breasts, bare_shoulders, collarbone, thighs
+            - 1girl, {ponytail, red_hair|updo, red_trim|braid, black_hair}, {red_eyes|yellow_eyes}, {plate_armor, red_trim|armor, pauldrons|armor, red_trim}, {crown|helmet, feathers|circlet}, {sword|sword|war_hammer}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, vampire, pale_skin, fangs, {long_hair, black_hair|floating_hair, black_hair|floating_hair, red_hair}, {glowing_eyes, red_eyes|glowing_eyes, red_eyes}, {armor|black_armor|armor, red_trim}, {bat_wings, pauldrons|crown, gem|helmet}, {sword|lance|sword}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {messy_hair, red_hair|messy_hair, red_hair, streaked_hair|messy_hair, black_hair}, {red_eyes|yellow_eyes}, {armor, torn_clothes|plate_armor, torn_clothes|armor, blood}, {pauldrons|crown|helmet}, {greatsword|axe|sword}, muscular_female, abs, large_breasts, bare_shoulders, scar, blood
+          blood-knight-locations:
+            - battlefield, dark
+            - ruins, dusk
+            - ruins, dark
+            - castle, moonlight
+            - battlefield, storm
+            - throne_room, red_moon
+            - wasteland, fire
+            - cathedral, ruins
+          prompt-blood-knight-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/blood-knight__, __danboru-character-prompter/custom/female/fantasy/blood-knight-locations__
+          dark-warrior:
+            - 1girl, warrior, {long_hair, black_hair|short_hair, black_hair|floating_hair, black_hair}, {grey_eyes|grey_eyes|blue_eyes}, {black_armor, silver_trim|armor|armor, chainmail}, {pauldrons|crown|helmet}, {greatsword|sword|spear, shield}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {short_hair, black_hair|hair_bun, black_hair|floating_hair, black_hair}, {purple_eyes|grey_eyes|grey_eyes}, {armor|armor|black_armor, leather}, {cloak|hood|pauldrons}, {dagger|sword|dagger}, large_breasts, collarbone, thighs, abs
+            - 1girl, {updo, black_hair|braid, black_hair|short_hair, grey_hair}, {yellow_eyes|grey_eyes|yellow_eyes}, {plate_armor|armor, cape|black_armor, insignia}, {crown|helmet|circlet}, {sword|axe|war_hammer}, large_breasts, bare_shoulders, collarbone, thighs, scar
+            - 1girl, {messy_hair, black_hair|floating_hair, black_hair|black_hair, glowing}, {glowing_eyes, yellow_eyes|glowing_eyes, white_eyes|glowing_eyes, red_eyes}, {armor, magic_circle|black_armor, magic_circle|armor, gem}, {pauldrons|crown, gem|helmet}, {greatsword|axe|spear}, large_breasts, bare_shoulders, thighs
+            - 1girl, knight, {long_hair, black_hair|braid, black_hair|black_hair, feathers}, {grey_eyes|blue_eyes|grey_eyes}, {black_armor, plate_armor|armor|armor, cape}, {helmet|crown|helmet, feathers}, {sword, shield|lance|halberd}, large_breasts, cleavage, bare_shoulders, thighs
+          dark-warrior-locations:
+            - ruins, sky
+            - city, moonlight
+            - tent, torch
+            - ruins, dark
+            - castle, storm
+            - battlefield, fog
+            - wasteland, dusk
+            - fortress, ruins
+          prompt-dark-warrior-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/dark-warrior__, __danboru-character-prompter/custom/female/fantasy/dark-warrior-locations__
+          gladiator-female:
+            - 1girl, gladiator, {braid, black_hair|messy_hair, red_hair|short_hair, black_hair}, {yellow_eyes|green_eyes|grey_eyes}, {bikini_armor|armor, skirt|breastplate, loincloth}, {arm_guards|bracer|arm_guards}, {sword, buckler|trident|dagger}, muscular_female, abs, large_breasts, bare_shoulders, thighs, collarbone, scar
+            - 1girl, gladiator, {braid, red_hair|short_hair, black_hair|messy_hair, black_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {bikini_armor, gold_trim|armor|armor, gold_trim}, {circlet|laurel_crown|crown}, {sword|trident|sword}, muscular_female, abs, large_breasts, bare_shoulders, thighs, scar
+            - 1girl, gladiator, dark_skin, {messy_hair, black_hair, gold_trim|braid, black_hair, bone|undercut, black_hair, braid}, {yellow_eyes|yellow_eyes|brown_eyes}, facial_tattoo, {armor|leather_armor|armor}, {armlet|bracer|arm_guards}, {sword|wooden_staff|dagger}, muscular_female, abs, large_breasts, bare_shoulders, thighs, tattoo
+            - 1girl, gladiator, {ponytail, black_hair|short_hair, brown_hair|braid, red_hair}, {grey_eyes|blue_eyes|green_eyes}, {plate_armor|armor|armor, gold_trim}, {helmet, feathers|helmet|helmet, gold_trim}, {sword, shield|war_hammer, shield|spear, shield}, muscular_female, large_breasts, broad_shoulders, scar
+            - 1girl, gladiator, {messy_hair, black_hair|messy_hair, brown_hair|messy_hair, black_hair}, {grey_eyes|green_eyes|yellow_eyes}, {leather_armor, torn_clothes|armor, torn_clothes|armor}, {arm_guards|bracer|arm_guards}, {sword|spear|shield}, muscular_female, abs, large_breasts, bare_shoulders, blood, scar
+          gladiator-female-locations:
+            - arena, outdoors
+            - arena, sunset
+            - arena, dark
+            - arena, indoors
+            - arena, blood
+            - colosseum, indoors
+            - arena, crowd
+            - colosseum, pillar
+          prompt-gladiator-female-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/gladiator-female__, __danboru-character-prompter/custom/female/fantasy/gladiator-female-locations__
+          spellsword-female:
+            - 1girl, {long_hair, black_hair|floating_hair, blue_hair|short_hair, black_hair}, {blue_eyes|purple_eyes|yellow_eyes}, {plate_armor, robe|leather_armor|coat, pauldrons}, {bracer|bracer|arm_guards}, {sword|sword, glowing_weapon|rapier}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {short_hair, black_hair|floating_hair, grey_hair|ponytail, black_hair}, {purple_eyes|blue_eyes|grey_eyes}, {coat|armor|plate_armor}, {gloves|bracer|arm_guards}, {rapier|dagger|sword}, large_breasts, collarbone, thighs
+            - 1girl, {braid, red_hair|floating_hair, black_hair|short_hair, grey_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {robe, armor|robe, pauldrons|coat, armor}, {pauldrons|bracer|arm_guards}, {sword|greatsword|sword}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {short_hair, black_hair|ponytail, black_hair|short_hair, grey_hair}, {purple_eyes|grey_eyes|grey_eyes}, {armor, black_armor|coat, black_armor|plate_armor, black_armor}, {bracer|bracer|arm_guards}, {dagger, glowing_weapon|dagger|rapier}, large_breasts, collarbone, thighs
+            - 1girl, {floating_hair, white_hair|streaked_hair, red_hair|floating_hair, grey_hair}, {red_eyes|blue_eyes|grey_eyes|green_eyes}, {plate_armor|leather_armor|robe}, {bracer|bracer|arm_guards}, {sword, fire|sword|sword}, large_breasts, bare_shoulders, thighs, collarbone
+          spellsword-female-locations:
+            - battlefield, outdoors
+            - indoors, dark
+            - battlefield, fire
+            - ruins, moonlight
+            - sky, outdoors
+            - library, indoors
+            - tower, night
+            - ruins, lightning
+          prompt-spellsword-female-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/spellsword-female__, __danboru-character-prompter/custom/female/fantasy/spellsword-female-locations__
+          serpent-cultist-female:
+            - 1girl, {long_hair, black_hair|floating_hair, green_hair, snake_hair_ornament|shaved_head, tattoo}, {green_eyes, slit_pupils|yellow_eyes, slit_pupils|yellow_eyes, slit_pupils}, {robe, scale_print|robe|gown}, {crown, snake_hair_ornament|headdress, snake_hair_ornament|tiara}, {wooden_staff|dagger|snake}, large_breasts, cleavage, bare_shoulders, thighs, tattoo
+            - 1girl, priestess, {long_hair, green_hair, braid|floating_hair, green_hair|short_hair, black_hair}, {glowing_eyes, yellow_eyes, slit_pupils|glowing_eyes, green_eyes, slit_pupils|glowing_eyes, yellow_eyes, slit_pupils}, {robe, snake_print|gown, snake_print|robe}, {crown|headdress|tiara, gem}, {chalice|wooden_staff|dagger}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, assassin, {short_hair, black_hair|short_hair, green_hair|braid, black_hair}, {yellow_eyes, slit_pupils|green_eyes, slit_pupils|yellow_eyes, slit_pupils}, {leather_armor, scale_print|armor, scale_print|bodysuit}, {earrings|choker|bracer}, {dagger|dagger|dagger}, large_breasts, collarbone, thighs, tattoo
+            - 1girl, facial_tattoo, {messy_hair, black_hair, snake_hair_ornament|messy_hair, green_hair|black_hair, streaked_hair}, {glowing_eyes, yellow_eyes, slit_pupils|glowing_eyes, green_eyes, slit_pupils|glowing_eyes, red_eyes, slit_pupils}, {robe, torn_clothes|robe, scale_print|dress, scale_print}, {crown, snake_hair_ornament|headdress, snake_hair_ornament|headdress}, {wooden_staff|snake|spear}, large_breasts, bare_shoulders, thighs
+            - 1girl, mature_female, {long_hair, black_hair, green_hair|floating_hair, green_hair|updo, black_hair}, {glowing_eyes, yellow_eyes, slit_pupils|glowing_eyes, green_eyes, slit_pupils|glowing_eyes, yellow_eyes, slit_pupils}, {gown, scale_print|dress, scale_print|gown, embroidery}, {crown, snake_hair_ornament|tiara, snake_hair_ornament|headdress}, {scepter|wooden_staff|sword}, large_breasts, cleavage, bare_shoulders, thighs
+          serpent-cultist-female-locations:
+            - ruins, torch
+            - altar, dark
+            - forest, dark
+            - ruins, dark
+            - throne_room, dark
+            - jungle, ruins
+            - wetland, dark
+            - cave, torch
+          prompt-serpent-cultist-female-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/serpent-cultist-female__, __danboru-character-prompter/custom/female/fantasy/serpent-cultist-female-locations__
+          draconic-knight-female:
+            - 1girl, {long_hair, black_hair|floating_hair, black_hair, scales|floating_hair, blonde_hair}, {red_eyes|blue_eyes|grey_eyes|green_eyes}, {plate_armor, scales|armor, scales|plate_armor, scales}, {pauldrons, dragon_horns|helmet|crown}, {greatsword|sword, shield|lance}, large_breasts, cleavage, bare_shoulders, thighs, tattoo
+            - 1girl, {messy_hair, red_hair|floating_hair, red_hair|floating_hair, red_hair}, {red_eyes|orange_eyes|yellow_eyes}, {plate_armor, scales, gem|armor, scales|plate_armor}, {helmet, dragon_horns|crown|circlet}, {sword|greatsword|lance}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {long_hair, white_hair|floating_hair, grey_hair|white_hair, gem}, {blue_eyes|white_eyes|grey_eyes}, {plate_armor, scales|armor, silver_trim|plate_armor}, {pauldrons, dragon_horns|crown|circlet}, {sword|sword|lance}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {short_hair, black_hair|floating_hair, black_hair|black_hair, glowing}, {glowing_eyes, yellow_eyes|glowing_eyes, purple_eyes|glowing_eyes, grey_eyes}, {black_armor, scales|armor, black_armor|armor, scales}, {pauldrons, dragon_horns|crown, gem|circlet}, {sword|sword|lance}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, mature_female, {long_hair, grey_hair|streaked_hair, grey_hair|floating_hair, grey_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {plate_armor, scales|armor, scales|plate_armor}, {circlet, dragon_horns|crown, scales|helmet}, {greatsword|sword|lance}, large_breasts, bare_shoulders, thighs
+          draconic-knight-female-locations:
+            - mountain, sky
+            - volcano, lava
+            - mountain, blizzard
+            - mountain, moonlight
+            - mountain, sunset
+            - nest, mountain
+            - cliff, sky
+            - valley, mountain
+          prompt-draconic-knight-female-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/draconic-knight-female__, __danboru-character-prompter/custom/female/fantasy/draconic-knight-female-locations__
+          storm-caller-female:
+            - 1girl, {floating_hair, white_hair|floating_hair, grey_hair|messy_hair, blonde_hair}, {grey_eyes|blue_eyes|grey_eyes}, {robe, torn_clothes|robe|dress}, {bracer|bracer|arm_guards}, {wooden_staff|wand|scepter}, large_breasts, bare_shoulders, thighs, collarbone
+            - 1girl, witch, {floating_hair, white_hair|floating_hair, blonde_hair|floating_hair, grey_hair}, {glowing_eyes, blue_eyes|glowing_eyes, white_eyes|glowing_eyes, yellow_eyes}, {robe, torn_clothes|dress, torn_clothes|dress}, {witch_hat|crown|headdress}, {wooden_staff|wand|orb}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {floating_hair, aqua_hair|floating_hair, blue_hair|floating_hair, blue_hair}, {blue_eyes|green_eyes|grey_eyes}, {robe|dress, torn_clothes|robe}, {bracer, coral|bracer|arm_guards}, {wooden_staff|wand|scepter}, large_breasts, bare_shoulders, thighs, collarbone
+            - 1girl, valkyrie, {long_hair, blonde_hair|braid, grey_hair, crystal|floating_hair, blonde_hair}, {blue_eyes|grey_eyes|yellow_eyes}, {plate_armor|armor|robe}, {crown|circlet|headdress, gem}, {lance|axe|sword}, large_breasts, cleavage, bare_shoulders, thighs
+            - 1girl, {long_hair, white_hair|floating_hair, grey_hair|updo, white_hair, feathers}, {blue_eyes|grey_eyes|white_eyes}, {robe|dress|see-through_clothes}, {hair_ornament, crystal|circlet|headdress, feathers, gem}, {wind|sword, glowing_weapon|magic_circle}, large_breasts, bare_shoulders, thighs, collarbone
+          storm-caller-female-locations:
+            - cliff, storm
+            - mountain, storm
+            - ocean, storm
+            - sky, cloud
+            - sky, wind
+            - island, storm
+            - sky, lightning
+            - waterfall, rain
+          prompt-storm-caller-female-with-location:
+            - __danboru-character-prompter/custom/female/fantasy/storm-caller-female__, __danboru-character-prompter/custom/female/fantasy/storm-caller-female-locations__
+        goddesses:
+          athena:
+            - 1girl, {long_hair, grey_hair|updo, blonde_hair, laurel_crown|braid, white_hair, gold_trim}, {grey_eyes|grey_eyes|blue_eyes}, {chiton, gold_trim|robe, silver_trim|dress, armor, gold_trim}, {laurel_crown|crown, gem|helmet}, {spear|shield|owl}, large_breasts, cleavage, bare_shoulders, gold_trim, jewelry, armlet, anklet, earrings, pearl_necklace
+            - 1girl, tan, updo, grey_hair, laurel_crown, grey_eyes, dress, armor, gold_trim, shield, spear, large_breasts, jewelry, armlet, anklet, earrings, owl, helmet
+          athena-locations:
+            - temple, pillar
+            - throne_room, cloud
+            - battlefield, dawn
+            - library, indoors
+            - temple, starry_sky
+            - mountain, cloud
+            - ruins, pillar
+            - sky, cloud
+          prompt-athena-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/athena__, __danboru-character-prompter/custom/female/goddesses/athena-locations__
+          aphrodite:
+            - 1girl, {floating_hair, blonde_hair|floating_hair, blonde_hair|curly_hair, blonde_hair, rose}, {purple_eyes|purple_eyes|blue_eyes}, {see-through_clothes|dress, gold_trim|robe}, {crown, rose, pearl_necklace|crown, gold_trim|tiara, gem}, large_breasts, cleavage, bare_shoulders, thighs, navel, jewelry, pearl_necklace, bangle, earrings
+          aphrodite-locations:
+            - ocean, sunrise
+            - garden, flower
+            - ocean, shell
+            - garden, rose
+            - island, sunset
+            - temple, flower
+            - ocean, dawn
+            - garden, twilight
+          prompt-aphrodite-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/aphrodite__, __danboru-character-prompter/custom/female/goddesses/aphrodite-locations__
+          artemis:
+            - 1girl, {messy_hair, grey_hair|braid, grey_hair|short_hair, white_hair}, {grey_eyes|blue_eyes|grey_eyes}, {chiton, silver_trim|leather_armor|robe, silver_trim}, {crown, crescent_moon|circlet, gem|hairpin, crescent_moon}, {bow_(weapon)|quiver|spear}, {deer|wolf}, large_breasts, bare_shoulders, thighs, jewelry, earrings, armlet, anklet
+          artemis-locations:
+            - forest, outdoors
+            - forest, full_moon
+            - cliff, moonlight
+            - forest, fog
+            - river, forest
+            - mountain, outdoors
+            - forest, starry_sky
+            - meadow, dusk
+          prompt-artemis-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/artemis__, __danboru-character-prompter/custom/female/goddesses/artemis-locations__
+          hera:
+            - 1girl, mature_female, {updo, blonde_hair|braid, black_hair, gold_trim|updo, black_hair}, {yellow_eyes|purple_eyes|blue_eyes}, {gown, gold_trim|robe, gold_trim|purple_dress, gold_trim}, {crown, gold_trim|crown, peacock_feathers|crown, gem}, large_breasts, cleavage, bare_shoulders, jewelry, crown, necklace, earrings, ring
+          hera-locations:
+            - throne_room, indoors
+            - castle, cloud
+            - throne_room, pillar
+            - sky, cloud
+            - garden, outdoors
+            - castle, indoors
+            - throne_room, candlelight
+            - sky, sunset
+          prompt-hera-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/hera__, __danboru-character-prompter/custom/female/goddesses/hera-locations__
+          persephone:
+            - 1girl, {long_hair, black_hair, flower|floating_hair, black_hair|black_hair, gradient_hair}, {heterochromia, green_eyes, purple_eyes|heterochromia, pink_eyes, grey_eyes}, {gown, flower|dress, flower|robe}, {crown, flower, bare_tree|crown, pomegranate, flower|tiara}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, earrings, necklace, armlet
+          persephone-locations:
+            - garden, flower
+            - underground, dark
+            - garden, ruins
+            - underground, gate
+            - forest, autumn
+            - garden, spring_(season)
+            - underground, fog
+            - garden, dusk
+          prompt-persephone-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/persephone__, __danboru-character-prompter/custom/female/goddesses/persephone-locations__
+          freya:
+            - 1girl, valkyrie, {floating_hair, blonde_hair|braid, blonde_hair, hair_beads|blonde_hair, feathers}, {blue_eyes|grey_eyes|yellow_eyes}, {dress, gold_trim, feathers|armor|dress, gold_trim, gem}, {crown, gold_trim|circlet, feathers|tiara, gem}, {spear|magic_circle|cat}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, armlet, earrings, bracelet
+          freya-locations:
+            - meadow, aurora
+            - meadow, flower
+            - sky, storm
+            - forest, meadow
+            - battlefield, storm
+            - meadow, sunset
+            - sky, aurora
+            - meadow, wind
+          prompt-freya-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/freya__, __danboru-character-prompter/custom/female/goddesses/freya-locations__
+          skadi:
+            - 1girl, {braid, grey_hair|floating_hair, white_hair|grey_hair, bone}, {blue_eyes|grey_eyes|blue_eyes}, {fur_trim, leather_armor|plate_armor|robe, scales}, {crown, crystal|crown, antlers|tiara, bone}, {bow_(weapon)|spear|wolf}, muscular_female, large_breasts, bare_shoulders, thighs, jewelry, earrings, armlet, necklace
+          skadi-locations:
+            - mountain, blizzard
+            - mountain, ice
+            - forest, snow
+            - mountain, fog
+            - snow, mountain
+            - mountain, wind
+            - snow, forest
+            - mountain, twilight
+          prompt-skadi-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/skadi__, __danboru-character-prompter/custom/female/goddesses/skadi-locations__
+          hel:
+            - 1girl, {long_hair, black_hair, white_hair|long_hair, gradient_hair, black_hair, white_hair|long_hair, black_hair, streaked_hair, white_hair}, {heterochromia, blue_eyes, grey_eyes|heterochromia, yellow_eyes, grey_eyes}, {robe, torn_clothes|gown, bone|dress}, {crown, bone|tiara, bone|tiara, gem}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings
+          hel-locations:
+            - underground, gate
+            - underground, fog
+            - river, dark
+            - underground, dark
+            - graveyard, fog
+            - underground, twilight
+            - gate, dark
+            - river, underground
+          prompt-hel-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/hel__, __danboru-character-prompter/custom/female/goddesses/hel-locations__
+          idun:
+            - 1girl, {floating_hair, blonde_hair, flower|floating_hair, blonde_hair|floating_hair, blonde_hair}, {green_eyes|yellow_eyes|blue_eyes}, {robe, flower|dress|gown, gold_trim}, {crown, flower|crown, gold_trim|tiara, gem}, {basket, apple|orb|wooden_staff}, large_breasts, bare_shoulders, collarbone, thighs, jewelry, earrings, necklace, armlet, leaf
+          idun-locations:
+            - garden, apple
+            - garden, flower
+            - meadow, spring_(season)
+            - garden, sunrise
+            - meadow, flower
+            - garden, morning
+            - meadow, sunbeam
+            - garden, autumn
+          prompt-idun-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/idun__, __danboru-character-prompter/custom/female/goddesses/idun-locations__
+          ran:
+            - 1girl, {floating_hair, aqua_hair|floating_hair, blue_hair, seashell|floating_hair, blue_hair}, {blue_eyes|green_eyes|grey_eyes}, {gown|robe|dress}, {crown, coral|tiara, gem|tiara, shell, pearl_necklace}, {net|treasure_chest|snake}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, pearl_necklace, earrings, coral
+          ran-locations:
+            - ocean, storm
+            - ocean, fog
+            - shipwreck, ocean
+            - ocean, moonlight
+            - cliff, ocean
+            - ocean, dawn
+            - island, storm
+            - ocean, reflection
+          prompt-ran-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/ran__, __danboru-character-prompter/custom/female/goddesses/ran-locations__
+          isis:
+            - 1girl, {long_hair, black_hair|straight_hair, black_hair|updo, black_hair}, {eyeliner, brown_eyes|eyeliner, yellow_eyes|eyeliner, yellow_eyes}, {ancient_egyptian_clothes, gold_trim|dress, gold_trim|robe, embroidery}, {crown, feathers|crown, cow_horns|crown, gold_trim}, {ankh|book|wings}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, gold_collar, earrings, armlet, anklet
+          isis-locations:
+            - pyramid_(structure), desert
+            - river, desert
+            - pyramid_(structure), sunset
+            - desert, sand
+            - temple, pillar
+            - desert, sunbeam
+            - pyramid_(structure), sand
+            - river, sunrise
+          prompt-isis-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/isis__, __danboru-character-prompter/custom/female/goddesses/isis-locations__
+          bastet:
+            - 1girl, cat_ears, cat_tail, {long_hair, black_hair, gold_trim|floating_hair, black_hair|black_hair}, {yellow_eyes, slit_pupils|yellow_eyes, slit_pupils|green_eyes, slit_pupils}, {black_robe|dress, gold_trim|robe, embroidery}, {crown, gold_trim, cat_ears|tiara, gold_trim|crown, gem}, {bell|cat|ankh}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet, anklet
+          bastet-locations:
+            - temple, statue
+            - temple, candlelight
+            - temple, incense
+            - temple, indoors
+            - desert, temple
+            - temple, torch
+            - temple, night
+            - temple, sunbeam
+          prompt-bastet-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/bastet__, __danboru-character-prompter/custom/female/goddesses/bastet-locations__
+          sekhmet:
+            - 1girl, lion_ears, mane, {messy_hair, red_hair|floating_hair, orange_hair|floating_hair, red_hair}, {yellow_eyes|yellow_eyes|red_eyes}, {dress, blood, gold_trim|armor|robe}, {crown, gold_trim|crown, claws|tiara, gold_trim}, {scepter|spear|lion}, muscular_female, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          sekhmet-locations:
+            - desert, battlefield
+            - desert, sunbeam
+            - battlefield, sand
+            - desert, twilight
+            - pyramid_(structure), desert
+            - battlefield, fire
+            - desert, dust
+            - temple, fire
+          prompt-sekhmet-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/sekhmet__, __danboru-character-prompter/custom/female/goddesses/sekhmet-locations__
+          nephthys:
+            - 1girl, {long_hair, black_hair|straight_hair, purple_hair|updo, black_hair}, {purple_eyes|grey_eyes|brown_eyes}, eyeliner, {black_robe|black_dress|robe, embroidery}, {crown, gem|tiara, gem|crown}, {ankh|orb|black_wings}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, gold_collar, earrings, armlet
+          nephthys-locations:
+            - temple, night
+            - desert, moonlight
+            - temple, dark
+            - river, night
+            - desert, fog
+            - temple, twilight
+            - desert, night
+            - river, moonlight
+          prompt-nephthys-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/nephthys__, __danboru-character-prompter/custom/female/goddesses/nephthys-locations__
+          hathor:
+            - 1girl, {floating_hair, blonde_hair, flower|floating_hair, blonde_hair|floating_hair, blonde_hair, gem}, {yellow_eyes|brown_eyes|yellow_eyes}, {robe, gold_trim|gown|dress, gold_trim}, {crown, cow_horns|crown, gold_trim|tiara, flower, gem}, {bell|mirror|dove}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, turquoise_(gemstone), necklace, earrings, armlet, anklet, bell
+          hathor-locations:
+            - temple, festival
+            - temple, flower
+            - temple, candlelight
+            - river, festival
+            - temple, sunbeam
+            - garden, festival
+            - temple, incense
+            - river, sunset
+          prompt-hathor-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/hathor__, __danboru-character-prompter/custom/female/goddesses/hathor-locations__
+          lakshmi:
+            - 1girl, {long_hair, black_hair|updo, black_hair, gold_trim|black_hair, marigold, gem}, {brown_eyes|pink_eyes|yellow_eyes}, {sari, gold_trim|robe, lotus|dress, gold_trim}, {crown, lotus|tiara, marigold, gem|crown, gold_trim}, {gold_trim|lotus|orb}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, bangle, forehead_jewel
+          lakshmi-locations:
+            - pond, lotus
+            - temple, candlelight
+            - temple, festival
+            - pond, flower
+            - temple, marigold
+            - garden, lotus
+            - temple, sunbeam
+            - pond, dawn
+          prompt-lakshmi-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/lakshmi__, __danboru-character-prompter/custom/female/goddesses/lakshmi-locations__
+          kali:
+            - 1girl, {messy_hair, black_hair|messy_hair, black_hair|messy_hair, black_hair}, {red_eyes|yellow_eyes|grey_eyes}, {black_robe|armor|black_dress}, {crown, skull|circlet|tiara}, {sword|skull|trident}, large_breasts, bare_shoulders, thighs, navel, jewelry, skull_necklace, earrings, armlet, extra_arms
+          kali-locations:
+            - graveyard, night
+            - graveyard, storm
+            - graveyard, fire
+            - battlefield, lightning
+            - graveyard, smoke
+            - graveyard, lightning
+            - wasteland, storm
+            - battlefield, fog
+          prompt-kali-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/kali__, __danboru-character-prompter/custom/female/goddesses/kali-locations__
+          saraswati:
+            - 1girl, {floating_hair, white_hair, lotus|floating_hair, white_hair|updo, white_hair}, {blue_eyes|purple_eyes|grey_eyes}, {sari|robe, silver_trim|white_dress, gold_trim}, {crown, lotus|tiara, pearl_necklace|circlet, silver_trim}, {book|swan|lotus|crystal_ball}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, pearl_necklace, earrings, bangle
+          saraswati-locations:
+            - river, lotus
+            - library, indoors
+            - pond, lotus
+            - garden, fog
+            - river, dawn
+            - garden, lotus
+            - library, candlelight
+            - pond, morning
+          prompt-saraswati-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/saraswati__, __danboru-character-prompter/custom/female/goddesses/saraswati-locations__
+          durga:
+            - 1girl, extra_arms, {long_hair, black_hair|messy_hair, black_hair|floating_hair, red_hair}, {yellow_eyes|yellow_eyes|red_eyes}, {sari, armor|dress, armor|robe, armor}, {crown, gold_trim|tiara, gold_trim|crown, gem}, {trident|sword|bow_(weapon)|lotus|shell|sword, shield}, lion, muscular_female, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          durga-locations:
+            - battlefield, lotus
+            - battlefield, storm
+            - temple, battlefield
+            - mountain, battlefield
+            - battlefield, lion
+            - battlefield, fire
+            - temple, lion
+            - battlefield, dusk
+          prompt-durga-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/durga__, __danboru-character-prompter/custom/female/goddesses/durga-locations__
+          parvati:
+            - 1girl, {long_hair, black_hair, flower|floating_hair, black_hair|updo, black_hair, gem}, {brown_eyes|yellow_eyes|brown_eyes}, {sari, gold_trim|robe, gold_trim|dress, gold_trim}, {crown, flower|tiara, gem|crown, gold_trim}, {lotus|orb|crescent_moon}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, bangle, forehead_jewel, toe_ring
+          parvati-locations:
+            - mountain, flower
+            - mountain, snow
+            - river, flower
+            - mountain, sunbeam
+            - garden, flower
+            - mountain, twilight
+            - river, sunrise
+            - mountain, cloud
+          prompt-parvati-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/parvati__, __danboru-character-prompter/custom/female/goddesses/parvati-locations__
+          amaterasu:
+            - 1girl, {long_hair|hime_cut}, black_hair, {yellow_eyes|orange_eyes|blue_eyes}, {miko, gold_trim|dress, gold_trim|japanese_clothes, gold_trim}, {crown, gold_trim|tiara, gold_trim|circlet, gold_trim}, {mirror|sword|fox}, large_breasts, bare_shoulders, thighs, jewelry, kanzashi, earrings, armlet, japanese_clothes, magatama, hand_mirror
+          amaterasu-locations:
+            - shrine, sunrise
+            - shrine, cherry_blossoms
+            - sky, sunbeam
+            - shrine, sunbeam
+            - shrine, torii
+            - sky, cherry_blossoms
+            - shrine, dawn
+            - shrine, morning
+          prompt-amaterasu-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/amaterasu__, __danboru-character-prompter/custom/female/goddesses/amaterasu-locations__
+          tsukuyomi:
+            - 1girl, {floating_hair, grey_hair|floating_hair, blonde_hair|floating_hair, white_hair}, {grey_eyes|grey_eyes|blue_eyes}, japanese_clothes, {robe, silver_trim|dress, silver_trim|robe, embroidery}, {crown, crescent_moon|tiara, silver_trim|circlet, gem}, {mirror|orb|wolf}, large_breasts, bare_shoulders, thighs, jewelry, kanzashi, earrings, armlet
+          tsukuyomi-locations:
+            - shrine, moonlight
+            - shrine, full_moon
+            - sky, starry_sky
+            - shrine, night
+            - river, moonlight
+            - shrine, crescent_moon
+            - shrine, reflection
+            - sky, night
+          prompt-tsukuyomi-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/tsukuyomi__, __danboru-character-prompter/custom/female/goddesses/tsukuyomi-locations__
+          benzaiten:
+            - 1girl, japanese_clothes, {long_hair, black_hair|floating_hair, blue_hair|long_hair, black_hair, gem}, {blue_eyes|purple_eyes|grey_eyes}, {white_robe|dress|japanese_clothes, silver_trim}, {crown, pearl_necklace|tiara, gem|tiara, coral}, {crystal_ball|white_snake|gem}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, pearl_necklace, earrings, armlet
+          benzaiten-locations:
+            - shrine, ocean
+            - shrine, river
+            - ocean, torii
+            - river, torii
+            - shrine, reflection
+            - ocean, fog
+            - shrine, morning
+            - river, fog
+          prompt-benzaiten-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/benzaiten__, __danboru-character-prompter/custom/female/goddesses/benzaiten-locations__
+          izanami:
+            - 1girl, japanese_clothes, {long_hair, black_hair|long_hair, black_hair, streaked_hair, white_hair|floating_hair, black_hair, gradient_hair}, {heterochromia, brown_eyes, grey_eyes|grey_eyes, glowing_eyes}, {robe, torn_clothes|dress, bone|robe}, {crown, flower, bone|tiara, bone|crown, bone}, {orb|book|door}, large_breasts, bare_shoulders, thighs, jewelry, earrings
+          izanami-locations:
+            - underground, gate
+            - underground, dark
+            - underground, fog
+            - gate, dark
+            - underground, ruins
+            - underground, twilight
+            - gate, fog
+            - underground, night
+          prompt-izanami-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/izanami__, __danboru-character-prompter/custom/female/goddesses/izanami-locations__
+          uzume:
+            - 1girl, japanese_clothes, {floating_hair, red_hair|floating_hair, orange_hair|floating_hair, pink_hair}, {yellow_eyes|orange_eyes|pink_eyes}, {robe, colorful|dress, embroidery|robe, gold_trim}, {crown, flower|tiara, gem|circlet}, {drum|mirror|rooster}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, kanzashi, earrings, armlet
+          uzume-locations:
+            - cave, dawn
+            - shrine, festival
+            - cave, torch
+            - shrine, dawn
+            - cave, indoors
+            - shrine, sunrise
+            - cave, candlelight
+            - shrine, morning
+          prompt-uzume-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/uzume__, __danboru-character-prompter/custom/female/goddesses/uzume-locations__
+          inanna:
+            - 1girl, {long_hair, black_hair|updo, black_hair|long_hair, black_hair, star_(symbol)}, {blue_eyes|yellow_eyes|brown_eyes}, eyeliner, {robe, embroidery|dress, gold_trim|robe, star_(symbol)}, {crown, cow_horns|crown, star_(symbol)|tiara, gem}, {scepter|lion|star_(symbol)}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, pendant, armlet
+          inanna-locations:
+            - temple, star_(symbol)
+            - river, temple
+            - temple, desert
+            - temple, night
+            - desert, starry_sky
+            - temple, sunset
+            - river, fog
+            - temple, dusk
+          prompt-inanna-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/inanna__, __danboru-character-prompter/custom/female/goddesses/inanna-locations__
+          ishtar:
+            - 1girl, {long_hair, black_hair|updo, black_hair|black_hair, star_(symbol)}, {yellow_eyes|yellow_eyes|red_eyes}, eyeliner, {robe, embroidery, star_(symbol)|armor, robe|robe, star_(symbol)}, {crown, star_(symbol)|crown, lion|tiara}, {bow_(weapon), quiver|lion|star_(symbol)}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet, anklet
+          ishtar-locations:
+            - temple, star_(symbol)
+            - temple, battlefield
+            - temple, dusk
+            - desert, star_(symbol)
+            - temple, dawn
+            - battlefield, twilight
+            - temple, sunset
+            - temple, storm
+          prompt-ishtar-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/ishtar__, __danboru-character-prompter/custom/female/goddesses/ishtar-locations__
+          ninsun:
+            - 1girl, mature_female, {braid, black_hair|updo, black_hair|updo, black_hair, gold_trim}, {yellow_eyes|brown_eyes|yellow_eyes}, {robe, embroidery|robe, gold_trim|robe}, {crown, cow_horns|tiara, gold_trim|circlet}, {book|cow|orb}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, choker, earrings, armlet
+          ninsun-locations:
+            - temple, indoors
+            - temple, incense
+            - temple, moonlight
+            - temple, candlelight
+            - desert, night
+            - temple, evening
+            - temple, dusk
+            - temple, morning
+          prompt-ninsun-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/ninsun__, __danboru-character-prompter/custom/female/goddesses/ninsun-locations__
+          ereshkigal:
+            - 1girl, pale_skin, {messy_hair, black_hair|messy_hair, black_hair|messy_hair, grey_hair}, {grey_eyes|white_eyes|grey_eyes}, {robe, torn_clothes|dress, torn_clothes|robe}, {crown|tiara|headband}, {wooden_staff|book|throne}, large_breasts, bare_shoulders, thighs, earrings
+          ereshkigal-locations:
+            - underground, dark
+            - underground, dust
+            - river, dark
+            - gate, dark
+            - underground, bone
+            - underground, fog
+            - gate, underground
+            - river, underground
+          prompt-ereshkigal-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/ereshkigal__, __danboru-character-prompter/custom/female/goddesses/ereshkigal-locations__
+          ninhursag:
+            - 1girl, {floating_hair, brown_hair|floating_hair, brown_hair, flower|braid, brown_hair}, {brown_eyes|yellow_eyes|green_eyes}, {robe, embroidery|robe|robe, flower}, {crown, omega_symbol|crown, flower|tiara}, {plant|cow|omega_symbol}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          ninhursag-locations:
+            - garden, river
+            - garden, flower
+            - river, morning
+            - garden, fog
+            - garden, sunbeam
+            - river, fog
+            - garden, spring_(season)
+            - garden, dawn
+          prompt-ninhursag-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/ninhursag__, __danboru-character-prompter/custom/female/goddesses/ninhursag-locations__
+          morrigan:
+            - 1girl, {messy_hair, black_hair, feathers|floating_hair, black_hair|floating_hair, black_hair, feathers}, {red_eyes|grey_eyes|red_eyes}, {black_robe|cloak, dress|robe}, {crown, feathers|crown, gem|tiara}, {crow|spear|cauldron}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          morrigan-locations:
+            - battlefield, storm
+            - battlefield, crow
+            - battlefield, fog
+            - battlefield, night
+            - ruins, storm
+            - battlefield, lightning
+            - battlefield, twilight
+            - ruins, fog
+          prompt-morrigan-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/morrigan__, __danboru-character-prompter/custom/female/goddesses/morrigan-locations__
+          brigid:
+            - 1girl, {floating_hair, red_hair|floating_hair, red_hair|floating_hair, orange_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {robe, gold_trim|dress, gold_trim|robe, flower}, {crown, gold_trim|crown, fire|tiara, gold_trim}, {fire|hammer|cup}, large_breasts, bare_shoulders, collarbone, jewelry, earrings, armlet
+          brigid-locations:
+            - shrine, fire
+            - shrine, dawn
+            - forest, fire
+            - shrine, flower
+            - forest, sunrise
+            - shrine, candle
+            - forest, dawn
+            - shrine, morning
+          prompt-brigid-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/brigid__, __danboru-character-prompter/custom/female/goddesses/brigid-locations__
+          danu:
+            - 1girl, mature_female, {floating_hair, grey_hair|floating_hair, white_hair|floating_hair, grey_hair, streaked_hair}, {blue_eyes|green_eyes|grey_eyes}, {robe|robe, embroidery|robe, gold_trim}, {crown, gem|tiara|circlet}, {magic_circle|cauldron|wooden_staff}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          danu-locations:
+            - river, fog
+            - forest, river
+            - river, twilight
+            - forest, fog
+            - river, morning
+            - forest, mountain
+            - river, dawn
+            - forest, dusk
+          prompt-danu-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/danu__, __danboru-character-prompter/custom/female/goddesses/danu-locations__
+          epona:
+            - 1girl, {floating_hair, brown_hair, braid|floating_hair, brown_hair|floating_hair, blonde_hair, flower}, {brown_eyes|yellow_eyes|green_eyes}, {dress, embroidery|robe|dress}, {crown, flower|crown, gold_trim|tiara}, {horse|cup|orb}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet, leaf
+          epona-locations:
+            - meadow, horse
+            - stable, horse
+            - meadow, morning
+            - field, horse
+            - meadow, sunbeam
+            - stable, indoors
+            - meadow, dawn
+            - field, morning
+          prompt-epona-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/epona__, __danboru-character-prompter/custom/female/goddesses/epona-locations__
+          cerridwen:
+            - 1girl, witch, {messy_hair, grey_hair|floating_hair, white_hair|floating_hair, grey_hair}, {grey_eyes|grey_eyes|blue_eyes}, {robe|robe, embroidery|robe, gold_trim}, {crown, crescent_moon|tiara, gem|circlet}, {cauldron|pig|glowing}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          cerridwen-locations:
+            - lake, fog
+            - lake, moonlight
+            - forest, cauldron
+            - lake, full_moon
+            - lake, twilight
+            - forest, fog
+            - lake, night
+            - lake, dusk
+          prompt-cerridwen-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/cerridwen__, __danboru-character-prompter/custom/female/goddesses/cerridwen-locations__
+          coatlicue:
+            - 1girl, {braid, black_hair|updo, black_hair|braid, black_hair, gem}, {black_sclera|green_eyes|brown_eyes}, {dress, snake_print|robe, skull|dress, embroidery}, {crown, snake_hair_ornament|crown, skull, flower|tiara}, {snake|eagle|jaguar}, large_breasts, bare_shoulders, thighs, jewelry, skull_necklace, earrings, armlet
+          coatlicue-locations:
+            - pyramid_(structure), incense
+            - pyramid_(structure), night
+            - jungle, ruins
+            - pyramid_(structure), smoke
+            - jungle, pyramid_(structure)
+            - ruins, incense
+            - pyramid_(structure), twilight
+            - jungle, night
+          prompt-coatlicue-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/coatlicue__, __danboru-character-prompter/custom/female/goddesses/coatlicue-locations__
+          xochiquetzal:
+            - 1girl, {floating_hair, black_hair, marigold|floating_hair, blue_hair|updo, black_hair, flower}, {yellow_eyes|brown_eyes|yellow_eyes}, {dress, embroidery, flower|robe, feathers|dress, marigold}, {crown, feathers, marigold|crown, flower|tiara}, {feathers|flower|wooden_staff}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet, anklet
+          xochiquetzal-locations:
+            - garden, flower
+            - garden, marigold
+            - garden, incense
+            - jungle, flower
+            - garden, sunbeam
+            - jungle, garden
+            - garden, dawn
+            - garden, morning
+          prompt-xochiquetzal-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/xochiquetzal__, __danboru-character-prompter/custom/female/goddesses/xochiquetzal-locations__
+          tlazolteotl:
+            - 1girl, {messy_hair, black_hair|messy_hair, black_hair|messy_hair, black_hair}, {brown_eyes|black_sclera|yellow_eyes}, {robe, torn_clothes|dress|robe}, {headdress|tiara|crown, crescent_moon}, {broom|thread|frog}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          tlazolteotl-locations:
+            - ruins, smoke
+            - ruins, twilight
+            - ruins, dark
+            - ruins, incense
+            - ruins, night
+            - wasteland, smoke
+            - ruins, fog
+            - ruins, dusk
+          prompt-tlazolteotl-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/tlazolteotl__, __danboru-character-prompter/custom/female/goddesses/tlazolteotl-locations__
+          chalchiuhtlicue:
+            - 1girl, {floating_hair, green_hair|floating_hair, aqua_hair|floating_hair, black_hair, shell}, {green_eyes|blue_eyes|blue_eyes}, {dress, embroidery|robe|dress}, {crown, lily_pad|tiara, shell|circlet}, {water|necklace|snake}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          chalchiuhtlicue-locations:
+            - lake, fog
+            - lake, morning
+            - lake, reflection
+            - river, lake
+            - lake, dawn
+            - river, fog
+            - lake, twilight
+            - river, morning
+          prompt-chalchiuhtlicue-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/chalchiuhtlicue__, __danboru-character-prompter/custom/female/goddesses/chalchiuhtlicue-locations__
+          itzpapalotl:
+            - 1girl, butterfly_wings, {messy_hair, black_hair, star_(symbol)|floating_hair, black_hair|messy_hair, black_hair}, {grey_eyes|black_sclera|white_eyes}, {black_robe|black_dress|robe, embroidery}, {crown, star_(symbol)|tiara|circlet, gem}, {bow_(weapon)|sword|deer}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          itzpapalotl-locations:
+            - jungle, night
+            - jungle, starry_sky
+            - ruins, night
+            - jungle, star_(symbol)
+            - jungle, dark
+            - ruins, starry_sky
+            - jungle, twilight
+            - ruins, dark
+          prompt-itzpapalotl-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/itzpapalotl__, __danboru-character-prompter/custom/female/goddesses/itzpapalotl-locations__
+          hina:
+            - 1girl, {floating_hair, black_hair, flower|floating_hair, black_hair|floating_hair, black_hair, gradient_hair}, {grey_eyes|grey_eyes|blue_eyes}, {white_robe|white_dress|robe, embroidery}, {crown, flower, crescent_moon|tiara|circlet}, {hand_fan|orb|heron}, large_breasts, bare_shoulders, thighs, jewelry, pearl_necklace, shell, earrings, armlet
+          hina-locations:
+            - ocean, moonlight
+            - island, moonlight
+            - ocean, full_moon
+            - island, night
+            - ocean, reflection
+            - island, dusk
+            - ocean, starry_sky
+            - island, twilight
+          prompt-hina-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/hina__, __danboru-character-prompter/custom/female/goddesses/hina-locations__
+          pele:
+            - 1girl, {messy_hair, red_hair|messy_hair, black_hair|messy_hair, red_hair}, {orange_eyes|yellow_eyes|red_eyes}, {robe, fire|black_dress|dress, fire}, {crown, flower|crown, fire|tiara, gem}, {fire|magic_circle|flower}, large_breasts, bare_shoulders, thighs, jewelry, necklace, shell, earrings, armlet
+          pele-locations:
+            - volcano, lava
+            - volcano, fire
+            - volcano, smoke
+            - volcano, night
+            - volcano, twilight
+            - volcano, embers
+            - volcano, dusk
+            - volcano, lightning
+          prompt-pele-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/pele__, __danboru-character-prompter/custom/female/goddesses/pele-locations__
+          papatuanuku:
+            - 1girl, mature_female, {floating_hair, brown_hair, leaf|floating_hair, brown_hair|floating_hair, brown_hair, bone}, {brown_eyes|green_eyes|brown_eyes}, {dress, embroidery|robe, bone|dress, bone}, {crown, feathers|tiara|circlet, gem}, {vines|cloud|leaf}, large_breasts, bare_shoulders, jewelry, necklace, earrings, armlet, bone
+          papatuanuku-locations:
+            - forest, fog
+            - valley, morning
+            - forest, morning
+            - valley, fog
+            - forest, dawn
+            - meadow, fog
+            - forest, valley
+            - valley, dawn
+          prompt-papatuanuku-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/papatuanuku__, __danboru-character-prompter/custom/female/goddesses/papatuanuku-locations__
+          nafanua:
+            - 1girl, {braid, black_hair|updo, black_hair|braid, black_hair, feathers}, {brown_eyes|yellow_eyes|brown_eyes}, {dress, embroidery|robe|dress}, {crown, seashell|tiara|circlet}, {club_(weapon)|spear|bone}, muscular_female, large_breasts, bare_shoulders, thighs, jewelry, necklace, shell, earrings, armlet, bone
+          nafanua-locations:
+            - island, battlefield
+            - battlefield, evening
+            - island, dusk
+            - battlefield, night
+            - island, twilight
+            - battlefield, sand
+            - island, sunset
+            - battlefield, dawn
+          prompt-nafanua-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/nafanua__, __danboru-character-prompter/custom/female/goddesses/nafanua-locations__
+          haumea:
+            - 1girl, {floating_hair, brown_hair, leaf|floating_hair, black_hair|floating_hair, black_hair, leaf}, {brown_eyes|yellow_eyes|brown_eyes}, {dress, leaf|robe|dress, embroidery}, {crown, lei|tiara|circlet, flower}, {wand|plant|fruit}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, shell, earrings, armlet
+          haumea-locations:
+            - jungle, flower
+            - garden, flower
+            - jungle, morning
+            - garden, sunbeam
+            - jungle, dawn
+            - garden, leaf
+            - jungle, sunbeam
+            - garden, morning
+          prompt-haumea-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/haumea__, __danboru-character-prompter/custom/female/goddesses/haumea-locations__
+          mokosh:
+            - 1girl, {floating_hair, black_hair|braid, brown_hair|floating_hair, black_hair, hair_ribbon}, {yellow_eyes|brown_eyes|brown_eyes}, {dress, embroidery|robe, embroidery|dress}, {headdress, gem|tiara|circlet}, {thread|wooden_staff|spider}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          mokosh-locations:
+            - village, evening
+            - forest, fog
+            - forest, twilight
+            - village, twilight
+            - forest, dusk
+            - village, morning
+            - forest, morning
+            - field, evening
+          prompt-mokosh-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/mokosh__, __danboru-character-prompter/custom/female/goddesses/mokosh-locations__
+          marzanna:
+            - 1girl, pale_skin, {floating_hair, white_hair|floating_hair, white_hair|floating_hair, grey_hair}, {blue_eyes|grey_eyes|grey_eyes}, {white_robe, bone|white_dress|robe, bone}, {crown, bare_tree|crown, ice|tiara}, {bone|wooden_staff|crow}, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          marzanna-locations:
+            - river, blizzard
+            - river, ice
+            - frozen_lake, ice
+            - river, snow
+            - river, twilight
+            - snow, forest
+            - river, dusk
+            - frozen_lake, winter
+          prompt-marzanna-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/marzanna__, __danboru-character-prompter/custom/female/goddesses/marzanna-locations__
+          lada:
+            - 1girl, {floating_hair, blonde_hair|floating_hair, blonde_hair, flower|floating_hair, blonde_hair}, {green_eyes|blue_eyes|yellow_eyes}, {dress, embroidery, ribbon|robe, flower|dress}, {crown, flower|tiara|circlet, flower}, {apple|cup|dove}, large_breasts, cleavage, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          lada-locations:
+            - village, festival
+            - meadow, flower
+            - village, spring_(season)
+            - meadow, morning
+            - village, dawn
+            - meadow, sunbeam
+            - village, evening
+            - meadow, dusk
+          prompt-lada-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/lada__, __danboru-character-prompter/custom/female/goddesses/lada-locations__
+          devana:
+            - 1girl, {messy_hair, black_hair, feathers|messy_hair, red_hair|braid, brown_hair}, {green_eyes|yellow_eyes|grey_eyes}, {leather_armor|robe|leather_armor, fur_trim}, {crown, antlers|crown, feathers, bone|tiara}, {bow_(weapon)|spear|wolf|bear}, muscular_female, large_breasts, bare_shoulders, thighs, jewelry, necklace, earrings, armlet
+          devana-locations:
+            - forest, outdoors
+            - forest, wolf
+            - forest, dark
+            - forest, fog
+            - forest, dusk
+            - forest, night
+            - forest, twilight
+            - forest, morning
+          prompt-devana-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/devana__, __danboru-character-prompter/custom/female/goddesses/devana-locations__
+          zorya:
+            - 1girl, {floating_hair, pink_hair|floating_hair, blonde_hair|floating_hair, pink_hair}, {yellow_eyes|pink_eyes|blue_eyes}, {robe, gold_trim|dress|robe, star_(symbol)}, {crown, star_(symbol)|tiara|circlet}, {wooden_staff|rooster|key}, large_breasts, bare_shoulders, thighs, collarbone, jewelry, necklace, earrings, armlet
+          zorya-locations:
+            - sky, dawn
+            - gate, dawn
+            - sky, star_(symbol)
+            - sky, aurora
+            - gate, sky
+            - sky, cloud
+            - sky, sunrise
+            - gate, cloud
+          prompt-zorya-with-location:
+            - __danboru-character-prompter/custom/female/goddesses/zorya__, __danboru-character-prompter/custom/female/goddesses/zorya-locations__
+      male:
+        fantasy:
+          knight-errant:
+            - 1boy, knight, {long_hair, black_hair|short_hair, black_hair|messy_hair, grey_hair}, {grey_eyes|blue_eyes|green_eyes}, {plate_armor, scar|plate_armor|armor, cape}, {helmet, crest|circlet|helmet}, {sword|sword, shield|greatsword}, broad_shoulders, collarbone, scar, cape
+            - 1boy, paladin, {short_hair, black_hair|messy_hair, brown_hair|messy_hair, grey_hair}, stubble, {grey_eyes|blue_eyes|green_eyes}, {armor, torn_clothes|plate_armor, black_armor|armor}, {circlet|helmet|tabard, torn_clothes}, {sword|sword|staff}, broad_shoulders, scar
+            - 1boy, knight, {messy_hair, brown_hair|streaked_hair, grey_hair|short_hair, black_hair}, {yellow_eyes|green_eyes|grey_eyes}, {plate_armor, leather_armor|armor|armor}, {cloak|cape, torn_clothes|hood}, {sword|greatsword|sword}, broad_shoulders, collarbone, stubble
+            - 1boy, knight, {hair_slicked_back, black_hair|short_hair, grey_hair|messy_hair, brown_hair}, {grey_eyes|blue_eyes|yellow_eyes}, {plate_armor|armor|armor}, {helmet|circlet|headband}, {sword|dagger|sword}, broad_shoulders, scar, stubble
+            - 1boy, knight, mature_male, {streaked_hair, black_hair, grey_hair|short_hair, grey_hair|ponytail, grey_hair}, {blue_eyes|grey_eyes|yellow_eyes}, {plate_armor|armor|armor}, {helmet|circlet|headband}, {sword|sword|greatsword}, broad_shoulders, muscular_male, scar, stubble
+          knight-errant-locations:
+            - road, dusk
+            - ruins, cathedral
+            - forest, campfire
+            - town, rain
+            - battlefield, dawn
+            - ruins, fog
+            - road, storm
+            - graveyard, dusk
+          prompt-knight-errant-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/knight-errant__, __danboru-character-prompter/custom/male/fantasy/knight-errant-locations__
+          warlord:
+            - 1boy, {long_hair, black_hair|short_hair, black_hair|floating_hair, grey_hair}, {yellow_eyes|yellow_eyes|grey_eyes}, {black_armor, insignia|armor, red_trim|black_armor, cape}, {crown|helmet|circlet}, {sword|axe|war_hammer, shield}, broad_shoulders, muscular_male, scar
+            - 1boy, {ponytail, black_hair|short_hair, brown_hair|undercut, black_hair}, {grey_eyes|yellow_eyes|yellow_eyes}, {plate_armor, gold_trim|plate_armor, gold_trim|armor}, {crown|helmet|circlet, gem}, {sword|axe|spear, shield}, broad_shoulders, muscular_male, scar
+            - 1boy, {messy_hair, black_hair, braid|dreadlocks, black_hair|undercut, black_hair, topknot}, {yellow_eyes|yellow_eyes|brown_eyes}, facepaint, {leather_armor, armor|armor|armor, bone}, {crown, bone|crown, antlers|circlet}, {axe|war_hammer|spear}, muscular_male, broad_shoulders, tattoo, scar
+            - 1boy, {floating_hair, black_hair|long_hair, black_hair|short_hair, black_hair}, {glowing_eyes, yellow_eyes|glowing_eyes, red_eyes|glowing_eyes, grey_eyes}, {black_armor|armor|black_armor, magic_circle}, {crown|helmet|circlet}, {greatsword|axe|spear}, broad_shoulders, muscular_male
+            - 1boy, mature_male, {streaked_hair, black_hair|short_hair, grey_hair|ponytail, grey_hair}, {grey_eyes|yellow_eyes|blue_eyes}, {plate_armor|armor|armor}, {crown|helmet|circlet}, {greatsword|war_hammer|axe}, broad_shoulders, muscular_male, scar
+          warlord-locations:
+            - tent, dawn
+            - fortress, sunset
+            - tent, bonfire
+            - battlefield, storm
+            - tent, sunrise
+            - castle, torch
+            - battlefield, dusk
+            - fortress, night
+          prompt-warlord-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/warlord__, __danboru-character-prompter/custom/male/fantasy/warlord-locations__
+          dark-knight-male:
+            - 1boy, knight, {long_hair, black_hair|short_hair, black_hair|floating_hair, black_hair}, {grey_eyes|blue_eyes|grey_eyes}, {black_armor, silver_trim|armor|black_armor, cape}, {helmet|crown|helmet, feathers}, {greatsword|sword, shield|spear}, broad_shoulders, muscular_male
+            - 1boy, knight, {messy_hair, black_hair|messy_hair, grey_hair|black_hair}, {glowing_eyes, red_eyes|glowing_eyes, yellow_eyes|glowing_eyes, grey_eyes}, {black_armor, torn_clothes|black_armor|armor}, {crown|circlet|helmet}, {greatsword|sword|axe}, broad_shoulders, muscular_male
+            - 1boy, {short_hair, black_hair|ponytail, black_hair|short_hair, grey_hair}, {purple_eyes|grey_eyes|grey_eyes}, {armor, black_armor|leather_armor, black_armor|armor, leather}, {cloak|hood|pauldrons}, {dagger|sword|sword}, broad_shoulders, muscular_male
+            - 1boy, pale_skin, {messy_hair, black_hair|floating_hair, white_hair|messy_hair, grey_hair}, {glowing_eyes, grey_eyes|glowing_eyes, blue_eyes|glowing_eyes, red_eyes}, {black_armor, bone|armor|plate_armor, bone}, {helmet, skull|crown|circlet}, {greatsword|spear|sword}, broad_shoulders, muscular_male
+            - 1boy, {long_hair, black_hair|floating_hair, grey_hair|short_hair, black_hair}, {blue_eyes|grey_eyes|yellow_eyes}, {black_armor, crest|plate_armor, silver_trim|black_armor, cape}, {helmet|crown|circlet, gem}, {sword, shield|sword|spear}, broad_shoulders, muscular_male
+          dark-knight-male-locations:
+            - fortress, storm
+            - ruins, dark
+            - ruins, moonlight
+            - graveyard, night
+            - castle, moonlight
+            - fortress, night
+            - ruins, fog
+            - castle, storm
+          prompt-dark-knight-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/dark-knight-male__, __danboru-character-prompter/custom/male/fantasy/dark-knight-male-locations__
+          monk-male:
+            - 1boy, monk, {shaved_head|short_hair, black_hair|topknot, black_hair}, {brown_eyes|brown_eyes|yellow_eyes}, bandages, {tunic|sleeveless|sash}, {pants|pants, belt|hakama}, topless_male, muscular_male, abs, barefoot, collarbone
+            - 1boy, monk, {shaved_head, stubble|short_hair, black_hair|topknot}, {brown_eyes|yellow_eyes|grey_eyes}, {robe|robe, belt|cloak}, {sandals, torn_clothes|barefoot|sandals}, bandages, muscular_male, abs, collarbone
+            - 1boy, monk, {shaved_head|short_hair, white_hair|topknot, grey_hair}, {glowing_eyes, blue_eyes|glowing_eyes, grey_eyes|glowing_eyes, yellow_eyes}, {robe, cloud|robe, gold_trim|see-through_clothes}, {prayer_beads|bracelet|bracer}, barefoot, muscular_male, abs, collarbone
+            - 1boy, monk, {shaved_head|short_hair, black_hair|topknot, black_hair}, {purple_eyes|grey_eyes|grey_eyes}, {sleeveless, robe, black_armor|armor, black_armor, hood|bandages}, {bracer|bracer|ring}, barefoot, muscular_male, abs, collarbone
+            - 1boy, monk, {shaved_head|short_hair, black_hair|topknot, hair_ornament}, {brown_eyes|yellow_eyes|grey_eyes}, {robe, torn_clothes|sash|tunic, sash}, {bracer|bracer, leather|gloves}, barefoot, muscular_male, abs, broad_shoulders, collarbone, scar
+          monk-male-locations:
+            - dojo, indoors
+            - mountain, outdoors
+            - mountain, temple
+            - town, night
+            - outdoors, dusk
+            - waterfall, mountain
+            - garden, sunrise
+            - bridge, fog
+          prompt-monk-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/monk-male__, __danboru-character-prompter/custom/male/fantasy/monk-male-locations__
+          necromancer-male:
+            - 1boy, necromancer, pale_skin, {long_hair, black_hair|straight_hair, black_hair|black_hair, streaked_hair, purple_hair}, {red_eyes|purple_eyes|grey_eyes}, {robe, black_armor, bone|coat, black_armor|robe, hood}, {staff, skull|wand|scepter, gem}, {choker, bone|pendant|collar}, collarbone
+            - 1boy, necromancer, lich, skinny, pale_skin, {floating_hair, grey_hair|short_hair, black_hair|grey_hair, streaked_hair}, {glowing_eyes, purple_eyes|glowing_eyes, blue_eyes|glowing_eyes, grey_eyes}, {robe, magic_circle|coat, black_armor|robe, embroidery}, {crown|circlet, skull|headdress, bone}, {book|staff, skull|wand, bone}, collarbone
+            - 1boy, necromancer, skinny, stubble, {messy_hair, black_hair|messy_hair, brown_hair|messy_hair, red_hair}, {yellow_eyes|green_eyes|grey_eyes}, {coat, robe|plague_doctor, robe|robe, torn_clothes}, {mask|gas_mask|mask, bone}, {staff|wand|book}, collarbone
+            - 1boy, necromancer, knight, pale_skin, {short_hair, black_hair|floating_hair, black_hair|short_hair, grey_hair}, {glowing_eyes, blue_eyes|glowing_eyes, red_eyes|glowing_eyes, grey_eyes}, {armor, robe, bone|coat, armor|armor, bone}, {crown, skull|circlet|helmet, bone}, {staff|greatsword|spear}, broad_shoulders, muscular_male
+            - 1boy, necromancer, mature_male, wrinkled_skin, {floating_hair, grey_hair|floating_hair, grey_hair, beard|floating_hair, white_hair}, {white_eyes|white_eyes|yellow_eyes}, {robe, torn_clothes|robe|robe, black_armor}, {staff, bone|staff, skull|scepter}, {ring|bracelet, bone|pendant}, skinny, collarbone
+          necromancer-male-locations:
+            - graveyard, candlelight
+            - library, indoors
+            - dungeon, dark
+            - graveyard, moonlight
+            - ruins, fog
+            - tower, candlelight
+            - wetland, dark
+            - graveyard, night
+          prompt-necromancer-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/necromancer-male__, __danboru-character-prompter/custom/male/fantasy/necromancer-male-locations__
+          barbarian-chief:
+            - 1boy, barbarian, {long_hair, black_hair|braid, brown_hair, bone|floating_hair, red_hair}, {yellow_eyes|yellow_eyes|grey_eyes}, facepaint, {fur_trim, leather_armor|fur_trim, armor|leather_armor, bone}, {crown, skull, antlers|headdress, bone|circlet}, {axe|war_hammer|greatsword}, muscular_male, broad_shoulders, abs, scar, tattoo
+            - 1boy, barbarian, {long_hair, blonde_hair, braid|braid, grey_hair|floating_hair, white_hair}, {blue_eyes|grey_eyes|blue_eyes}, facepaint, {fur_trim, armor|leather_armor, fur_trim|armor, bone}, {crown, crystal|headdress, skull|circlet}, {axe|war_hammer|greatsword}, muscular_male, broad_shoulders, abs, scar
+            - 1boy, barbarian, dark_skin, {shaved_head, tattoo|short_hair, black_hair|dreadlocks, black_hair, gold_trim}, {yellow_eyes|yellow_eyes|brown_eyes}, facial_tattoo, {scale_print, leather_armor|leather_armor, bone|armor, gold_trim}, {crown, gold_trim|headdress, bone, gold_trim|circlet, gold_trim}, {greatsword|axe, bone|spear}, muscular_male, broad_shoulders, abs, tattoo
+            - 1boy, barbarian, {messy_hair, red_hair|messy_hair, black_hair, bone|braid, red_hair}, {red_eyes|yellow_eyes|yellow_eyes}, blood, facepaint, {leather_armor, blood|armor, bone|armor, bone}, {crown, skull|headdress, bone|circlet, bone}, {axe|axe, bone|axe}, muscular_male, broad_shoulders, abs, scar, tattoo
+            - 1boy, barbarian, mature_male, {long_hair, grey_hair, braid|streaked_hair, grey_hair|floating_hair, grey_hair}, {yellow_eyes|grey_eyes|blue_eyes}, {leather_armor, armor|armor|armor}, {crown, bone|headdress, antlers|circlet}, {axe|war_hammer|greatsword}, muscular_male, broad_shoulders, wrinkled_skin, scar
+          barbarian-chief-locations:
+            - tent, bonfire
+            - snow, blizzard
+            - desert, sunbeam
+            - battlefield, red_moon
+            - ruins, sunset
+            - snow, mountain
+            - desert, battlefield
+            - tent, night
+          prompt-barbarian-chief-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/barbarian-chief__, __danboru-character-prompter/custom/male/fantasy/barbarian-chief-locations__
+          gladiator-male:
+            - 1boy, gladiator, {ponytail, black_hair|shaved_head|short_hair, black_hair}, {yellow_eyes|yellow_eyes|grey_eyes}, {leather_armor, armor|armor, skirt|armor}, {arm_guards|bracer|arm_guards}, {sword|trident|sword}, muscular_male, abs, broad_shoulders, topless_male, scar
+            - 1boy, gladiator, {ponytail, red_hair|shaved_head, tattoo|short_hair, black_hair}, {yellow_eyes|yellow_eyes|brown_eyes}, {plate_armor|armor, leather_armor|armor, gold_trim}, {circlet|crown, feathers|crown}, {sword|trident|sword}, muscular_male, abs, broad_shoulders, topless_male, scar
+            - 1boy, gladiator, {messy_hair, black_hair|messy_hair, brown_hair|shaved_head, tattoo}, {yellow_eyes|yellow_eyes|green_eyes}, facepaint, {fur_trim, armor|armor, bone|leather_armor, armor}, {arm_guards, claws|bracer, bone|arm_guards}, {sword|axe|chain}, muscular_male, abs, broad_shoulders, topless_male, scar, tattoo
+            - 1boy, gladiator, {ponytail, black_hair|short_hair, black_hair|shaved_head}, {grey_eyes|blue_eyes|yellow_eyes}, {plate_armor|armor|armor}, {helmet|helmet|helmet, gold_trim}, {sword, shield|war_hammer, shield|spear, shield}, muscular_male, broad_shoulders, scar
+            - 1boy, gladiator, {messy_hair, black_hair|messy_hair, brown_hair|shaved_head, scar}, {grey_eyes|yellow_eyes|green_eyes}, {leather_armor, torn_clothes|armor, torn_clothes|armor}, {arm_guards|bracer|arm_guards}, {sword|spear|shield}, muscular_male, abs, scar, blood
+          gladiator-male-locations:
+            - arena, outdoors
+            - arena, sunset
+            - arena, blood
+            - colosseum, indoors
+            - arena, crowd
+            - arena, dark
+            - colosseum, pillar
+            - arena, sand
+          prompt-gladiator-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/gladiator-male__, __danboru-character-prompter/custom/male/fantasy/gladiator-male-locations__
+          spellsword-male:
+            - 1boy, {long_hair, black_hair|floating_hair, blue_hair|short_hair, grey_hair}, {blue_eyes|purple_eyes|yellow_eyes}, {plate_armor, robe|leather_armor|coat, pauldrons}, {bracer|bracer|arm_guards}, {sword|sword, glowing_weapon|sword}, broad_shoulders, muscular_male, collarbone
+            - 1boy, {short_hair, black_hair|floating_hair, grey_hair|ponytail, black_hair}, {purple_eyes|blue_eyes|grey_eyes}, {coat, armor|armor|plate_armor}, {gloves|bracer|arm_guards}, {rapier|dagger|sword}, muscular_male, collarbone
+            - 1boy, {long_hair, red_hair|floating_hair, black_hair|short_hair, grey_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {robe, armor|plate_armor, robe, pauldrons|coat, armor}, {pauldrons|bracer|arm_guards}, {sword|greatsword|sword}, broad_shoulders, muscular_male
+            - 1boy, {short_hair, black_hair|ponytail, black_hair|short_hair, grey_hair}, {purple_eyes|grey_eyes|grey_eyes}, {armor, black_armor|coat, black_armor|plate_armor, black_armor}, {bracer|bracer|arm_guards}, {dagger, glowing_weapon|dagger|sword}, muscular_male, collarbone
+            - 1boy, {streaked_hair, red_hair|streaked_hair, white_hair|streaked_hair, grey_hair|streaked_hair, brown_hair}, {yellow_eyes|blue_eyes|grey_eyes|brown_eyes}, {plate_armor|leather_armor|robe}, {bracer|bracer|arm_guards}, {sword, fire|sword, ice|sword, lightning}, broad_shoulders, muscular_male, collarbone
+          spellsword-male-locations:
+            - battlefield, outdoors
+            - indoors, dark
+            - battlefield, fire
+            - ruins, moonlight
+            - sky, outdoors
+            - library, indoors
+            - tower, night
+            - ruins, lightning
+          prompt-spellsword-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/spellsword-male__, __danboru-character-prompter/custom/male/fantasy/spellsword-male-locations__
+          serpent-cultist-male:
+            - 1boy, {long_hair, black_hair|floating_hair, green_hair, snake_hair_ornament|shaved_head, tattoo}, {green_eyes, slit_pupils|yellow_eyes, slit_pupils|yellow_eyes, slit_pupils}, {robe, scale_print|robe|coat}, {crown, snake_hair_ornament|headdress|circlet}, {staff|dagger|snake}, muscular_male, collarbone, tattoo
+            - 1boy, priest, {long_hair, green_hair|floating_hair, black_hair|shaved_head, tattoo}, {glowing_eyes, yellow_eyes, slit_pupils|glowing_eyes, green_eyes, slit_pupils|glowing_eyes, yellow_eyes, slit_pupils}, {robe, snake_print|robe|robe}, {crown|headdress|circlet, gem}, {chalice|staff|dagger}, muscular_male, collarbone
+            - 1boy, {messy_hair, black_hair|undercut, black_hair|dreadlocks, black_hair, snake_hair_ornament}, {yellow_eyes, slit_pupils|green_eyes, slit_pupils|yellow_eyes, slit_pupils}, facial_tattoo, {scale_print, armor|leather_armor, scale_print|armor, bone}, {crown|circlet|headdress}, {sword|spear|axe}, muscular_male, broad_shoulders, abs, tattoo
+            - 1boy, {long_hair, black_hair|floating_hair, green_hair|ponytail, aqua_hair}, {glowing_eyes, yellow_eyes|glowing_eyes, green_eyes|glowing_eyes, grey_eyes}, {robe, snake_print|coat, scale_print|robe, embroidery}, {staff|wand|snake}, collarbone
+            - 1boy, priest, mature_male, wrinkled_skin, {floating_hair, grey_hair|updo, black_hair|floating_hair, white_hair}, {yellow_eyes, slit_pupils|green_eyes, slit_pupils|white_eyes, slit_pupils}, {robe, scale_print|robe, embroidery|robe}, {crown|circlet|headdress}, {scepter|staff|snake}, skinny, tattoo
+          serpent-cultist-male-locations:
+            - jungle, torch
+            - altar, dark
+            - jungle, fog
+            - ruins, dark
+            - altar, torch
+            - jungle, ruins
+            - cathedral, dark
+            - jungle, dark
+          prompt-serpent-cultist-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/serpent-cultist-male__, __danboru-character-prompter/custom/male/fantasy/serpent-cultist-male-locations__
+          storm-caller-male:
+            - 1boy, {floating_hair, grey_hair|floating_hair, grey_hair|messy_hair, blonde_hair}, {grey_eyes|blue_eyes|grey_eyes}, {robe, torn_clothes|coat|armor}, {bracer, crystal|bracer|arm_guards}, {staff|wand|scepter}, muscular_male, collarbone
+            - 1boy, {long_hair, blonde_hair|braid, grey_hair, crystal|floating_hair, blonde_hair}, {yellow_eyes|blue_eyes|grey_eyes}, {plate_armor|armor|robe}, {crown|circlet|headdress}, {war_hammer|spear|axe}, muscular_male, broad_shoulders
+            - 1boy, mature_male, wrinkled_skin, {messy_hair, grey_hair|floating_hair, grey_hair|floating_hair, white_hair, beard}, {white_eyes|grey_eyes|blue_eyes}, {robe, torn_clothes|coat|robe}, {staff|staff|scepter}, muscular_male, collarbone
+            - 1boy, {short_hair, black_hair|short_hair, grey_hair|floating_hair, grey_hair}, {grey_eyes|blue_eyes|yellow_eyes}, {coat, armor|plate_armor, robe|armor}, {pauldrons|bracer|arm_guards}, {staff|spear|axe}, broad_shoulders, muscular_male
+            - 1boy, {messy_hair, grey_hair|messy_hair, white_hair|messy_hair, blonde_hair}, {blue_eyes|grey_eyes|grey_eyes}, {robe|robe|coat}, {bracer|bracer|arm_guards}, {staff|wand|orb}, collarbone
+          storm-caller-male-locations:
+            - cliff, storm
+            - sky, cloud
+            - mountain, storm
+            - battlefield, lightning
+            - outdoors, wind
+            - mountain, blizzard
+            - sky, lightning
+            - cliff, wind
+          prompt-storm-caller-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/storm-caller-male__, __danboru-character-prompter/custom/male/fantasy/storm-caller-male-locations__
+          draconic-knight-male:
+            - 1boy, knight, {long_hair, black_hair|floating_hair, red_hair|short_hair, grey_hair}, {red_eyes|blue_eyes|grey_eyes}, {plate_armor, scales|armor, scales|plate_armor}, {pauldrons, dragon_horns|helmet|crown}, {greatsword|sword, shield|spear}, broad_shoulders, muscular_male, tattoo
+            - 1boy, knight, {messy_hair, red_hair|floating_hair, black_hair|short_hair, red_hair}, {red_eyes|orange_eyes|yellow_eyes}, {plate_armor, scales, gem|armor, scales|plate_armor}, {helmet, dragon_horns|crown|circlet}, {greatsword|sword|spear}, broad_shoulders, muscular_male
+            - 1boy, knight, {long_hair, white_hair|floating_hair, grey_hair|short_hair, white_hair}, {blue_eyes|grey_eyes|blue_eyes}, {plate_armor, scales|armor, silver_trim|plate_armor, scales}, {pauldrons, dragon_horns|crown|circlet}, {greatsword|sword|spear}, broad_shoulders, muscular_male
+            - 1boy, knight, {floating_hair, black_hair|short_hair, black_hair|ponytail, black_hair}, {glowing_eyes, yellow_eyes|glowing_eyes, purple_eyes|glowing_eyes, grey_eyes}, {plate_armor, black_scales|armor, black_armor|plate_armor, black_scales}, {pauldrons, dragon_horns|crown, gem|circlet}, {greatsword|sword|spear}, broad_shoulders, muscular_male
+            - 1boy, knight, mature_male, {long_hair, grey_hair|streaked_hair, grey_hair|short_hair, grey_hair}, {yellow_eyes|yellow_eyes|green_eyes}, {plate_armor, scales|armor, scales|plate_armor}, {circlet, dragon_horns|crown|helmet}, {greatsword|sword|lance}, broad_shoulders, muscular_male, scar, wrinkled_skin
+          draconic-knight-male-locations:
+            - mountain, sky
+            - volcano, lava
+            - mountain, blizzard
+            - mountain, moonlight
+            - nest, mountain
+            - cliff, sky
+            - valley, mountain
+            - mountain, sunset
+          prompt-draconic-knight-male-with-location:
+            - __danboru-character-prompter/custom/male/fantasy/draconic-knight-male__, __danboru-character-prompter/custom/male/fantasy/draconic-knight-male-locations__

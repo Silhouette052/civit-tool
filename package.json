@@ -1,0 +1,56 @@
+{
+  "name": "civit-tool",
+  "version": "0.1.0",
+  "description": "Unified CLI for day-to-day LoRA file management: rename, Civitai URL lookup, activation/wildcard generation, image sorting, duplicate finding, wildcard expansion and wildcard linting.",
+  "type": "module",
+  "bin": {
+    "civit-tool": "./bin/run.js"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "oclif": {
+    "bin": "civit-tool",
+    "dirname": "civit-tool",
+    "commands": "./src/commands",
+    "topicSeparator": " ",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-autocomplete"
+    ],
+    "topics": {
+      "file": {
+        "description": "Bulk file operations: rename by find/replace or by sequence."
+      },
+      "img": {
+        "description": "Generated images: sort into one folder per model, extract their metadata or prompts."
+      },
+      "lora": {
+        "description": "LoRA files: activation words and wildcard block, Civitai links, duplicates."
+      },
+      "wc": {
+        "description": "Wildcard YAML files: expand to prompts, lint, find repeats, sort keys."
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test \"src/test/*.test.js\"",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepack": "oclif manifest && oclif readme"
+  },
+  "dependencies": {
+    "@oclif/core": "^4",
+    "@oclif/plugin-autocomplete": "^3",
+    "@oclif/plugin-help": "^6",
+    "chalk": "^5",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "oclif": "^4",
+    "shx": "^0.3"
+  }
+}

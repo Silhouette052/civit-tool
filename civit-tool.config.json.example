@@ -1,0 +1,9 @@
+{
+  "domain": "civitai.red",
+  "warnChars": "@&",
+  "wildcardsDir": null,
+  "lint": {
+    "dataDir": null,
+    "loraDirs": []
+  }
+}

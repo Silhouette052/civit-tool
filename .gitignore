@@ -1,3 +1,8 @@
+node_modules/
+oclif.manifest.json
+civit-tool.config.json
+*.log
+testlora/
 # Logs
 logs
 *.log
@@ -147,3 +152,7 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+test_data/*
+testimages/*
+docs/*
+civit-tool-handover.md

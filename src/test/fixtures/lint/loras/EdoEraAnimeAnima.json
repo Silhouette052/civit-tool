@@ -1,0 +1,16 @@
+{
+    "activation text": "EdoEraAnime",
+    "civitai lookup": "SHA256 -> Civitai /by-hash",
+    "civitai model id": 572988,
+    "civitai model name": "Edo Era Anime",
+    "civitai model version id": 3271798,
+    "civitai url": "https://civitai.red/models/572988?modelVersionId=3271798",
+    "description": "<p><strong>Anime C (EdoEraAnime)</strong> is trained on MidJourney Images that use my \"Personalised Style\" + a rich mix of <strong>anime influences</strong>, primarily focusing on traditional Japanese themes. Approximately <strong>25%</strong> of the dataset emphasizes the \"Blue Eye Samurai\" style, evoking iconic samurai aesthetics.<br /></p><p><strong>SDXL, Pont</strong> trigger words are <strong>ArsMJStyle, AnimeC</strong></p><p><strong>Flux </strong>trigger is <strong>EdoEraAnime. </strong>(The caption was completely reworked for Flux)</p><p></p><p>Works great in the 0.2 - 1.2 range, depending on the Lora Stack you use.</p><p>The training images are really sharp , so you can go pretty high and still get a coherent images.</p><p>Above 1.2 everything starts getting abstract for <strong>SDXL/Pony</strong>.<br /><strong>Flux </strong>works without any issues up to 1.5<br /></p><p>I recommend starting in the 0.8 - 1 range on all versions.</p>",
+    "negative text": "",
+    "notes": "",
+    "preferred weight": 0.9,
+    "preferred weight max": 1.2,
+    "preferred weight source": "civitai settings (usage tips)",
+    "sd version": "Anima",
+    "sha256": "5671b6372d32ab40f155ef4bff64e1e8400c8cb7d5ce62b5eaca39f65e8b5e7f"
+}

@@ -1,0 +1,333 @@
+fixtures/danboru_class_prompter.yaml:48:15  warn   S-dup     entry "piercing" is repeated in this list (deliberate weighting? add an ignore)
+fixtures/danboru_class_prompter.yaml:50:15  warn   S-dup     entry "wrinkled_skin" is repeated in this list (deliberate weighting? add an ignore)
+fixtures/danboru_class_prompter.yaml:72:15  warn   S-dup     entry "spread_arms, casting_spell" is repeated in this list (deliberate weighting? add an ignore)
+fixtures/danboru_class_prompter.yaml:88:15  warn   S-dup     entry "aura, glowing" is repeated in this list (deliberate weighting? add an ignore)
+fixtures/danboru_class_prompter.yaml:258:39  error  R3        "wave" is an alias of waving; aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:268:51  error  R3        "wave" is an alias of waving; aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:309:15  error  R1        unknown tag "tomahawk"
+fixtures/danboru_class_prompter.yaml:329:29  error  R1        unknown tag "gem grimoire" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:329:29  error  R1        unknown tag "gem orb" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:348:15  error  R3        "club" is an alias of club_\(weapon\); aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:355:15  error  R3        "club" is an alias of club_\(weapon\); aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:358:22  error  R1        unknown tag "flnaged_mace"; did you mean flanged_mace?
+fixtures/danboru_class_prompter.yaml:369:15  error  R1        unknown tag "double blade"; did you mean double-blade?
+fixtures/danboru_class_prompter.yaml:383:15  warn   S-dup     entry "caliburn_\(fate\)" is repeated in this list (deliberate weighting? add an ignore)
+fixtures/danboru_class_prompter.yaml:389:31  error  R1        unknown tag "arrow"; did you mean arrow_\(symbol\), arrow_\(projectile\), holding_arrow, arrow_through_heart, arrow_in_body?
+fixtures/danboru_class_prompter.yaml:390:25  error  R1        unknown tag "crossbow_bolt"
+fixtures/danboru_class_prompter.yaml:390:41  error  R1        unknown tag "crossbow_windlass"
+fixtures/danboru_class_prompter.yaml:393:45  error  R1        unknown tag "crossbow_bolt"
+fixtures/danboru_class_prompter.yaml:396:34  error  R1        unknown tag "dark armor"; did you mean arm_armor? (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:396:72  error  R1        unknown tag "tattered cloth"
+fixtures/danboru_class_prompter.yaml:397:32  error  R1        unknown tag "dark armor"; did you mean arm_armor? (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:398:34  error  R1        unknown tag "dark armor"; did you mean arm_armor? (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:398:60  warn   S-dup     "pauldrons" appears twice in this entry
+fixtures/danboru_class_prompter.yaml:400:13  error  R1        unknown tag "elegant gothic armor with silver accents"
+fixtures/danboru_class_prompter.yaml:400:55  error  R1        unknown tag "sharp pauldrons"
+fixtures/danboru_class_prompter.yaml:400:72  error  R1        unknown tag "intricate engravings"
+fixtures/danboru_class_prompter.yaml:400:94  error  R1        unknown tag "dark flowing fabrics"
+fixtures/danboru_class_prompter.yaml:401:13  error  R1        unknown tag "black knight"; did you mean sonic_and_the_black_knight, black_knight_\(granblue_fantasy\)?
+fixtures/danboru_class_prompter.yaml:401:27  error  R1        unknown tag "dark armor"; did you mean arm_armor?
+fixtures/danboru_class_prompter.yaml:401:39  error  R1        unknown tag "dripping smeared blood"
+fixtures/danboru_class_prompter.yaml:401:63  error  R1        unknown tag "tattered cloth"
+fixtures/danboru_class_prompter.yaml:405:69  error  R1        unknown tag "bear_pelt"
+fixtures/danboru_class_prompter.yaml:405:94  error  R1        unknown tag "horned helmet  ornate armor" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:405:94  error  R1        unknown tag "horned helmet cape" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:405:103  error  R1        unknown tag "helmet  ornate armor" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:405:103  error  R1        unknown tag "helmet cape" (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:410:24  error  R1        unknown tag "wearing torn animal hide armor"
+fixtures/danboru_class_prompter.yaml:410:56  error  R1        unknown tag "fur-lined armor"
+fixtures/danboru_class_prompter.yaml:410:73  error  R1        unknown tag "bone arm rings"
+fixtures/danboru_class_prompter.yaml:411:13  error  R1        unknown tag "tribal barbarian"
+fixtures/danboru_class_prompter.yaml:411:31  error  R1        unknown tag "wearing layered hide and metal patchwork armor"
+fixtures/danboru_class_prompter.yaml:411:79  error  R1        unknown tag "crown of antlers"
+fixtures/danboru_class_prompter.yaml:417:13  error  R1        unknown tag "greek_armor"; did you mean green_armor, grey_armor?
+fixtures/danboru_class_prompter.yaml:417:36  error  R1        unknown tag "linothorax"
+fixtures/danboru_class_prompter.yaml:418:13  error  R1        unknown tag "greek_armor"; did you mean green_armor, grey_armor?
+fixtures/danboru_class_prompter.yaml:419:13  error  R1        unknown tag "greek_armor"; did you mean green_armor, grey_armor?
+fixtures/danboru_class_prompter.yaml:419:26  error  R1        unknown tag "linothorax"
+fixtures/danboru_class_prompter.yaml:421:13  error  R1        unknown tag "roman armor"
+fixtures/danboru_class_prompter.yaml:421:26  error  R1        unknown tag "legionnaire"
+fixtures/danboru_class_prompter.yaml:422:32  error  R1        unknown tag "roman armor"
+fixtures/danboru_class_prompter.yaml:423:13  error  R1        unknown tag "legionnaire"
+fixtures/danboru_class_prompter.yaml:423:36  error  R1        unknown tag "roman armor"
+fixtures/danboru_class_prompter.yaml:442:20  error  R1        unknown tag "bare chest"
+fixtures/danboru_class_prompter.yaml:445:87  error  R1        unknown tag "holy"; did you mean fire_emblem:_genealogy_of_the_holy_war, holy_grail_\(fate\), kujo_holy, holy_meh, holy_ring?
+fixtures/danboru_class_prompter.yaml:446:29  error  R1        unknown tag "holy"; did you mean fire_emblem:_genealogy_of_the_holy_war, holy_grail_\(fate\), kujo_holy, holy_meh, holy_ring?
+fixtures/danboru_class_prompter.yaml:447:48  error  R1        unknown tag "holy"; did you mean fire_emblem:_genealogy_of_the_holy_war, holy_grail_\(fate\), kujo_holy, holy_meh, holy_ring?
+fixtures/danboru_class_prompter.yaml:477:13  error  R1        unknown tag "wearing torn animal hide bikini top"
+fixtures/danboru_class_prompter.yaml:477:50  error  R1        unknown tag "fur-lined battle skirt"
+fixtures/danboru_class_prompter.yaml:477:74  error  R1        unknown tag "bone arm rings"
+fixtures/danboru_class_prompter.yaml:481:13  error  R1        unknown tag "slim"; did you mean slim_legs, slime_\(substance\), slimy, slam, slm?
+fixtures/danboru_class_prompter.yaml:492:13  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:500:13  error  R1        unknown tag "hourglass figure"
+fixtures/danboru_class_prompter.yaml:524:13  error  R1        unknown tag "human"; did you mean human_scabbard, luo_xiaohei_\(human\), futatsuiwa_mamizou_\(human\), human_furniture, human_stacking?
+fixtures/danboru_class_prompter.yaml:525:13  error  R1        unknown tag "human"; did you mean human_scabbard, luo_xiaohei_\(human\), futatsuiwa_mamizou_\(human\), human_furniture, human_stacking?
+fixtures/danboru_class_prompter.yaml:526:13  error  R1        unknown tag "human"; did you mean human_scabbard, luo_xiaohei_\(human\), futatsuiwa_mamizou_\(human\), human_furniture, human_stacking?
+fixtures/danboru_class_prompter.yaml:528:110  error  R3        "gold hair" is an alias of blonde_hair; aliases break generation (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:528:117  error  R1        unknown tag "hair"; did you mean long_hair, short_hair, blonde_hair, black_hair, brown_hair?
+fixtures/danboru_class_prompter.yaml:529:90  error  R3        "gold hair" is an alias of blonde_hair; aliases break generation (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:529:97  error  R1        unknown tag "hair"; did you mean long_hair, short_hair, blonde_hair, black_hair, brown_hair?
+fixtures/danboru_class_prompter.yaml:530:110  error  R3        "gold hair" is an alias of blonde_hair; aliases break generation (glued from a {…} group: fix by hand)
+fixtures/danboru_class_prompter.yaml:530:117  error  R1        unknown tag "hair"; did you mean long_hair, short_hair, blonde_hair, black_hair, brown_hair?
+fixtures/danboru_class_prompter.yaml:537:32  error  R3        "blood elf" is an alias of blood_elf_\(warcraft\); aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:540:28  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:541:20  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:542:28  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:545:47  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:546:59  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:548:23  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:549:34  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:550:13  error  R1        unknown tag "short"; did you mean short_hair, short_sleeves, puffy_short_sleeves, short_shorts, short_dress?
+fixtures/danboru_class_prompter.yaml:583:13  error  R1        unknown tag "druid"; did you mean droid, drid?
+fixtures/danboru_class_prompter.yaml:629  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:630:11  warn   S-budget  this entry can expand to 50 tags (budget 40)
+fixtures/danboru_class_prompter.yaml:633  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:636  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:642  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:644  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:655  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:661  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:673  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:680  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:691  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:694:174  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:697  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:708  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:714  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:725  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:732  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:743  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:748:265  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:749  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:760  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:761:223  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:761:244  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:762:188  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:763:218  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:764:185  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:765:202  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:765:221  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:766  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:777  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:783  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:794  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:800  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:811  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:817  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:828  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:830:216  error  R3        "heels" is an alias of high_heels; aliases break generation  [fixable]
+fixtures/danboru_class_prompter.yaml:834  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:845  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:851  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:862  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:868  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:879  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:885  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:896  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:902  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:913  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:914:281  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:915:223  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:915:318  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:62  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:88  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:216  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:253  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:277  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:300  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:917:341  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:919  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:930  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:931:227  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:932:213  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:934:256  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:84  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:184  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:228  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:280  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:296  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:935:336  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:936  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:947  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:953  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:964  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:970  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:981  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:987  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:998  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1004  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1015  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1021  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1032  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1038  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1049  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1055  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1067  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1070  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1081  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1083  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1094  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1095:240  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1096  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1107  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1109  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1120  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1122  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1128:30  error  R5        unescaped parenthesis in "spring_(season)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1133  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1135  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1146  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1147:219  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1148  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1159  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1161  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1172  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1174  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1177:30  error  R5        unescaped parenthesis in "spring_(season)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1185  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1187  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1198  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1200  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1201:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1203:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1207:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1211  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1213  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1224  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1226  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1231:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1237  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1239  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1250  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1251:342  error  R5        unescaped parenthesis in "turquoise_(gemstone)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1252  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1263  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1265  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1276  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1278  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1289  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1291  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1302  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1303:249  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1304  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1315  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1317  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1328  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1330  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1341  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1343  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1354  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1356  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1367  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1369  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1380  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1382  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1393  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1394:90  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1394:193  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1394:234  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1394:275  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1395  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1396:28  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1406  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1407:79  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1407:160  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1407:192  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1407:216  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1407:250  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1407:277  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1408  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1409:28  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1412:28  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1419  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1421  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1432  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1434  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1445  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1447  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1454:30  error  R5        unescaped parenthesis in "spring_(season)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1458  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1460  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1471  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1473  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1484  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1486  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1497  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1499  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1510  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1512  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1523  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1525  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1526:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1527:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1529:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1530:31  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1532:23  error  R5        unescaped parenthesis in "pyramid_(structure)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1536  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1538  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1549  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1551  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1562  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1564  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1575  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1576:69  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1576:222  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1576:257  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1577  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1581:28  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1588  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1590  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1601  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1603  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1614  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1616  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1627  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1628:196  error  R5        unescaped parenthesis in "club_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1629  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1640  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1642  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1653  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1655  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1666  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1668  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1679  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1681  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1684:31  error  R5        unescaped parenthesis in "spring_(season)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1692  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1693:230  error  R5        unescaped parenthesis in "bow_(weapon)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1694  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1705  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1706:171  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1706:195  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1707  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1710:25  error  R5        unescaped parenthesis in "star_(symbol)": A1111 reads it as emphasis  [fixable]
+fixtures/danboru_class_prompter.yaml:1720  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1726  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1737  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1743  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1754  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1760  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1771  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1777  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1788  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1794  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1805  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1811  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1822  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1828  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1839  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1845  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1856  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1862  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1873  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1879  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1890  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+fixtures/danboru_class_prompter.yaml:1896  warn   S-branch  tags here have no ill:/anima:/krea:/simple: ancestor, so the base model is unknown; checked as tags only
+
+143 error(s), 182 warning(s), 73 fixable with --fix
+  R1          67
+  R3           9
+  R5          67
+  S-branch   175
+  S-budget     1
+  S-dup        6
