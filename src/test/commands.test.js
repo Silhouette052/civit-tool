@@ -16,6 +16,7 @@ const own = config.commands.filter((command) => command.pluginName === config.pj
 test('every command sits in a known group, and every group has a description', () => {
   assert.deepEqual(own.map((command) => command.id).sort(), [
     'file:rename',
+    'img:loras',
     'img:meta',
     'img:sort',
     'lora:activation',

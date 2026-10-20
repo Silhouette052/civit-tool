@@ -16,8 +16,13 @@ import {
 } from '../../lib/civitaiClient.js'
 import {baseModelFolder} from '../../lib/baseModels.js'
 import {DEFAULT_WARN_CHARS, loadConfig, loadLocalConfig, saveHomeSetting} from '../../lib/config.js'
-import {sha256} from '../../lib/hash.js'
-import {findSafetensorFiles, getCivitaiIdsFromMetadata, readSafetensorMetadata} from '../../lib/safetensors.js'
+import {openHashCache} from '../../lib/hashCache.js'
+import {
+  filesOfLoras,
+  findSafetensorFiles,
+  getCivitaiIdsFromMetadata,
+  readSafetensorMetadata,
+} from '../../lib/safetensors.js'
 import {stripHtml} from '../../lib/text.js'
 import {findRenameConflicts} from '../file/rename.js'
 
@@ -277,9 +282,10 @@ export function mergeSidecar(existing, fresh) {
  * the full parent model record -- required because the model-version
  * endpoint's nested `model` object is a slim stub with no description.
  * Each domain in `domains` is tried in turn until one knows the LoRA; the
- * model record and settings then come from that domain first.
+ * model record and settings then come from that domain first. The hash comes
+ * from `cache` while the file is unchanged.
  */
-async function discoverCivitai(filepath, domains) {
+async function discoverCivitai(filepath, domains, cache) {
   let metadata = {}
 
   try {
@@ -291,7 +297,7 @@ async function discoverCivitai(filepath, domains) {
   const ids = getCivitaiIdsFromMetadata(metadata)
 
   // hashed once, and only when the file has no embedded ID
-  const hash = ids?.modelVersionId ? null : await sha256(filepath)
+  const hash = ids?.modelVersionId ? null : await cache.sha256(filepath)
   const {domain, value: versionData} = await withDomainFallback(domains, async (domain) => {
     const apiBase = apiBaseFor(domain)
     if (hash === null) return fetchModelVersionById(ids.modelVersionId, {apiBase})
@@ -383,30 +389,6 @@ export function nameProblems(stem, warnChars = '') {
 export function fixLoraName(stem, warnChars = '') {
   const kept = [...stem].filter((ch) => !warnChars.includes(ch)).join('')
   return kept.replaceAll(/_{2,}/g, '_').replaceAll(/\s{2,}/g, ' ').trim()
-}
-
-/**
- * The files of each LoRA in a folder: the LoRA and every file named after it (sidecar .json,
- * .preview.png, .civitai.info…), as Map LoRA file → names, the LoRA itself first. A file belongs to
- * the longest LoRA name it starts with: `a.v2.json` is a.v2's, not a's. `exclude`: names to leave out.
- */
-function filesOfLoras(folder, safetensorFiles, exclude = []) {
-  const stems = safetensorFiles.map((file) => path.basename(file, path.extname(file)))
-  const names = fs
-    .readdirSync(folder, {withFileTypes: true})
-    .filter((entry) => entry.isFile() && !exclude.includes(entry.name))
-    .map((entry) => entry.name)
-  const ownerOf = (name) => stems.filter((stem) => name.startsWith(`${stem}.`)).sort((a, b) => b.length - a.length)[0]
-
-  return new Map(
-    safetensorFiles.map((file, i) => {
-      const lora = path.basename(file)
-      const owned = names
-        .filter((name) => ownerOf(name) === stems[i])
-        .sort((a, b) => (a === lora ? -1 : b === lora ? 1 : a.localeCompare(b)))
-      return [file, owned]
-    }),
-  )
 }
 
 /**
@@ -541,6 +523,7 @@ export default class Activation extends Command {
     const domains = domainOrder(flags.domain ?? config.domain)
     // with --xyz, stdout carries only the values line
     const log = flags.xyz ? () => {} : (message) => this.log(message)
+    const cache = openHashCache(undefined, (message) => this.warn(message))
 
     const folder = path.resolve(args.path)
     const findFiles = () =>
@@ -596,7 +579,7 @@ export default class Activation extends Command {
           log('  Civitai: checking embedded SafeTensors metadata...')
 
           // eslint-disable-next-line no-await-in-loop
-          const discovery = await discoverCivitai(filepath, domains)
+          const discovery = await discoverCivitai(filepath, domains, cache)
 
           log(`  Civitai: version ${discovery.modelVersionId} on ${discovery.domain}`)
           log(`  Source: ${discovery.source}`)

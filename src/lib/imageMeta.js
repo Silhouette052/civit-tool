@@ -236,15 +236,22 @@ export function readImageMetadata(file) {
 }
 
 /**
- * Reads every image directly in a folder (not recursive), in natural name order.
+ * Reads every image directly in a folder, or with `recursive` in its subfolders too, in natural name order. Files
+ * are named by their path relative to the folder (just the name when not recursive).
  * Returns {entries, missing: names without metadata, failed: [{file, error}], total}.
  */
-export function collectImageMetadata(folder) {
-  const files = fs
-    .readdirSync(folder, {withFileTypes: true})
-    .filter((entry) => entry.isFile() && IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase()))
-    .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
+export function collectImageMetadata(folder, {recursive = false} = {}) {
+  const isImage = (name) => IMAGE_EXTENSIONS.has(path.extname(name).toLowerCase())
+  const files = (
+    recursive
+      ? fs
+          .readdirSync(folder, {recursive: true})
+          .filter((rel) => isImage(rel) && fs.statSync(path.join(folder, rel)).isFile())
+      : fs
+          .readdirSync(folder, {withFileTypes: true})
+          .filter((entry) => entry.isFile() && isImage(entry.name))
+          .map((entry) => entry.name)
+  ).sort((a, b) => a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
 
   const entries = []
   const missing = []
@@ -252,7 +259,7 @@ export function collectImageMetadata(folder) {
   for (const name of files) {
     try {
       const entry = readImageMetadata(path.join(folder, name))
-      if (entry) entries.push(entry)
+      if (entry) entries.push({...entry, file: name})
       else missing.push(name)
     } catch (error) {
       failed.push({error: error.message, file: name})

@@ -7,7 +7,7 @@ One CLI for day-to-day LoRA, image and wildcard file management. It replaces fiv
 | **`lora`**: LoRA files | |
 | `civit-tool lora activation` | `lora_activation.js` |
 | `civit-tool lora url` | `url_exporter.js` + `url_with_author.js` (merged) |
-| `civit-tool lora duplicates` | `duplicate_lora_finder.js`: finds identical `.safetensors` files |
+| `civit-tool lora duplicates` | `duplicate_lora_finder.js`: finds identical `.safetensors` files, then asks which copy to keep |
 | **`wc`**: wildcard YAML files | |
 | `civit-tool wc expand` | (new) `expand-wildcards.mjs` from the t-shirt project: wildcard → prompt list |
 | `civit-tool wc lint` | `unbalanced.js`, now a full linter: tags checked against Danbooru, plus structure |
@@ -16,6 +16,7 @@ One CLI for day-to-day LoRA, image and wildcard file management. It replaces fiv
 | **`img`**: generated images | |
 | `civit-tool img sort` | (new) sorts generated images into per-model folders |
 | `civit-tool img meta` | (new) generation metadata of a folder's images as JSON, or just the prompts |
+| `civit-tool img loras` | (new) ranks the LoRAs a folder of images used, with their weights |
 | **`file`**: bulk file operations | |
 | `civit-tool file rename` | `Rename-Files.ps1` |
 
@@ -153,18 +154,37 @@ civit-tool lora url ./loras --no-recursive --domain civitai.com   # try civitai.
 
 ### `civit-tool lora duplicates [PATH]`
 
-Finds `.safetensors` files with identical content anywhere under a folder, e.g. the same LoRA downloaded twice under different names. It only lists them; nothing is deleted.
+Finds `.safetensors` files with identical content anywhere under a folder, e.g. the same LoRA downloaded twice under different names. Then it asks, one group at a time, which copy to keep, and deletes the others. `--list` only lists them.
 
 ```bash
 civit-tool lora duplicates                      # the current folder and all subfolders
 civit-tool lora duplicates "path/to/forge/models"
+civit-tool lora duplicates "path/to/forge/models" --list     # only list, delete nothing
+civit-tool lora duplicates "path/to/forge/models" --rehash   # ignore the hash cache, read every file again
 ```
+
+After the summary, each group is shown with its copies numbered:
+
+```
+Duplicate 1 of 3: EdoEraAnimeAnima.safetensors  (Civitai: Edo Era Anime), 87.71 MB each
+  1) path/to/forge/models/Lora/EdoEraAnimeAnima.safetensors  (+c +p)
+  2) path/to/forge/models/Lora/new/edo_era_v2.safetensors
+  3) path/to/forge/models/Lora/old/EdoEraAnimeAnima.safetensors  (+c, also EdoEraAnimeAnima.civitai.info)
+Keep which one? [1-3, Enter = skip, q = stop]
+```
+
+- **`+c`:** a `.json` with the same name is next to the copy (a `lora activation` sidecar). **`+p`:** a preview image Forge shows on the LoRA card: `name.png`, `name.preview.png`, or the same as `.jpg` / `.jpeg` / `.webp`. Other files named after the copy are listed after `also`.
+- **A number** keeps that copy and deletes the others right away, each with every file named after it (its `.json`, previews, `.civitai.info`…; the same rule `lora activation` renames and sorts LoRAs by). The kept copy's files are never touched. Deleting is permanent (not the Recycle Bin); the kept copy has the same content.
+- **Enter** skips the group, **q** (or Ctrl+C, or the end of piped input) stops and leaves the remaining groups alone. Anything else asks again. In a terminal, anything typed before a group is shown is ignored, so it can't answer a group you haven't seen.
+- A file that can't be deleted (e.g. open in Forge) is reported and the rest go on. At the end: how many files were deleted and the space freed, and the folders whose `loras.yaml` may still list a deleted copy, so you can run `lora activation` there again.
 
 - **Identical** means the same SHA-256 hash, so a file name doesn't matter.
 - **Fast:** only files whose size matches another file's are read and hashed. A file with a size no other file has can't have a copy, so it's skipped.
+- **Hash cache:** each hash is kept in `.cache/hashes.json` in civit-tool's own folder (the `npm link`ed checkout; git-ignored), keyed by the file's real path, with its size and modify time. While both are unchanged the file isn't read again, so a second run only hashes new or changed files. `lora activation` and `lora url` use the same cache. Each new hash is saved at once, so a run you stop keeps what it hashed. Entries of files the scan no longer finds in the scanned folder are removed; entries for other folders are kept. `--rehash` ignores the cached hashes, hashes every file again and updates the cache.
 - **Links:** symlinks and Windows junctions are followed. A folder is scanned once, so a link back up the tree can't loop, and a link to a file isn't counted as a copy of it.
 - **Names:** when a copy has a `lora activation` sidecar, its Civitai model name is shown.
-- **Summary:** how many files were scanned and hashed, the duplicate groups, and the space the extra copies take.
+- **Summary:** how many files were scanned, hashed and taken from the cache, the duplicate groups, the space the extra copies take, and the cache file.
+- **Piped answers** work too (`printf '2\n\nq\n' | civit-tool lora duplicates …`), and are echoed after each question.
 
 ## wc
 
@@ -377,6 +397,32 @@ civit-tool img meta ./outputs --prompt --stdout | clip  # copy the prompts (Wind
 - **`-o FILE`:** write somewhere else. An existing output file is replaced, and the summary says so.
 - **Reported, not fatal:** images with no metadata, and files that aren't valid images.
 
+### `civit-tool img loras [PATH]`
+
+Ranks the LoRAs a folder of generated images used, by how many images use each, with the weights they were used at. It only reads.
+
+```bash
+civit-tool img loras                      # the current folder
+civit-tool img loras ./outputs -r         # with subfolders, e.g. the ones img sort makes
+civit-tool img loras ./outputs --top 10
+civit-tool img loras ./outputs --json > loras.json
+```
+
+```
+folder:  /outputs
+images:  120 (118 with metadata, 95 with LoRAs)
+
+#  images  share  weights         LoRA
+1      42    36%  1 ×40, 0.8 ×2   ValerioSchitiStyle
+2      17    14%  0.7 ×17         iLLMythD4rkL1nes
+```
+
+- **Where the LoRAs come from:** Forge / A1111 images list each LoRA as `<lora:name:weight>` (or `<lyco:…>`) in the prompt and again in the settings' `Lora hashes`. The prompt gives the weight (none written = 1); a LoRA only in `Lora hashes` counts with an unknown weight, shown as `?`. The negative prompt is read too. ComfyUI images: the LoRA loader nodes of the graph that ran (`lora_name`, e.g. LoraLoader, or rgthree's Power Lora Loader), named by file name without folder and extension; not yet checked against a real ComfyUI image with LoRAs.
+- **Counting:** images, not mentions. Names are grouped regardless of case and shown in their most common spelling. `share` is the percentage of the images with metadata; `weights` lists each weight with how many images used it, most used first.
+- **The same LoRA twice in one prompt is an error:** those images are listed on stderr and the exit code is 1. The image still counts once.
+- **Images:** the same formats as `img meta`. Subfolders only with `-r`/`--recursive`, and then files are shown with their relative path. Images without metadata are listed, unreadable files are warned about.
+- **`--json`:** `{folder, images, withMetadata, withLoras, ranking: [{rank, name, images, share, weights: [{weight, count}]}], duplicates: [{file, loras}]}`; the status lines go to stderr. `--top N` limits the ranking to the N most used.
+
 ## file
 
 ### `civit-tool file rename [PATH]`
@@ -412,5 +458,8 @@ civit-tool file rename ./screenshots --sequence --recurse --force
 - **Weight extraction records its source** (`structured field`, `model-version description`, `model description`, `notes field`, or `default (not found)`) in each JSON sidecar, and the console warns when it falls back to the default.
 - `lint` is no longer the per-line `{}` / `__` counter from `unbalanced.js`: it is a full linter, which parses the YAML and also checks the tags (see above).
 - `wc lint` handles Krea 2 prose wildcards (since 2026-10-17): any key containing `krea` is a prose branch with its own rules (`P-tags`, `P-neg`, a 150-word budget) instead of Danbooru checks. Model branches are now set in the `branches` config, which replaces the old `baseModels` setting.
+- `lora duplicates` asks which copy to keep (since 2026-10-20) and deletes the others with their `.json` and previews; `--list` only lists, as before.
+- `lora duplicates` caches hashes (since 2026-10-20) in `.cache/hashes.json` in civit-tool's folder, so unchanged files aren't read again; `lora activation` and `lora url` share the cache. `--rehash` reads every file again.
+- New `img loras` (since 2026-10-19): ranks the LoRAs a folder of images used, by image count, with their weights; a LoRA written twice in one prompt is an error.
 - New `wc repeats` (since 2026-10-17): finds runs of 5+ words or tags repeated across entries, in order or (`--any-order`) as tag sets.
 - `src/test/` has unit tests (`node --test src/test/*.test.js`) covering the HTML stripper and the weight-extraction priority order, including a fixture for the exact "tips are on the model page, not the version page" scenario.

@@ -11,15 +11,15 @@ import {
   withDomainFallback,
 } from '../../lib/civitaiClient.js'
 import {loadConfig} from '../../lib/config.js'
-import {sha256} from '../../lib/hash.js'
+import {openHashCache} from '../../lib/hashCache.js'
 import {findSafetensorFiles, getCivitaiIdsFromMetadata, readSafetensorMetadata} from '../../lib/safetensors.js'
 
 /**
  * The Civitai page of a LoRA: {creator, domain, modelId, modelName, versionId}, or null when none of
  * `domains` knows it. Each domain is tried in turn; the file is hashed once, and only when it has no
- * embedded ID.
+ * embedded ID. The hash comes from `cache` while the file is unchanged.
  */
-async function resolveCivitaiInfo(filepath, domains) {
+async function resolveCivitaiInfo(filepath, domains, cache) {
   let metadata = {}
 
   try {
@@ -29,7 +29,7 @@ async function resolveCivitaiInfo(filepath, domains) {
   }
 
   const ids = getCivitaiIdsFromMetadata(metadata)
-  const hash = ids?.modelId || ids?.modelVersionId ? null : await sha256(filepath)
+  const hash = ids?.modelId || ids?.modelVersionId ? null : await cache.sha256(filepath)
 
   try {
     const {domain, value} = await withDomainFallback(domains, async (domain) => {
@@ -97,13 +97,14 @@ export default class Url extends Command {
     this.log(`Found ${files.length} file(s). Looking up Civitai URLs...\n`)
 
     const results = []
+    const cache = openHashCache(undefined, (message) => this.warn(message))
 
     for (const filepath of files) {
       const relativePath = path.relative(folderPath, filepath)
       process.stdout.write(`Scanning: ${relativePath} ... `)
 
       // eslint-disable-next-line no-await-in-loop
-      const info = await resolveCivitaiInfo(filepath, domains)
+      const info = await resolveCivitaiInfo(filepath, domains, cache)
 
       if (info) {
         const url = buildModelUrl({displayDomain: info.domain, modelId: info.modelId, versionId: info.versionId})

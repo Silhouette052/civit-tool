@@ -127,3 +127,39 @@ export function findSafetensorFiles(folderPath, {recursive = true} = {}) {
 
   return results
 }
+
+/** A folder's file names and its LoRAs' names without extension, for namesOfLora. */
+export function readLoraFolder(folder, exclude = []) {
+  const names = fs
+    .readdirSync(folder, {withFileTypes: true})
+    .filter((entry) => entry.isFile() && !exclude.includes(entry.name))
+    .map((entry) => entry.name)
+  const stems = names
+    .filter((name) => name.toLowerCase().endsWith('.safetensors'))
+    .map((name) => name.slice(0, -'.safetensors'.length))
+  return {names, stems}
+}
+
+/**
+ * The files of one LoRA among a folder's `names`: the LoRA and every file named after it (sidecar .json,
+ * .preview.png, .civitai.info…), the LoRA itself first. A file belongs to the longest LoRA name it starts with:
+ * `a.v2.json` is a.v2's, not a's. `stems`: the folder's LoRA names without extension.
+ */
+export function namesOfLora(lora, stems, names) {
+  const stem = path.basename(lora, path.extname(lora))
+  // only a longer LoRA name that starts with this one and a dot can claim one of its files
+  const longer = stems.filter((other) => other.length > stem.length && other.startsWith(`${stem}.`))
+  return names
+    .filter((name) => name.startsWith(`${stem}.`) && !longer.some((other) => name.startsWith(`${other}.`)))
+    .sort((a, b) => (a === lora ? -1 : b === lora ? 1 : a.localeCompare(b)))
+}
+
+/**
+ * The files of each LoRA in a folder (see namesOfLora), as Map LoRA file → names, the LoRA itself first.
+ * `exclude`: names to leave out.
+ */
+export function filesOfLoras(folder, safetensorFiles, exclude = []) {
+  const {names} = readLoraFolder(folder, exclude)
+  const stems = safetensorFiles.map((file) => path.basename(file, path.extname(file)))
+  return new Map(safetensorFiles.map((file) => [file, namesOfLora(path.basename(file), stems, names)]))
+}
