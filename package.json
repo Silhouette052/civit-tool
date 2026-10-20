@@ -38,9 +38,7 @@
     }
   },
   "scripts": {
-    "test": "node --test \"src/test/*.test.js\"",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "prepack": "oclif manifest && oclif readme"
+     "test": "node --test \"src/test/*.test.js\""
   },
   "dependencies": {
     "@oclif/core": "^4",
@@ -48,9 +46,5 @@
     "@oclif/plugin-help": "^6",
     "chalk": "^5",
     "yaml": "^2.9.1"
-  },
-  "devDependencies": {
-    "oclif": "^4",
-    "shx": "^0.3"
   }
 }

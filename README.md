@@ -461,5 +461,6 @@ civit-tool file rename ./screenshots --sequence --recurse --force
 - `lora duplicates` asks which copy to keep (since 2026-10-20) and deletes the others with their `.json` and previews; `--list` only lists, as before.
 - `lora duplicates` caches hashes (since 2026-10-20) in `.cache/hashes.json` in civit-tool's folder, so unchanged files aren't read again; `lora activation` and `lora url` share the cache. `--rehash` reads every file again.
 - New `img loras` (since 2026-10-19): ranks the LoRAs a folder of images used, by image count, with their weights; a LoRA written twice in one prompt is an error.
+- Dependencies trimmed (since 2026-10-20): the `oclif` dev tool and `shx` are gone, with the `prepack`/`postpack` scripts that used them. The dev tool was only for `npm pack`, and brought in the AWS SDK and an unfixable `braces` audit finding. `npm install` now installs 51 packages (5.6 MB) instead of 257 (35 MB); `npx oclif manifest` makes a manifest if one is ever needed.
 - New `wc repeats` (since 2026-10-17): finds runs of 5+ words or tags repeated across entries, in order or (`--any-order`) as tag sets.
 - `src/test/` has unit tests (`node --test src/test/*.test.js`) covering the HTML stripper and the weight-extraction priority order, including a fixture for the exact "tips are on the model page, not the version page" scenario.
