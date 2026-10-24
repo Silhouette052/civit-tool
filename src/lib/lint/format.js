@@ -15,8 +15,9 @@ export function formatJson(result) {
 }
 
 /**
- * One line per finding (`file:line:col  severity  rule  message`), then a summary by rule and one line
- * per ignore entry saying how much it hid.
+ * One line per finding (`file:line:col  severity  rule  message`), then a summary by rule, one line
+ * per ignore entry saying how much it hid, the rules that are off, and the exempt keys with how many entries
+ * they skipped.
  */
 export function formatText(result) {
   const lines = []
@@ -43,6 +44,11 @@ export function formatText(result) {
   for (const s of result.suppressed) {
     const rules = s.ignore.rules ? ` (${s.ignore.rules.join(',')})` : ' (all rules)'
     lines.push(`ignored ${s.count} finding(s) under ${s.ignore.path}${rules}`)
+  }
+  if (result.rulesOff?.length > 0) lines.push(`rules off: ${result.rulesOff.join(', ')}`)
+  if (result.exempt?.entries > 0) {
+    const entries = `${result.exempt.entries} ${result.exempt.entries === 1 ? 'entry' : 'entries'} not checked`
+    lines.push(`exempt keys: ${result.exempt.keys.join(', ')} (${entries})`)
   }
   return lines.join('\n')
 }

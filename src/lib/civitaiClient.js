@@ -124,4 +124,29 @@ export function buildModelUrl({modelId, versionId, displayDomain = 'civitai.com'
     : `https://${displayDomain}/models/${modelId}`
 }
 
+/**
+ * The slug Civitai puts after a model's id in its page URL, the way its slugit() makes it (slugify, lower and
+ * strict): accents dropped, & as "and", every other character that isn't a letter, digit or space removed, spaces
+ * and dashes as "-". "//ASHLEY WOOD//" → "ashley-wood". Civitai finds the page by the id, so a slug that comes out
+ * different for a rare symbol still opens it.
+ */
+export function modelSlug(name = '') {
+  return name
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036F]/g, '')
+    .replace(/&/g, 'and')
+    .replace(/-/g, ' ')
+    .replace(/[^A-Za-z0-9\s]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+}
+
+/** A model's page as Civitai links it, https://<domain>/models/<id>/<slug>; null without a model id. */
+export function buildModelPageUrl({displayDomain = 'civitai.com', modelId, modelName}) {
+  if (!modelId) return null
+  const slug = modelSlug(modelName)
+  return `https://${displayDomain}/models/${modelId}${slug ? `/${slug}` : ''}`
+}
+
 export {DEFAULT_API_BASE}

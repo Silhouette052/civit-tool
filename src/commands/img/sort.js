@@ -5,40 +5,36 @@ import path from 'node:path'
 import {stdin as input, stdout as output} from 'node:process'
 import readline from 'node:readline/promises'
 
+import {loadConfig} from '../../lib/config.js'
+import {compileFilenamePattern, DEFAULT_FILENAME_PATTERN, imageNaming} from '../../lib/filenamePattern.js'
 import {IMAGE_EXTENSIONS} from '../../lib/imageMeta.js'
 
-// <seed>_<denoise>_<model>_<yyyyMMddHHmmss>.<ext>, e.g.
-// 2447751738_0.6_waiANIMA_v10Base10_20260929160902.png. The model name
-// may itself contain underscores, so it is everything between the
-// denoise value and the trailing 14-digit date.
-const IMAGE_NAME_PATTERN = /^(\d+)_(\d*\.?\d+)_(.+)_(\d{14})\.[^.]+$/
+// The file names follow Forge's "Filename pattern for saving images", set with img config. The default,
+// [seed]_[denoising]_[model_name]_[datetime], gives 2447751738_0.6_waiANIMA_v10Base10_20260929160902.png; the model
+// name may itself contain underscores.
+const DEFAULT_NAMES = compileFilenamePattern(DEFAULT_FILENAME_PATTERN)
 
 /**
- * Splits a generated image's filename into its parts, or returns null
- * when it doesn't follow the seed_denoise_model_date pattern.
+ * The model in a generated image's file name, as {model}, or null when it isn't an image or doesn't follow the
+ * pattern `names` was compiled from (compileFilenamePattern).
  */
-export function parseImageName(filename) {
+export function parseImageName(filename, names = DEFAULT_NAMES) {
   if (!IMAGE_EXTENSIONS.has(path.extname(filename).toLowerCase())) return null
-
-  const match = filename.match(IMAGE_NAME_PATTERN)
-  if (!match) return null
-
-  const [, seed, denoise, model, date] = match
-  return {date, denoise: Number(denoise), model, seed}
+  return names.parse(filename)
 }
 
 /**
  * Groups the direct (non-recursive) image files of a folder by the model
  * in their name. Returns the groups plus the files that were skipped.
  */
-export function buildSortPlan(folderPath) {
+export function buildSortPlan(folderPath, names = DEFAULT_NAMES) {
   const groups = new Map()
   const skipped = []
 
   for (const entry of fs.readdirSync(folderPath, {withFileTypes: true})) {
     if (!entry.isFile()) continue
 
-    const parsed = parseImageName(entry.name)
+    const parsed = parseImageName(entry.name, names)
 
     if (!parsed) {
       if (IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) skipped.push(entry.name)
@@ -69,7 +65,7 @@ export function buildSortPlan(folderPath) {
 
 export default class Sort extends Command {
   static description =
-    'Sort generated images (seed_denoise_model_date.png) into one folder per model. Only files directly in the folder are moved; model folders are created inside it.'
+    "Sort generated images into one folder per model, read from their file names. The names follow Forge's filename pattern, [seed]_[denoising]_[model_name]_[datetime] unless img config sets yours. Only files directly in the folder are moved; model folders are created inside it."
 
   static examples = [
     '<%= config.bin %> img sort',
@@ -94,11 +90,21 @@ export default class Sort extends Command {
     const {args, flags} = await this.parse(Sort)
 
     const folderPath = path.resolve(args.path)
-    const {plan, skipped} = buildSortPlan(folderPath)
+    const naming = imageNaming(loadConfig())
+    let names
+    try {
+      names = compileFilenamePattern(naming.pattern, naming)
+    } catch (error) {
+      this.error(`img.filenamePattern in the config: ${error.message}`, {exit: 2})
+    }
+
+    const {plan, skipped} = buildSortPlan(folderPath, names)
+    const described = `${naming.pattern}${naming.addNumber ? ' (with the ascending number)' : ''}`
 
     if (plan.length === 0) {
-      this.log(chalk.yellow('No images matching seed_denoise_model_date found.'))
+      this.log(chalk.yellow(`No images named by the filename pattern ${described} found.`))
       if (skipped.length > 0) this.log(chalk.gray(`  (${skipped.length} other image(s) ignored)`))
+      this.log(chalk.gray('  If Forge names your images differently, set its pattern with: civit-tool img config'))
       return
     }
 
@@ -126,7 +132,7 @@ export default class Sort extends Command {
 
     if (skipped.length > 0) {
       this.log('')
-      this.log(chalk.gray(`  ${skipped.length} image(s) don't match the naming pattern and stay put.`))
+      this.log(chalk.gray(`  ${skipped.length} image(s) don't match the filename pattern ${described} and stay put.`))
     }
 
     this.log('')

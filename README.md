@@ -1,39 +1,40 @@
 # civit-tool
 
-One CLI for day-to-day LoRA, image and wildcard file management. It replaces five standalone scripts and adds a few tools of its own:
+A command-line helper for Forge and A1111 users. It fills in your LoRAs' trigger words and weights from Civitai, checks and expands Dynamic Prompts wildcard files, and sorts and reads your generated images.
 
-| Command | Replaces |
+Commands are grouped by what they work on, like `aws s3 cp`: `civit-tool <group> <command>`. `civit-tool <group>` alone lists that group's commands, and every command takes `--help`.
+
+| Command | What it does |
 |---|---|
 | **`lora`**: LoRA files | |
-| `civit-tool lora activation` | `lora_activation.js` |
-| `civit-tool lora url` | `url_exporter.js` + `url_with_author.js` (merged) |
-| `civit-tool lora duplicates` | `duplicate_lora_finder.js`: finds identical `.safetensors` files, then asks which copy to keep |
+| [`lora activation`](#civit-tool-lora-activation-path) | trigger words and preferred weight from Civitai into a JSON sidecar per LoRA, plus a `loras.yaml` wildcard file and an X/Y/Z plot values line; offers to fix problem names and to sort a mixed folder by base model |
+| [`lora url`](#civit-tool-lora-url-path) | the Civitai page and creator of every LoRA in a folder |
+| [`lora duplicates`](#civit-tool-lora-duplicates-path) | finds identical `.safetensors` files, then asks which copy to keep |
+| [`lora config`](#civit-tool-lora-config) | the LoRA settings: Civitai site, warn characters, base model sort offer, LoRA list file |
 | **`wc`**: wildcard YAML files | |
-| `civit-tool wc expand` | (new) `expand-wildcards.mjs` from the t-shirt project: wildcard → prompt list |
-| `civit-tool wc lint` | `unbalanced.js`, now a full linter: tags checked against Danbooru, plus structure |
-| `civit-tool wc repeats` | (new) finds repeated phrases and tag runs that could move into a shared leaf |
-| `civit-tool wc sort` | (new) sorts the keys of a wildcard YAML file by name under a path |
+| [`wc expand`](#civit-tool-wc-expand-file-wildcard) | every prompt a wildcard path can produce, written to a text file |
+| [`wc sort`](#civit-tool-wc-sort-file-path) | sorts the keys of a wildcard YAML file by name under a path |
+| [`wc lint`](#civit-tool-wc-lint-path) | checks tags against Danbooru, plus escaping, structure and LoRA base models; prose rules for Krea 2 |
+| [`wc repeats`](#civit-tool-wc-repeats-path) | finds repeated phrases and tag runs that could move into a shared leaf |
+| [`wc config`](#civit-tool-wc-config) | the wildcard settings: the `danbooru.csv` folder, the wildcards folder, lint's rules and limits, exempt keys, and accepted tags such as LoRA activation tags |
 | **`img`**: generated images | |
-| `civit-tool img sort` | (new) sorts generated images into per-model folders |
-| `civit-tool img meta` | (new) generation metadata of a folder's images as JSON, or just the prompts |
-| `civit-tool img loras` | (new) ranks the LoRAs a folder of images used, with their weights |
+| [`img sort`](#civit-tool-img-sort-path) | sorts generated images into one folder per model |
+| [`img meta`](#civit-tool-img-meta-path) | the generation metadata of a folder's images as JSON, or just the prompts |
+| [`img loras`](#civit-tool-img-loras-path) | ranks the LoRAs a folder of images used, with their weights |
+| [`img config`](#civit-tool-img-config) | Forge's filename pattern and ascending number, so `img sort` can read your file names |
 | **`file`**: bulk file operations | |
-| `civit-tool file rename` | `Rename-Files.ps1` |
-
-Commands are grouped by what they work on, like `aws s3 cp`: `civit-tool <group> <command>`. `civit-tool <group>` alone lists that group's commands. See [Command groups](#command-groups) for where new features go.
+| [`file rename`](#civit-tool-file-rename-path) | renames files by find/replace, or numbers them in sequence |
 
 ## Install
 
-From this folder:
+You need [Node.js](https://nodejs.org) 18.17 or newer. Put this folder somewhere permanent, then run in it:
 
 ```bash
 npm install
 npm link
 ```
 
-`civit-tool` is now a global command, runnable from anywhere. To undo later: `npm unlink -g civit-tool`.
-
-(If you specifically want `npx civit-tool ...` to work, that requires publishing this package somewhere npx can resolve it from — e.g. `npm publish`, a private registry, or `npx github:yourname/civit-tool`. `npm link` gives you the same "works from any folder" result without publishing anything.)
+`civit-tool` is now a command you can run from any folder. `npm link` points at this folder, so moving or deleting it breaks the command. To uninstall, run `npm unlink -g civit-tool` and delete the folder.
 
 ## Autocomplete
 
@@ -47,7 +48,7 @@ This prints the install command for your shell (bash, zsh, or PowerShell). Run t
 
 ## Config
 
-Optional. Create `civit-tool.config.json` in your working directory (or `~/.civit-tool.config.json` for a global default):
+Every setting is optional. Each group's `config` command shows and changes its settings without editing JSON: [`lora config`](#civit-tool-lora-config), [`wc config`](#civit-tool-wc-config) and [`img config`](#civit-tool-img-config). They save to `~/.civit-tool.config.json` in your home folder. A `civit-tool.config.json` in the current folder overrides it, merged key by key within each section (`activation`, `lint`, `img`). `civit-tool.config.json.example` shows the layout:
 
 ```json
 {
@@ -56,7 +57,16 @@ Optional. Create `civit-tool.config.json` in your working directory (or `~/.civi
 }
 ```
 
-`wildcardsDir` (optional) is where `wc expand` and `wc lint` look for a bare file name, and what `wc lint` checks when no path is given. The `lint` config section is described under [`civit-tool wc lint`](#civit-tool-wc-lint-path). `domain` is the Civitai domain `lora url` and `lora activation` look LoRAs up on first; the default is `civitai.red`. Both domains serve the same API, but a LoRA can be visible on one and not the other, so a LoRA the first domain doesn't know (any error: 404, refused, network) is looked up on the other. Links, in `lora url`'s output and in the sidecar's `"civitai url"`, point to the domain that had the LoRA, and the sidecar's `"civitai lookup"` names it. Override per run with `--domain`; `--domain civitai.com` tries civitai.com first.
+| Key | Set with | What it is |
+|---|---|---|
+| `domain` | `lora config` | the Civitai site LoRAs are looked up on first; default `civitai.red` (see below) |
+| `warnChars` | `lora config` | the characters `lora activation` warns about in LoRA names |
+| `activation` | `lora config` | `sortBaseModels` and `yamlName`, for `lora activation` |
+| `wildcardsDir` | `wc config` | where `wc expand`, `wc sort` and `wc lint` look for a bare file name, and what `wc lint` checks when given no path |
+| `lint` | `wc config` | `wc lint`'s settings, described under [`wc lint`](#civit-tool-wc-lint-path) |
+| `img` | `img config` | `filenamePattern` and `addNumber`, for `img sort` |
+
+**Civitai domains:** civitai.red and civitai.com serve the same API, but a LoRA can be visible on one and not the other. `lora url` and `lora activation` look each LoRA up on `domain` first, and on the other domain when the first doesn't know it (any error: 404, refused, network). Links, in `lora url`'s output and in the sidecar's `"civitai url"`, point to the domain that had the LoRA, and the sidecar's `"civitai lookup"` names it. `--domain` overrides the setting for one run; `--domain civitai.com` tries civitai.com first.
 
 ## API token (optional)
 
@@ -67,37 +77,28 @@ setx CIVITAI_API_TOKEN xxxxxxxx       # Windows
 
 Used automatically by `lora url` and `lora activation` if set.
 
-## Command groups
-
-Every command belongs to a group. A new feature goes into the group whose files it works on, or, when none fits, into a new group with a short lowercase name (added to `oclif.topics` in `package.json` and to `src/test/commands.test.js`).
-
-- **`lora`**: `.safetensors` LoRA files, their JSON sidecars and Civitai lookups.
-- **`wc`**: wildcard YAML files: expanding, checking, finding repeats in and editing them.
-- **`img`**: generated images.
-- **`file`**: generic bulk file operations that don't care what the files are.
-
 ## lora
+
+`.safetensors` LoRA files, their JSON sidecars and Civitai lookups.
 
 ### `civit-tool lora activation PATH`
 
-For every `.safetensors` in a folder (top-level only): uses the JSON sidecar if one exists, otherwise resolves trigger words + weight from Civitai and creates it. Always (re)writes `loras.yaml` from every sidecar found.
+For every `.safetensors` in a folder (top-level only): uses the JSON sidecar if one exists, otherwise resolves trigger words + weight from Civitai and creates it. Always (re)writes `loras.yaml` (or the name set with [`lora config`](#civit-tool-lora-config)) from every sidecar found.
 
 ```bash
 civit-tool lora activation ./loras
-civit-tool lora activation ./loras --yaml-name my-wildcards.yaml
+civit-tool lora activation ./loras --yaml-name my-wildcards.yaml   # this run; lora config saves a default
 civit-tool lora activation ./loras --refresh   # re-resolve + overwrite every sidecar, even existing ones
 civit-tool lora activation ./loras --xyz       # print only the X/Y/Z plot values line
 civit-tool lora activation ./loras --fix-names # rename problem names without asking
-civit-tool lora activation ./loras --warn-chars "@&#"   # warn about these characters from now on
-civit-tool lora activation ./loras --reset-warn-chars   # back to the default @&
-civit-tool lora activation ./loras --skip-sort-base     # don't offer the base model sort
+civit-tool lora activation ./loras --skip-sort-base     # don't offer the base model sort this run
 ```
 
 **Problem names:** before anything else, `lora activation` lists every LoRA whose name has `__` or a character from the warn list, and asks whether to rename it:
 
 - `__`: Dynamic Prompts reads it as the start of a wildcard reference, so a `<lora:my__style:1>` tag can be misread in wildcard files. Each run of underscores becomes one `_` (`my__style` → `my_style`).
 - **Warn characters** (default `@` and `&`): they are removed from the name, then doubled underscores and spaces are tidied (`Rock & Roll` → `Rock Roll`, `Iter@L1nes` → `IterL1nes`). A name made only of them can't be renamed and is just reported.
-- `--warn-chars "@&#"` replaces the list and saves it as `warnChars` in `~/.civit-tool.config.json`, so later runs use it too. `--reset-warn-chars` removes the saved list, so the default applies again. A `warnChars` in the project's `./civit-tool.config.json` wins over the saved one, and the run says so.
+- The list is a setting: `civit-tool lora config --warn-chars "@&#"` (or its menu) replaces it for every run, and `none` turns the warning off. A `warnChars` in the project's `./civit-tool.config.json` wins over the saved one.
 
 Files with the same name are renamed along with the LoRA: the JSON sidecar, `.preview.png`, `.civitai.info` and so on. A LoRA whose new name is already taken is left alone, as in `file rename`. Answering no keeps the names and carries on. `--fix-names` renames without asking. Wildcard files that use the old names need updating by hand.
 
@@ -108,7 +109,7 @@ Files with the same name are renamed along with the LoRA: the JSON sidecar, `.pr
 - **Moved with the LoRA:** every file named after it, as for the name fixes. `loras.yaml` stays.
 - **Left where they are, with a WARNING:** LoRAs without a sidecar (the Civitai lookup failed) and those whose base model is `Other`, `Unknown` or not in the list.
 - **Nothing is overwritten:** a LoRA whose file already exists in the target folder stays, marked `can't move`.
-- **`--skip-sort-base`** skips the step. With `--xyz` the preview and the question go to stderr.
+- **`--skip-sort-base`** skips the step for one run; `civit-tool lora config --sort-base off` turns the offer off for good. With `--xyz` the preview and the question go to stderr.
 - `<lora:…>` tags keep working, since Forge finds LoRAs in subfolders by name. `loras.yaml` lists the moved LoRAs too; but `lora activation` reads only the folder's top level, so a later run on the same folder no longer sees them.
 
 The last line of the output is every LoRA's prompt (the `loras.yaml` lines) in double quotes, separated by commas, ready to paste as the X values of an X/Y/Z plot with X type **Prompt S/R**:
@@ -123,14 +124,16 @@ The last line of the output is every LoRA's prompt (the `loras.yaml` lines) in d
 
 1. **Civitai "Usage Tips" settings** (`settings.strength` / `minStrength` / `maxStrength`). These are only exposed by Civitai's internal tRPC API, which is unofficial and may change, so any failure there silently falls through to the next step. If the author only set min/max, the midpoint is used.
    - Exception: a bare `strength: 1` with no min/max is usually just the upload form's default. If the description text has a hint, that hint wins, and the console prints a `NOTE` line.
-2. **Free text** in the model-*version* description, then the full *model* description, then the version's `notes`. Phrasings like "Strength: 0.8", "recommended to be 0.4~0.6", "use at 0.7 strength", "I recommend starting in the 0.8 - 1 range", "weight between [0.8,1]" and "I prefer 0.9" are recognised. Values above 2 are ignored, as are numbers next to CFG, steps or version names.
+2. **Free text** in the model-*version* description, then the full *model* description, then the version's `notes`, read as plain text without their HTML. Phrasings like "Strength: 0.8", "recommended to be 0.4~0.6", "use at 0.7 strength", "I recommend starting in the 0.8 - 1 range", "weight between [0.8,1]" and "I prefer 0.9" are recognised. Values above 2 are ignored, as are numbers next to CFG, steps or version names.
 3. **A hardcoded default of `1`**, with a `WARNING` line in the console.
 
 Ranges always resolve to their **midpoint**: 0.4~0.6 → 0.5. Each sidecar records:
-- `"preferred weight source"`
+- `"preferred weight source"`: where the weight came from, such as `civitai settings (usage tips)`, `model description` or `default (not found)`
 - `"preferred weight min"` / `"preferred weight max"`, when a range is known
 
-Use `--refresh` to recompute this for LoRAs that already have a JSON sidecar, e.g. ones generated by older versions. Refresh replaces only Civitai-derived fields and keeps your non-empty `notes`, `negative text` and `activation text`.
+Use `--refresh` to recompute this for LoRAs that already have a JSON sidecar. Refresh replaces only Civitai-derived fields and keeps your non-empty `notes`, `negative text` and `activation text`.
+
+**`notes` link to the model's Civitai page,** e.g. `https://civitai.red/models/3017367/ashley-wood` (on the domain that had the LoRA; the name part is the slug Civitai makes from the model name), so the link shows in the LoRA card's **Edit metadata** dialog. A new sidecar gets it as its notes. `--refresh` adds it on its own line after your notes, unless they link to that model already; sidecars that aren't refreshed are left as they are.
 
 **The sidecar is also read by `wc lint`**. Its rule `S-base` checks that a `<lora:…>` sits under the right model branch (`ill:`, `anima:`, `krea:`, …). It relies on exactly this:
 
@@ -139,8 +142,6 @@ Use `--refresh` to recompute this for LoRAs that already have a JSON sidecar, e.
 | File name | `<lora name>.json`, the `.safetensors` name without its extension. It must match the name inside `<lora:NAME:weight>`, case-insensitively. |
 | `"sd version"` | A string: Civitai's `baseModel` (`Illustrious`, `NoobAI`, `Anima`, `Krea 2`, …). `Unknown` is written when Civitai has none, and S-base then reports a mismatch. |
 | Location | Any folder listed in the `lint.loraDirs` config, searched recursively |
-
-Don't rename or drop `"sd version"` without updating `src/lib/lint/rules/lora.js`. `src/test/activation.test.js` checks the field.
 
 ### `civit-tool lora url PATH`
 
@@ -186,14 +187,44 @@ Keep which one? [1-3, Enter = skip, q = stop]
 - **Summary:** how many files were scanned, hashed and taken from the cache, the duplicate groups, the space the extra copies take, and the cache file.
 - **Piped answers** work too (`printf '2\n\nq\n' | civit-tool lora duplicates …`), and are echoed after each question.
 
+### `civit-tool lora config`
+
+Shows and changes the LoRA settings without editing JSON. Run with no flags in a terminal, it opens the same kind of menu as [`wc config`](#civit-tool-wc-config):
+
+```
+  Changes are saved in C:\Users\you\.civit-tool.config.json as you make them.
+
+› Civitai site     civitai.red  (default)
+  Warn characters  @&  (default)
+  Base model sort  on  (default)
+  LoRA list file   loras.yaml  (default)
+
+  Civitai API key  not set  (the CIVITAI_API_TOKEN environment variable)
+
+lora activation and lora url look LoRAs up on this site first, then on the other one
+↑/↓ move   Enter next choice   r default   q quit
+```
+
+| Setting | Flag | Saved as | What it does |
+|---|---|---|---|
+| Civitai site | `--domain civitai.com` | `domain` | the site `lora activation` and `lora url` try first; Enter switches between the two |
+| Warn characters | `--warn-chars "@&#"` | `warnChars` | the characters `lora activation` warns about in LoRA names and offers to remove; `none` turns it off |
+| Base model sort | `--sort-base off` | `activation.sortBaseModels` | whether `lora activation` offers to sort a folder of mixed LoRAs by base model; Enter switches it |
+| LoRA list file | `--yaml-name my-loras.yaml` | `activation.yamlName` | the wildcard list `lora activation` writes (and `lora duplicates` checks); a plain file name ending in `.yaml` or `.yml` |
+
+- Keys, saving, `--list`, `--reset <flag>` and `./civit-tool.config.json` work as in `wc config`. A flag of `lora activation` or `lora url` (`--domain`, `--yaml-name`, `--skip-sort-base`) still wins for one run.
+- The Civitai API key is only shown, set or not: it stays an environment variable (see [API token](#api-token-optional)) and is never saved in the config file.
+
 ## wc
+
+Wildcard YAML files for Dynamic Prompts: expanding, checking, finding repeats in and editing them.
 
 ### `civit-tool wc expand FILE WILDCARD`
 
 Writes every prompt a wildcard path can produce to a text file, one per line, for batch runs. It works like sd-dynamic-prompts' combinatorial mode, and duplicates are removed.
 
 ```bash
-civit-tool wc expand tshirt-gamenight.yaml "__tshirt-gamenight/wh40k/front-krea/*/matyi__"
+civit-tool wc expand shirts.yaml "__shirts/fantasy/front-krea/*/knight__"
 civit-tool wc expand ./wildcards/hair.yaml "hair/**" --output hair.txt
 civit-tool wc expand clothes.yaml "clothes/*" --max 50000
 civit-tool wc expand scenes.yaml "scenes/battle/*" --keep-long 10
@@ -204,7 +235,7 @@ civit-tool wc expand scenes.yaml "scenes/battle/*" --keep-long 10
   - `*` matches within one path segment and `**` across segments; a glob uses every matching wildcard.
   - `{a|b}` picks only the listed siblings: `"__chars/{elf|orc}/*__"` uses `chars/elf/*` and `chars/orc/*` but not `chars/dwarf/*`. Alternatives may contain `/` and globs, and can be nested.
   - When the path matches nothing, it is retried as `**/path`, then ignoring upper/lower case.
-- **Output** defaults to a file named after the path in the current folder, e.g. `tshirt-gamenight_wh40k_front-krea_all_matyi.txt`.
+- **Output** defaults to a file named after the path in the current folder, e.g. `shirts_fantasy_front-krea_all_knight.txt`.
 - **`--max`** (default 10000): the combinations are counted first, and nothing is written when there are more than this.
 - **`--keep-long N`**: an entry with at least N words is written exactly as it is, instead of every combination of it. Its `{…}` variants and `__references__` stay in the line, so Dynamic Prompts picks from them at render time. Shorter entries still expand, and a long entry referenced from a short one stays unexpanded inside each combination. A word is a piece between spaces, commas and `{ } | ( )` that contains a letter, so `star (sky), {2$$knight|samurai}` has 4. A kept entry counts as one prompt toward `--max`. Use it when a few big scene entries would otherwise explode into hundreds of thousands of lines.
 
@@ -253,9 +284,10 @@ civit-tool wc lint                                 # the wildcardsDir folder fro
 civit-tool wc lint ./wildcards --fix               # apply the safe fixes, then report what is left
 civit-tool wc lint ./wildcards --ignore "**:S-branch" --ignore "my-lib/custom/**"
 civit-tool wc lint ./wildcards --json > findings.json
+civit-tool wc lint ./wildcards --calibrate --loras "path/to/forge/models/Lora" --recursive   # pick tags to accept
 ```
 
-**Setup:** it checks every tag against `danbooru.csv` (the Tag Autocomplete extension's format: `tag,category,count,aliases`, no header). Point the config at the folder holding it:
+**Setup:** it checks every tag against `danbooru.csv` (the Tag Autocomplete extension's format: `tag,category,count,aliases`, no header; fields separated by `;` instead of `,` work too, told apart by the first row). By default it reads `data/danbooru.csv` in civit-tool's own folder; the file isn't in git, so copy it there from Forge's Tag Autocomplete extension (`extensions/a1111-sd-webui-tagcomplete/tags/danbooru.csv`). To use another folder, run `civit-tool wc config --data-dir <folder>` once, or set it in the config:
 
 ```json
 {
@@ -266,10 +298,13 @@ civit-tool wc lint ./wildcards --json > findings.json
 }
 ```
 
-- `dataDir` (or `--data-dir`): the folder with `danbooru.csv`. An optional `aliases.local.csv` there (header `alias,tag`) adds aliases the CSV is missing, e.g. `tall_woman,tall_female`.
+- `dataDir` (or `--data-dir`): the folder with `danbooru.csv`; default: civit-tool's `data` folder. An optional `aliases.local.csv` there (header `alias,tag`, or `alias;tag` to use semicolons) adds aliases the CSV is missing, e.g. `tall_woman,tall_female`.
 - `loraDirs` (optional): folders with `lora activation`'s JSON sidecars, for the `S-base` check.
+- `rules` (optional): `{"S-branch": false}` turns a rule off; every rule is on by default. `wc config --off`/`--on` sets it in the home config, and a local config's switches apply on top of it, rule by rule.
+- `acceptedTags` (optional): tags that aren't Danbooru tags but are right as written, such as a LoRA's activation tags (`["EdoEraAnime", "cv4n14-style"]`). Lint doesn't check them against Danbooru (no `R1`–`R4`, so `--fix` never changes one) and `P-tags` doesn't count them, anywhere in the library. They match in any case, with spaces or underscores, escaped or not; escaping (`R5`/`R6`) and `S-dup` still apply. `wc config --accept-loras <folder>` gathers them from the LoRA sidecars, and `--accept`/`--unaccept` add or remove them by hand.
+- `exemptKeys` (optional): names of keys whose entries aren't linted at all, at any level and with every key below them: `["old_favs", "*_draft"]` (`*` matches any characters within a name). Unlike `ignore`, which hides findings under a key-path glob and counts them, exempt entries aren't checked; the report ends with `exempt keys: … (N entries not checked)`. References into an exempt key still resolve. `wc config --exempt-keys` sets it.
 - Also optional: `minCount` (80), `maxTagsPerEntry` (40), `maxWordsPerEntry` (150, for prose branches), `branches` (see [Model branches](#model-branches)) and `ignore` (`[{"path": "<glob>", "rules": ["S-dup"]}]`).
-- `--config <file>` uses another file's `lint` section instead, e.g. a project's own config file. `dataDir` then still falls back to civit-tool's config.
+- `--config <file>` uses another file's `lint` section instead, rule switches included, e.g. a project's own config file. `dataDir` then still falls back to civit-tool's config, then its `data` folder, and civit-tool's `acceptedTags` are used as well as the file's.
 - Relative folders are relative to the current folder.
 
 **Rules.** Each finding is an error, or a warning where marked below. The ones marked *fixable* are changed by `--fix`. Empty options such as `{|red_ribbon}` are never reported.
@@ -280,7 +315,7 @@ civit-tool wc lint ./wildcards --json > findings.json
 | `R2` | a tag with fewer posts than `minCount` |
 | `R3` | an alias instead of the real tag (`chains` → `chain`). *Fixable* when there is a single target |
 | `R4` | a bare colour word (`red`): it needs a noun, e.g. `red_hair` |
-| `R5` / `R6` | unescaped `(` `)` (Forge reads them as emphasis; `(tag:1.2)` is fine) / unescaped `@`. *Fixable*. Prose too |
+| `R5` / `R6` | unescaped `(` `)` inside a tag (`bow_(weapon)`, `some (thing)`): Forge reads them as emphasis. Emphasis itself is fine: `(tag:1.2)`, and parentheses around whole tags, such as `(((tag)))` or `(red hair, blue eyes)`, also right next to a `<lora:…>`, which A1111 removes from the prompt / unescaped `@`. *Fixable*. Prose too |
 | `S-yaml`, `S-brace` | YAML problems, e.g. an unquoted item starting with `{`; an unclosed `{` or a stray `}` |
 | `S-ref` | a `__reference__` that matches no wildcard, or a stray `__` |
 | `S-range` | an impossible pick, e.g. `{3$$a\|b}` |
@@ -292,6 +327,25 @@ civit-tool wc lint ./wildcards --json > findings.json
 | `S-anima` (warning) | an entry under `anima:` with no sentence before its tags |
 | `P-tags` (warning) | a prose entry that still looks like Danbooru tags: underscore words (`long_hair`, `score_7`) or quality/count tags (`masterpiece`, `best quality`, `1girl`). One per entry |
 | `P-neg` (warning) | a negation in prose (`no helmet`, `without text`): Krea 2 has no negative prompt and naming a thing primes it |
+
+Any rule can be turned off for every run with `civit-tool wc config --off <RULE>`; the report then ends with `rules off: …`, and an off rule's fixes aren't applied either. To skip a rule in part of a library only, use `--ignore` instead. A LoRA's activation tag reported as an unknown tag (`R1`) is better accepted than ignored: `civit-tool wc config --accept-loras <your Lora folder> --recursive` accepts the activation tags of all your LoRAs at once.
+
+**`--calibrate`** lints as usual, then lists every tag reported as unknown (`R1`), one row per tag: how often it's used, where first, and the LoRAs whose sidecar activation text has it. `--loras <folder>` (`--recursive`: and its subfolders) names the LoRA folder, read the way `wc config --accept-loras` reads it; without it, the `lint.loraDirs` folders are used. In a terminal it is a list to pick from, with the LoRA tags picked already:
+
+```
+  3 unknown tags (R1): pick the ones to accept. LoRA activation tags are picked already.
+
+› [x] liibrra      2×  favs.yaml:4  LoRA: 9_Liibrra
+  [x] ff-ca        1×  favs.yaml:8  LoRA: cute_anime ILL_V2
+  [ ] lnog_hair    1×  favs.yaml:4
+
+Used in favs.yaml:4, favs.yaml:6
+↑/↓ move   Space select   a all/none   Enter accept 2   q cancel
+```
+
+- **Space** picks or unpicks the row, **a** picks all (or none, when all are picked), **Enter** accepts the picked tags, and **q** or Esc leaves without saving.
+- The accepted tags are added to `lint.acceptedTags` in `~/.civit-tool.config.json`, and lint runs again to show what is left. If `./civit-tool.config.json` sets `acceptedTags`, it refuses (exit 2): add the tags there.
+- Without a terminal, the list is printed, LoRA tags marked `[x]`, with a `wc config --accept` line for them, and nothing is saved. `--calibrate` can't be used with `--fix` or `--json`.
 
 #### Model branches
 
@@ -322,8 +376,6 @@ Change the branches with `branches` in the `lint` config. Each named branch is m
 If your files don't use branch keys at all, add `--ignore "**:S-branch"`.
 
 **Exit codes:** 0 nothing found, 1 findings, 2 a usage problem (missing file, no `danbooru.csv`, an unknown rule in `--ignore`).
-
-The code lives in `src/lib/lint/`, `src/lib/wildcard-parser/` and `src/lib/tag-index/`. If `civit-tool <TAB>` doesn't offer `wc lint`, run `civit-tool autocomplete --refresh-cache`.
 
 ### `civit-tool wc repeats [PATH...]`
 
@@ -361,16 +413,77 @@ civit-tool wc repeats ./wildcards --json > repeats.json
 
 **Exit codes:** 0 no repeats, 1 repeats found, 2 a usage problem (e.g. a missing file).
 
+### `civit-tool wc config`
+
+Shows and changes the wildcard settings without editing JSON: the folder holding `danbooru.csv` for `wc lint`, the default wildcards folder, the LoRA folders for the `S-base` check, lint's limits, the keys whose entries lint skips, the tags lint accepts without checking them against Danbooru, and which lint rules are on. Run with no flags in a terminal, it opens a menu:
+
+```
+  Changes are saved in C:\Users\you\.civit-tool.config.json as you make them.
+
+› Data folder          C:\Tools\civit-tool\data  (default; danbooru.csv found)
+  Wildcards folder     not set
+  LoRA folders         not set  (S-base checks nothing without them)
+  Minimum posts        80  (default)
+  Max tags per entry   40  (default)
+  Max words per entry  150  (default)
+  Exempt keys          none
+  Accepted tags        3: cv4n14-style, EdoEraAnime, medieval  (saved)
+  Gather LoRA tags…
+
+  Lint rules (all on by default)
+  on   R1        error  unknown tag
+  ...
+  off  S-branch  warn   tags with no branch key (ill:, anima:, …) above them
+  ...
+
+The folder with the danbooru.csv (and optional aliases.local.csv) that wc lint checks tags against
+↑/↓ move   Enter change   r default   q quit
+```
+
+- **↑/↓** move between rows; Home and End jump to the first and last. The line under the menu says what the row under the cursor does.
+- **Enter on a rule** switches it on or off. **Enter on a setting** asks for a new value: paste or type it (quotes around a folder are fine), then Enter; Enter on its own keeps the current value, and Esc cancels. LoRA folders are separated by `;`, exempt keys by `,`. **r** puts a setting back to its default.
+- **Accepted tags** shows how many there are and the first five. Enter asks for tags to accept, separated by commas; `-tag` removes one (`cv4n14-style, -medieval`). **r** clears them all, after a `y` to confirm.
+- **Gather LoRA tags…** asks for a folder of LoRAs, then whether to include its subfolders, and accepts the activation tags of every sidecar there (see the flags below).
+- Each change is saved at once, with the same checks as the flags below; a refused change shows why, in red. Rows that `./civit-tool.config.json` sets are marked and can't be changed from the menu.
+- **q**, Esc or Ctrl+C leaves, and the settings are printed.
+- A list taller than the window scrolls. Without a terminal (a pipe, a script), with `--list`, or with any of the flags below, the settings are printed instead.
+
+The same changes as flags:
+
+```bash
+civit-tool wc config --list                            # print the settings, no menu
+civit-tool wc config --data-dir "path/to/forge/extensions/a1111-sd-webui-tagcomplete/tags"
+civit-tool wc config --wildcards-dir "path/to/forge/extensions/sd-dynamic-prompts/wildcards"
+civit-tool wc config --lora-dirs "path/to/forge/models/Lora/illustrious;path/to/forge/models/Lora/anima"
+civit-tool wc config --min-count 100 --max-tags 50 --max-words 200
+civit-tool wc config --exempt-keys "old_favs,*_draft"  # entries under these keys aren't linted
+civit-tool wc config --off S-branch,P-neg              # turn rules off (any case: s-branch works too)
+civit-tool wc config --on S-branch                     # and back on
+civit-tool wc config --accept-loras "path/to/forge/models/Lora" --recursive   # accept your LoRAs' activation tags
+civit-tool wc config --accept cv4n14-style,EdoEraAnime # accept tags by hand
+civit-tool wc config --unaccept medieval               # and remove them again
+civit-tool wc config --reset data-dir --reset rules    # back to the defaults; any setting's flag name works
+```
+
+- Changes are saved in `~/.civit-tool.config.json`: `wildcardsDir`, and in the `lint` section `dataDir`, `loraDirs`, `minCount`, `maxTagsPerEntry`, `maxWordsPerEntry`, `exemptKeys`, `rules` and `acceptedTags`. A value equal to the default is removed instead. A `./civit-tool.config.json` in the current folder still overrides them; `wc config` says so when it does.
+- Folders must exist (`--data-dir` must hold `danbooru.csv`) and are saved as absolute paths; numbers must be whole (at least 1 for the two maximums). When a check fails, nothing is saved (exit 2).
+- `--off` writes `false` for the rule; `--on` removes it again, since every rule is on by default.
+- `--accept-loras <folder>` reads every `.json` sidecar in the folder (`--recursive`: and its subfolders), from `lora activation` or Forge itself, and takes the tags of its `activation text` (or `trainedWords`) as lint reads them, so `(mytrigger:1.2)` gives `mytrigger`. Wildcard syntax in it is left out whole: a `{…|…}` group with the tags in its options (`{2::pauldrons, gauntlets|bare arms}`: those are ordinary tags lint goes on checking), a `__reference__`, a `<lora:…>`, a `${variable}`. It accepts only the tags lint would otherwise report: a tag `danbooru.csv` already knows as a valid tag (`1girl`, `long hair`, often in Civitai's trained words) is left out, and so is one already accepted. It says how many it found and left out; without a `danbooru.csv` it leaves out nothing. Running it again after adding LoRAs adds only the new tags.
+- Accepted tags are saved as first written, one per tag (`EdoEraAnime` and `edoeraanime` are the same tag), sorted. `--accept` refuses wildcard syntax, which is never a tag. `--unaccept` refuses a tag that isn't accepted, and `--reset accepted-tags` clears them all.
+- `branches` and `ignore` have no menu row; set them in the JSON (see [`wc lint`](#civit-tool-wc-lint-path)).
+
 ## img
+
+Generated images: sorting them and reading the generation data Forge stores in them.
 
 ### `civit-tool img sort [PATH]`
 
-Sorts generated images named `<seed>_<denoise>_<model>_<yyyyMMddHHmmss>.png` into one folder per model. For example, `2447751738_0.6_waiANIMA_v10Base10_20260929160902.png` goes into `waiANIMA_v10Base10/`.
+Sorts generated images into one folder per model, read from their file names. The names follow Forge's **Filename pattern for saving images**, by default `[seed]_[denoising]_[model_name]_[datetime]` with no ascending number: `2447751738_0.6_waiANIMA_v10Base10_20260929160902.png` goes into `waiANIMA_v10Base10/`. If Forge names your images differently, tell civit-tool with [`img config`](#civit-tool-img-config).
 
 - **Folder:** defaults to the current folder. Only files directly in it are moved, never files in subfolders.
 - **Model folders** are created inside that folder when they don't exist yet.
 - **Before moving,** it lists each target folder (new or existing) with the files that will go into it, then asks for confirmation.
-- **Left alone:** images that don't match the pattern, and files that already exist in the target folder.
+- **Left alone:** images that don't match the pattern (it says how many), and files that already exist in the target folder.
 - **Extensions:** `.png`, `.jpg`, `.jpeg` and `.webp`.
 
 ```bash
@@ -423,7 +536,38 @@ images:  120 (118 with metadata, 95 with LoRAs)
 - **Images:** the same formats as `img meta`. Subfolders only with `-r`/`--recursive`, and then files are shown with their relative path. Images without metadata are listed, unreadable files are warned about.
 - **`--json`:** `{folder, images, withMetadata, withLoras, ranking: [{rank, name, images, share, weights: [{weight, count}]}], duplicates: [{file, loras}]}`; the status lines go to stderr. `--top N` limits the ranking to the N most used.
 
+### `civit-tool img config`
+
+Shows and changes how Forge names your images, so `img sort` can find the model name in them. Both settings are in Forge under **Settings → Saving images/grids**. Run with no flags in a terminal, it opens the same kind of menu as [`wc config`](#civit-tool-wc-config):
+
+```
+  Changes are saved in C:\Users\you\.civit-tool.config.json as you make them.
+
+› Filename pattern  [seed]_[denoising]_[model_name]_[datetime]  (default)
+  Ascending number  off  (default)
+
+  Example           2447751738_0.6_waiANIMA_v10Base10_20260929160902.png  (what img sort looks for)
+```
+
+```bash
+civit-tool img config --pattern "[model_name]-[seed]" --add-number on
+civit-tool img config --reset pattern --reset add-number
+```
+
+| Setting | Flag | Config key | Default |
+|---|---|---|---|
+| Filename pattern: Forge's **Filename pattern for saving images**, pasted as it is | `--pattern` | `img.filenamePattern` | `[seed]_[denoising]_[model_name]_[datetime]` |
+| Ascending number: whether Forge's **Add number to filename when saving** is on | `--add-number on\|off` | `img.addNumber` | off |
+
+- **The example line** is a name Forge would write with your settings; compare it with your own images.
+- **The pattern needs `[model_name]`,** since `img sort` makes one folder per model. A pattern without it is refused.
+- **What it reads like Forge:** tags in any case; `[tag<arg>]` arguments such as `[datetime<%Y-%m-%d_%H-%M-%S>]` (a `:` in the format becomes `_` in the name, as Forge writes it) and `[prompt_hash<6>]`; an unknown tag kept as written; and the ascending number as a 5-digit counter and a dash, `00042-…`. `[denoising]`, `[seed_last]`, `[batch_number]` and `[generation_number]` may be missing from a name together with the text before them, as Forge leaves them out when they have no value.
+- **One limit:** when `[model_name]` sits right next to a free-text tag such as `[prompt]` or `[sampler]`, where the model name ends is a best guess. With a fixed tag between them, as in the default pattern, it is exact.
+- Keys, saving, `--list`, `--reset <flag>` and `./civit-tool.config.json` work as in `wc config`.
+
 ## file
+
+Bulk operations on any kind of file.
 
 ### `civit-tool file rename [PATH]`
 
@@ -445,22 +589,16 @@ civit-tool file rename ./screenshots --sequence --width 5 --start 0   # 00000-..
 civit-tool file rename ./screenshots --sequence --recurse --force
 ```
 
-## What changed vs. the original scripts
+## Development
 
-- **Commands are grouped** (`lora`, `wc`, `img`, `file`; see [Command groups](#command-groups)). The old flat names (`civit-tool activation`, `civit-tool order`, …) are gone.
-- All five scripts' safetensor-metadata reading, hashing, and Civitai API calls are consolidated into `src/lib/` (previously duplicated 2–3 times with small inconsistencies).
-- `activation`'s `loras.yaml` write is now enabled — in the original `lora_activation.js` this was commented out, so the file was never actually produced.
-- `url_exporter.js`'s stray debug `console.log(metadata)` is gone.
-- Lookups try `civitai.red` first and then `civitai.com` (since 2026-10-15; before, the API only went to `civitai.com` and `domain` changed only the link text). `--domain`/config `domain` picks the domain tried first, and links point to the domain that found the LoRA.
-- `url` merges the flat-folder-only `url_exporter.js` and the recursive, author-grouping `url_with_author.js` into one command with `--recursive` (on by default) and `--group-by-author` flags.
-- **`activation` now fetches the full parent model, not just the model-version stub.** Civitai's model-version API returns a slim `model` object (name/type/nsfw/poi only, no description), so any "Usage Tips" text that lives on the model page rather than repeated per-version was previously invisible to weight extraction and silently defaulted to `1`. `activation` now also calls `GET /models/{id}` and checks its description too.
-- **Description text is HTML-stripped before the weight/strength regexes run.** Civitai descriptions are HTML; inline formatting like `<strong>Strength:</strong> 0.9` previously broke the whitespace-only adjacency the patterns assumed.
-- **Weight extraction records its source** (`structured field`, `model-version description`, `model description`, `notes field`, or `default (not found)`) in each JSON sidecar, and the console warns when it falls back to the default.
-- `lint` is no longer the per-line `{}` / `__` counter from `unbalanced.js`: it is a full linter, which parses the YAML and also checks the tags (see above).
-- `wc lint` handles Krea 2 prose wildcards (since 2026-10-17): any key containing `krea` is a prose branch with its own rules (`P-tags`, `P-neg`, a 150-word budget) instead of Danbooru checks. Model branches are now set in the `branches` config, which replaces the old `baseModels` setting.
-- `lora duplicates` asks which copy to keep (since 2026-10-20) and deletes the others with their `.json` and previews; `--list` only lists, as before.
-- `lora duplicates` caches hashes (since 2026-10-20) in `.cache/hashes.json` in civit-tool's folder, so unchanged files aren't read again; `lora activation` and `lora url` share the cache. `--rehash` reads every file again.
-- New `img loras` (since 2026-10-19): ranks the LoRAs a folder of images used, by image count, with their weights; a LoRA written twice in one prompt is an error.
-- Dependencies trimmed (since 2026-10-20): the `oclif` dev tool and `shx` are gone, with the `prepack`/`postpack` scripts that used them. The dev tool was only for `npm pack`, and brought in the AWS SDK and an unfixable `braces` audit finding. `npm install` now installs 51 packages (5.6 MB) instead of 257 (35 MB); `npx oclif manifest` makes a manifest if one is ever needed.
-- New `wc repeats` (since 2026-10-17): finds runs of 5+ words or tags repeated across entries, in order or (`--any-order`) as tag sets.
-- `src/test/` has unit tests (`node --test src/test/*.test.js`) covering the HTML stripper and the weight-extraction priority order, including a fixture for the exact "tips are on the model page, not the version page" scenario.
+```bash
+npm test   # every src/test/*.test.js, with node:test
+```
+
+- **Layout:** `bin/run.js` starts the CLI. `src/commands/<group>/` holds one file per command, and `src/lib/` the shared code: the Civitai client, hashing, the settings menus, and the linter in `src/lib/lint/`, `src/lib/wildcard-parser/` and `src/lib/tag-index/`.
+- **A new command** goes into the group whose files it works on. When none fits, it starts a new group with a short lowercase name, which needs an entry in `oclif.topics` in `package.json` and in the `GROUPS` list of `src/test/commands.test.js`. After adding or renaming commands, run `civit-tool autocomplete --refresh-cache`.
+- **The sidecar contract** above ties `lora activation` to `wc lint`'s `S-base` rule (`src/lib/lint/rules/lora.js`), and `src/test/activation.test.js` checks it. Change the `"sd version"` field in both places, or not at all.
+
+## License
+
+MIT, see [LICENSE](LICENSE).

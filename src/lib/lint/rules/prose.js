@@ -6,9 +6,10 @@
 //         thing primes it, so say what you want instead ("bareheaded, his face uncovered").
 //
 // Only literal text is scanned: refs, loras and variables are syntax. Text pulled in through a
-// `__ref__` is checked where it is written.
+// `__ref__` is checked where it is written. Accepted tags (a LoRA's activation tags) don't count as tag-like.
 
 import {walkTemplate} from '../../wildcard-parser/index.js'
+import {isAccepted} from '../accepted.js'
 
 const QUALITY_TAGS = new Set([
   'masterpiece',
@@ -29,14 +30,19 @@ const NEGATION = /\b(?:no|without|never|don't|do not)\s+[^\s,.;:!?(){}]+(?:\s+(?
 
 const MAX_EXAMPLES = 3
 
-export function checkProseTags(ctx) {
+export function checkProseTags(ctx, accepted = new Set()) {
+  const tags = ctx.extracted.tags.filter((tag) => tag.kind === 'tag')
+  const acceptedSpans = tags.filter((tag) => isAccepted(accepted, tag.text)).flatMap((tag) => tag.spans)
+  const inAccepted = (at) => acceptedSpans.some((span) => at >= span.start && at < span.end)
   const hits = []
   for (const node of walkTemplate(ctx.entry.template)) {
     if (node.type !== 'text') continue
-    for (const m of node.raw.matchAll(UNDERSCORE_WORD)) hits.push({at: node.start + m.index, text: m[0]})
+    for (const m of node.raw.matchAll(UNDERSCORE_WORD)) {
+      if (!inAccepted(node.start + m.index)) hits.push({at: node.start + m.index, text: m[0]})
+    }
   }
-  for (const tag of ctx.extracted.tags) {
-    if (tag.kind !== 'tag') continue
+  for (const tag of tags) {
+    if (isAccepted(accepted, tag.text)) continue
     const text = tag.text.toLowerCase().replace(/_/g, ' ')
     if (QUALITY_TAGS.has(text) || COUNT_TAG.test(text)) hits.push({at: tag.spans[0].start, text: tag.text})
   }

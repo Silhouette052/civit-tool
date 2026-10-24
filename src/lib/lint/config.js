@@ -9,18 +9,25 @@
 //     "maxWordsPerEntry": 150,
 //     "loraDirs": ["path/to/forge/models/Lora"],
 //     "branches": {"ill": {"baseModels": ["Illustrious", "NoobAI", "Pony"]}, "flux": {"keys": ["flux"], "style": "prose"}},
-//     "ignore": [{"path": "danboru-character-prompter/custom/**", "rules": ["S-branch"]}]
+//     "ignore": [{"path": "danboru-character-prompter/custom/**", "rules": ["S-branch"]}],
+//     "rules": {"S-branch": false},
+//     "acceptedTags": ["EdoEraAnime"],
+//     "exemptKeys": ["contender2_favs", "*_favs"]
 //   }
 // }
 //
 // `dataDir` (civit-tool only) is the folder holding danbooru.csv and the optional aliases.local.csv.
+// `rules` turns rules off (false) or on (true); every rule is on by default. `civit-tool wc config` sets it.
+// `acceptedTags` are tags that aren't checked against Danbooru, e.g. LoRA activation tags (see accepted.js).
+// `exemptKeys` are key names, at any level (`*` matches within the name): the entries under them aren't linted.
 // `branches` is merged into DEFAULT_BRANCHES one branch at a time: a known name changes only the fields
 // given, a new name adds a branch (it needs `keys` and `style`), and `null` removes one.
 
 import {existsSync, readFileSync} from 'node:fs'
-import {BRANCH_STYLES, DEFAULT_BRANCHES, DEFAULT_MAX_VARIATIONS} from '../wildcard-parser/index.js'
+import {BRANCH_STYLES, DEFAULT_BRANCHES, DEFAULT_MAX_VARIATIONS, globToRegExp} from '../wildcard-parser/index.js'
 import {DEFAULT_MIN_COUNT} from '../tag-index/index.js'
 
+import {validateAcceptedTags} from './accepted.js'
 import {RULE_SEVERITY} from './types.js'
 
 export const DEFAULT_CONFIG = {
@@ -31,6 +38,9 @@ export const DEFAULT_CONFIG = {
   branches: DEFAULT_BRANCHES,
   loraDirs: [],
   ignore: [],
+  rules: {},
+  acceptedTags: [],
+  exemptKeys: [],
 }
 
 /** A `lint` config section over the defaults. `where` names the source in error messages. */
@@ -40,7 +50,42 @@ export function makeLintConfig(section = {}, where = 'config') {
   }
   const config = {...DEFAULT_CONFIG, ...section, branches: mergeBranches(section.branches ?? {}, where)}
   for (const entry of config.ignore) validateRules(entry.rules ?? [], where)
+  validateRuleSwitches(config.rules, where)
+  validateAcceptedTags(config.acceptedTags, where)
+  validateExemptKeys(config.exemptKeys, where)
   return config
+}
+
+function validateExemptKeys(names, where) {
+  if (!Array.isArray(names) || names.some((name) => typeof name !== 'string' || name.trim() === '')) {
+    throw new Error(`${where}: lint.exemptKeys must be a list of key names, e.g. ["contender2_favs"]`)
+  }
+
+  const path = names.find((name) => name.includes('/'))
+  if (path) throw new Error(`${where}: lint.exemptKeys: "${path}" is a path; use the key's name, e.g. contender2_favs`)
+}
+
+/**
+ * Whether a key path is exempt: one of its keys matches a name of `exemptKeys` (`*` matches within the name), so
+ * the key and everything below it are skipped.
+ */
+export function makeExempt(names = []) {
+  const patterns = names.map((name) => globToRegExp(name.trim()))
+  if (patterns.length === 0) return () => false
+  return (keyPath) => keyPath.split('/').some((key) => patterns.some((re) => re.test(key)))
+}
+
+/** The rules a config turns off, in RULE_SEVERITY order. */
+export const rulesOff = (config) => Object.keys(RULE_SEVERITY).filter((rule) => config.rules?.[rule] === false)
+
+function validateRuleSwitches(rules, where) {
+  if (typeof rules !== 'object' || rules === null || Array.isArray(rules)) {
+    throw new Error(`${where}: lint.rules must be an object such as {"S-branch": false}`)
+  }
+  validateRules(Object.keys(rules), `${where}: lint.rules`)
+  for (const [rule, on] of Object.entries(rules)) {
+    if (typeof on !== 'boolean') throw new Error(`${where}: lint.rules.${rule} must be true or false`)
+  }
 }
 
 function mergeBranches(overrides, where) {

@@ -6,6 +6,7 @@ import readline from 'node:readline/promises'
 
 import {
   apiBaseFor,
+  buildModelPageUrl,
   buildModelUrl,
   domainOrder,
   fetchModelById,
@@ -15,8 +16,9 @@ import {
   withDomainFallback,
 } from '../../lib/civitaiClient.js'
 import {baseModelFolder} from '../../lib/baseModels.js'
-import {DEFAULT_WARN_CHARS, loadConfig, loadLocalConfig, saveHomeSetting} from '../../lib/config.js'
+import {DEFAULT_WARN_CHARS, DEFAULT_YAML_NAME, loadConfig} from '../../lib/config.js'
 import {openHashCache} from '../../lib/hashCache.js'
+import {normalizeTriggers, sidecarTriggers} from '../../lib/loraSidecar.js'
 import {
   filesOfLoras,
   findSafetensorFiles,
@@ -32,15 +34,6 @@ const DEFAULT_WEIGHT_SOURCE = 'default (not found)'
 function safeNumber(value) {
   const n = Number(value)
   return Number.isFinite(n) ? n : null
-}
-
-function normalizeTriggers(value) {
-  if (!value) return []
-  const values = Array.isArray(value) ? value : [value]
-  return values
-    .flatMap((v) => String(v).split(','))
-    .map((v) => v.trim())
-    .filter(Boolean)
 }
 
 function getTriggerWords(versionData) {
@@ -208,17 +201,19 @@ function getModelName(versionData, modelData, filename) {
 export function createJsonMetadata(discovery, filename, displayDomain, weightResult) {
   const versionData = discovery.data
   const triggerWords = getTriggerWords(versionData)
+  const modelName = getModelName(versionData, discovery.modelData, filename)
 
   return {
     'activation text': triggerWords.join(', '),
     'civitai lookup': discovery.source,
     'civitai model id': discovery.modelId,
-    'civitai model name': getModelName(versionData, discovery.modelData, filename),
+    'civitai model name': modelName,
     'civitai model version id': discovery.modelVersionId,
     'civitai url': buildModelUrl({displayDomain, modelId: discovery.modelId, versionId: discovery.modelVersionId}) ?? '',
     description: getDescription(versionData, discovery.modelData),
     'negative text': '',
-    notes: '',
+    // the model's page, so the LoRA card's notes link to it
+    notes: buildModelPageUrl({displayDomain, modelId: discovery.modelId, modelName}) ?? '',
     'preferred weight': weightResult.weight,
     ...(weightResult.max === null ? {} : {'preferred weight max': weightResult.max}),
     ...(weightResult.min === null ? {} : {'preferred weight min': weightResult.min}),
@@ -250,6 +245,8 @@ const USER_FIELDS = ['activation text', 'negative text', 'notes']
  * Merges a freshly resolved sidecar into an existing one for --refresh:
  * Civitai-derived fields are replaced (stale ones dropped), the user's
  * non-empty notes/negative/activation text and any unknown keys are kept.
+ * The model page link of fresh notes is added on its own line after the
+ * user's notes, unless they link to that model already.
  */
 export function mergeSidecar(existing, fresh) {
   const merged = {}
@@ -270,6 +267,11 @@ export function mergeSidecar(existing, fresh) {
       merged[key] = value
     }
   }
+
+  const link = fresh.notes
+  const modelId = fresh['civitai model id']
+  const linked = (notes) => notes === link || (modelId != null && notes.includes(`/models/${modelId}`))
+  if (link && typeof merged.notes === 'string' && !linked(merged.notes)) merged.notes = `${merged.notes}\n${link}`
 
   const sorted = Object.fromEntries(Object.entries(merged).sort(([a], [b]) => a.localeCompare(b)))
 
@@ -331,10 +333,6 @@ async function discoverCivitai(filepath, domains, cache) {
   return {data: versionData, domain, hash, modelData, modelId, modelVersionId, settings, source}
 }
 
-function getJsonActivationText(json) {
-  return normalizeTriggers(json['activation text'] ?? json.activationText ?? json.trainedWords ?? json.triggerWords)
-}
-
 function getJsonWeight(json) {
   const value =
     json['preferred weight'] ?? json.preferredWeight ?? json.preferred_weight ?? json.weight ?? json.strength
@@ -357,7 +355,7 @@ function formatSettings(settings) {
 export function makePrompt(safetensorFilename, json) {
   const loraName = path.basename(safetensorFilename, '.safetensors')
   const weight = getJsonWeight(json)
-  const triggers = getJsonActivationText(json)
+  const triggers = sidecarTriggers(json)
 
   let prompt = `<lora:${loraName}:${weight}>`
   if (triggers.length > 0) prompt += `, ${triggers.join(', ')}`
@@ -463,17 +461,24 @@ export function planBaseSort(folder, loras, exclude = []) {
   return {families, moves, unknown}
 }
 
+/** What a run uses: a flag when given, else what lora config saved, else the default. */
+export function activationOptions(flags, config) {
+  return {
+    sortBase: !flags['skip-sort-base'] && config.activation?.sortBaseModels !== false,
+    warnChars: config.warnChars ?? DEFAULT_WARN_CHARS,
+    yamlName: flags['yaml-name'] ?? config.activation?.yamlName ?? DEFAULT_YAML_NAME,
+  }
+}
+
 export default class Activation extends Command {
   static description =
-    'Resolve trigger words/weight for each LoRA (creating a JSON sidecar if one is missing) and (re)generate a yaml wildcard block from all of them.'
+    'Resolve trigger words/weight for each LoRA (creating a JSON sidecar if one is missing) and (re)generate a yaml wildcard block from all of them. The warn characters, the base model sort offer and the yaml file name are set with lora config.'
 
   static examples = [
     '<%= config.bin %> lora activation ./loras',
     '<%= config.bin %> lora activation ./loras --yaml-name loras.yaml',
     '<%= config.bin %> lora activation ./loras --refresh',
     '<%= config.bin %> lora activation ./loras --xyz',
-    '<%= config.bin %> lora activation ./loras --warn-chars "@&#"',
-    '<%= config.bin %> lora activation ./loras --reset-warn-chars',
     '<%= config.bin %> lora activation ./loras --skip-sort-base',
   ]
 
@@ -489,7 +494,7 @@ export default class Activation extends Command {
     refresh: Flags.boolean({
       default: false,
       description:
-        're-resolve weight/Civitai info even if a JSON sidecar already exists. Keeps your non-empty notes, negative text and activation text.',
+        're-resolve weight/Civitai info even if a JSON sidecar already exists. Keeps your non-empty notes, negative text and activation text, adding the Civitai page link after your notes unless they link the model already.',
     }),
     'fix-names': Flags.boolean({
       default: false,
@@ -498,27 +503,22 @@ export default class Activation extends Command {
     'skip-sort-base': Flags.boolean({
       default: false,
       description:
-        'Don\'t offer to sort the LoRAs into one folder per base model (illustrious/, pony/, anima/…). Without it, the sort is previewed and asked about when the folder holds LoRAs for more than one base model.',
-    }),
-    'reset-warn-chars': Flags.boolean({
-      default: false,
-      description: `Forget the saved --warn-chars, so the default (${DEFAULT_WARN_CHARS}) applies again.`,
-      exclusive: ['warn-chars'],
-    }),
-    'warn-chars': Flags.string({
-      description: `Characters to warn about in LoRA names, offering to remove them, e.g. "@&#". Saved for later runs until --reset-warn-chars. Default: ${DEFAULT_WARN_CHARS}`,
+        "Don't offer to sort the LoRAs into one folder per base model (illustrious/, pony/, anima/…) this run. Without it, the sort is previewed and asked about when the folder holds LoRAs for more than one base model. To turn the offer off for good: lora config --sort-base off.",
     }),
     xyz: Flags.boolean({
       default: false,
       description:
         'Print only the X/Y/Z plot values line (every LoRA prompt in quotes, comma-separated). Sidecars and the yaml file are still created/updated as usual; problems go to stderr.',
     }),
-    'yaml-name': Flags.string({default: 'loras.yaml', description: 'Output yaml filename.'}),
+    'yaml-name': Flags.string({
+      description: `Output yaml filename. Default: the one lora config saved, else ${DEFAULT_YAML_NAME}.`,
+    }),
   }
 
   async run() {
     const {args, flags} = await this.parse(Activation)
     const config = loadConfig()
+    const options = activationOptions(flags, config)
     // civitai.red first by default; a LoRA it doesn't know is looked up on civitai.com
     const domains = domainOrder(flags.domain ?? config.domain)
     // with --xyz, stdout carries only the values line
@@ -532,8 +532,7 @@ export default class Activation extends Command {
       )
     let files = findFiles()
 
-    const warnChars = this.warnCharsFor(flags, config)
-    const badNames = planNameFixes(folder, files, warnChars)
+    const badNames = planNameFixes(folder, files, options.warnChars)
     if (badNames.length > 0 && (await this.offerNameFixes(badNames, flags))) files = findFiles()
 
     if (files.length === 0) {
@@ -635,9 +634,9 @@ export default class Activation extends Command {
       bases.push({baseModel: json?.['sd version'], file: filepath})
     }
 
-    const sortedCount = flags['skip-sort-base'] ? 0 : await this.offerBaseSort(folder, bases, flags)
+    const sortedCount = options.sortBase ? await this.offerBaseSort(folder, bases, flags, options.yamlName) : 0
 
-    const yamlPath = path.join(folder, flags['yaml-name'])
+    const yamlPath = path.join(folder, options.yamlName)
 
     await fsp.writeFile(yamlPath, prompts.map((prompt) => `- ${prompt}\n`).join(''), 'utf8')
 
@@ -664,11 +663,11 @@ export default class Activation extends Command {
    * When the folder holds LoRAs for more than one base model family, previews moving each LoRA, with
    * its sidecar and the other files named after it, into a folder per family (illustrious/, pony/…)
    * and asks. LoRAs with an unknown base model stay, with a warning. With --xyz everything goes to
-   * stderr. Returns the number of LoRAs moved.
+   * stderr. The yaml file (`yamlName`) never moves. Returns the number of LoRAs moved.
    */
-  async offerBaseSort(folder, loras, flags) {
+  async offerBaseSort(folder, loras, flags, yamlName) {
     const say = (message) => (flags.xyz ? this.logToStderr(message) : this.log(message))
-    const plan = planBaseSort(folder, loras, [flags['yaml-name']])
+    const plan = planBaseSort(folder, loras, [yamlName])
     if (plan.families.size < 2) return 0
 
     const conflicts = findRenameConflicts(plan.moves.flatMap((move) => move.items))
@@ -729,32 +728,6 @@ export default class Activation extends Command {
 
     say(`Moved ${moved} LoRA(s). Their <lora:…> tags still work: Forge finds LoRAs in subfolders by name.`)
     return moved
-  }
-
-  /**
-   * The warn characters for this run. --warn-chars sets and saves them in the home config,
-   * --reset-warn-chars removes the saved ones; otherwise the config (or the default) applies.
-   */
-  warnCharsFor(flags, config) {
-    const say = (message) => (flags.xyz ? this.logToStderr(message) : this.log(message))
-    let chars = config.warnChars ?? DEFAULT_WARN_CHARS
-    if (flags['warn-chars'] !== undefined) {
-      chars = [...new Set(flags['warn-chars'])].join('')
-      const file = saveHomeSetting('warnChars', chars)
-      say(`Warn characters set to "${chars}" (saved in ${file}).`)
-    } else if (flags['reset-warn-chars']) {
-      const file = saveHomeSetting('warnChars')
-      chars = DEFAULT_WARN_CHARS
-      say(`Warn characters reset to the default "${chars}" (removed from ${file}).`)
-    }
-
-    const local = loadLocalConfig().warnChars
-    if (local !== undefined && local !== chars) {
-      say(`Note: ./civit-tool.config.json sets warnChars "${local}", which is used instead.`)
-      chars = local
-    }
-
-    return chars
   }
 
   /**

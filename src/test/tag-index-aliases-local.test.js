@@ -18,6 +18,11 @@ test('parseAliasOverrides: any C5 form, comments, blank lines, CRLF', () => {
 test('parseAliasOverrides: rejects bad input with a line number', () => {
   assert.throws(() => parseAliasOverrides('tall_woman,tall_female\n'), /line 1: expected the header/)
   assert.throws(() => parseAliasOverrides('alias,tag\ntall_woman\n'), /line 2: expected "alias,tag"/)
+  // ; in place of , when the header uses it
+  assert.deepEqual(parseAliasOverrides('alias;tag\ntall woman;tall_female\n'), [
+    {alias: 'tall_woman', tag: 'tall_female', line: 2},
+  ])
+  assert.throws(() => parseAliasOverrides('alias;tag\ntall_woman,tall_female\n'), /line 2: expected "alias;tag"/)
   assert.throws(() => parseAliasOverrides('alias,tag\ntall_woman,\n'), /line 2: empty alias or tag/)
   assert.throws(() => parseAliasOverrides('alias,tag\nchain,chain\n'), /line 2: alias equals its tag/)
 })

@@ -1,4 +1,5 @@
-// What every rule gets: the file, the entry and its extracted tags, the config, and `report()`.
+// What every rule gets: the file, the entry and its extracted tags, the config, and `report()`, which returns the
+// issue it added.
 
 import {entryPosition} from '../wildcard-parser/index.js'
 
@@ -29,6 +30,7 @@ export function makeEntryContext(file, entryIndex, extracted, config, out) {
         issue.edits = fix.edits
       }
       out.push(issue)
+      return issue
     },
   }
 }

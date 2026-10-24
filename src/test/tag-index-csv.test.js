@@ -1,6 +1,6 @@
 import {test} from 'node:test'
 import assert from 'node:assert/strict'
-import {parseCsvLine, parseDanbooruCsv} from '../lib/tag-index/index.js'
+import {detectSeparator, parseCsvLine, parseDanbooruCsv} from '../lib/tag-index/index.js'
 
 // Real rows copied verbatim from data/danbooru.csv (2026-10-02), with CRLF endings
 // like the original and no trailing newline after the last row.
@@ -62,5 +62,33 @@ test('parseDanbooruCsv: reports the line number of a malformed row', () => {
     /line 2: unknown category code "2"/,
   )
   assert.throws(() => parseDanbooruCsv('chain,0,many,chains'), /line 1: count is not an integer/)
-  assert.throws(() => parseDanbooruCsv('chain,0,103750'), /line 1: expected 4 fields, got 3/)
+  assert.throws(
+    () => parseDanbooruCsv('chain,0,103750'),
+    /line 1: expected 4 fields \(tag,category,count,aliases\), got 3/,
+  )
+})
+
+test('parseDanbooruCsv: fields separated by ; read the same as by , (aliases stay comma-separated)', () => {
+  const lines = REAL_ROWS.split('\r\n')
+  const semicolons = [
+    'long_hair;0;4350743;"/lh,longhair"',
+    'chain;0;103750;chains',
+    '"don\'t_say_""lazy""";0;1076;don\'t_say_lazy',
+    'highres;5;5256195;high_res,high_resolution,hires',
+    'zwei_(rwby);4;95;',
+  ].join('\r\n')
+  const commas = [0, 1, 4, 5, 6].map((i) => lines[i]).join('\r\n')
+  assert.deepEqual(parseDanbooruCsv(semicolons), parseDanbooruCsv(commas))
+  assert.throws(
+    () => parseDanbooruCsv('chain;0;103750;chains\r\nwaving;0;26502'),
+    /line 2: expected 4 fields \(tag;category;count;aliases\), got 3/,
+  )
+})
+
+test('detectSeparator: the first row tells; a tag with ; in a comma file stays comma', () => {
+  assert.equal(detectSeparator('long_hair,0,4350743,"/lh,longhair"'), ',')
+  assert.equal(detectSeparator('long_hair;0;4350743;/lh,longhair'), ';')
+  assert.equal(detectSeparator(';),0,12345,'), ',')
+  assert.equal(detectSeparator('"a,b";0;5;'), ';')
+  assert.equal(detectSeparator('not a row'), ',')
 })

@@ -14,6 +14,8 @@ import {
 } from './rules/structure.js'
 import {checkLoraBase, loadSidecars} from './rules/lora.js'
 import {checkNegations, checkProseTags} from './rules/prose.js'
+import {acceptedSet} from './accepted.js'
+import {makeExempt, rulesOff} from './config.js'
 
 import {RULE_SEVERITY} from './types.js'
 
@@ -28,10 +30,14 @@ export function lintFiles(files, index, config) {
   const all = []
   const sidecars = loadSidecars(config.loraDirs)
   const refBudgets = makeRefBudgets(files, config.maxVariations)
+  const accepted = acceptedSet(config.acceptedTags)
+  const exempt = makeExempt(config.exemptKeys)
+  let exemptEntries = 0
 
   for (const file of files) {
     // Problems found while parsing
     for (const p of file.problems) {
+      if (p.keyPath && exempt(p.keyPath)) continue
       all.push({
         file: file.path,
         line: p.line,
@@ -45,11 +51,16 @@ export function lintFiles(files, index, config) {
 
     // Per entry
     file.entries.forEach((entry, entryIndex) => {
+      if (exempt(entry.keyPath)) {
+        exemptEntries++
+        return
+      }
+
       const extracted = extractEntryTags(entry, {maxVariations: config.maxVariations})
       const ctx = makeEntryContext(file, entryIndex, extracted, config, all)
       // Prose is natural language: no Danbooru checks, and repeating a phrase is how it adds emphasis.
       const prose = entry.style === 'prose'
-      if (!prose) checkTags(ctx, index)
+      if (!prose) checkTags(ctx, index, accepted)
       checkEscaping(ctx)
       checkExpand(ctx)
       checkRefs(ctx, files)
@@ -58,20 +69,24 @@ export function lintFiles(files, index, config) {
       checkBudget(ctx, refBudgets)
       checkLoraBase(ctx, sidecars)
       if (prose) {
-        checkProseTags(ctx)
+        checkProseTags(ctx, accepted)
         checkNegations(ctx)
       }
     })
 
     // Per leaf
     for (const key of file.keys.values()) {
-      if (!key.isLeaf) continue
+      if (!key.isLeaf || exempt(key.path)) continue
       checkDuplicateEntries(file, key, all)
       checkBranch(file, key, config, all)
     }
   }
 
-  return applyIgnores(sortFindings(all), config.ignore)
+  // a rule that is off drops its findings (and so its fixes) before the ignores, which count only what they hide
+  const off = rulesOff(config)
+  const on = all.filter((finding) => !off.includes(finding.rule))
+  const exempted = {entries: exemptEntries, keys: config.exemptKeys ?? []}
+  return {...applyIgnores(sortFindings(on), config.ignore), exempt: exempted, rulesOff: off}
 }
 
 /** S-dup (leaf level): the same entry twice in one list. */

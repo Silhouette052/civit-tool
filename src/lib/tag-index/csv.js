@@ -1,7 +1,8 @@
 // Loader for danbooru.csv (the "autocomplete" format used by a1111-sd-webui-tagcomplete).
 //
 // File facts:
-// - No header row. Each row is `tag,category,count,aliases`.
+// - No header row. Each row is `tag,category,count,aliases`. Some copies separate the fields with `;` instead
+//   (`tag;category;count;aliases`, aliases still comma-separated); the first row tells which (detectSeparator).
 // - `aliases` is ONE field: quoted when it holds several comma-separated names,
 //   e.g. `long_hair,0,4350743,"/lh,longhair"`. It may be empty: `bikini_armor,0,9673,`.
 // - Tags may themselves be quoted, with `""` for a literal quote: `"don't_say_""lazy""",0,1076,…`
@@ -20,10 +21,10 @@ const CATEGORY_CODES = {
 }
 
 /**
- * Split one CSV line into fields (RFC 4180 quoting: `"a,b"` is one field, `""` inside
+ * Split one CSV line into fields at `separator` (RFC 4180 quoting: `"a,b"` is one field, `""` inside
  * quotes is a literal `"`). Lines never contain embedded newlines in this file.
  */
-export function parseCsvLine(line) {
+export function parseCsvLine(line, separator = ',') {
   const fields = []
   let field = ''
   let inQuotes = false
@@ -40,7 +41,7 @@ export function parseCsvLine(line) {
       }
     } else if (ch === '"') {
       inQuotes = true
-    } else if (ch === ',') {
+    } else if (ch === separator) {
       fields.push(field)
       field = ''
     } else {
@@ -52,15 +53,32 @@ export function parseCsvLine(line) {
   return fields
 }
 
-/** Parse the whole file. Throws with the 1-based line number on any malformed row. */
+/**
+ * The field separator of a file, from its first row: `;` when that row has 4 fields split at `;` and not at `,`,
+ * else `,` (the extension's own format).
+ */
+export function detectSeparator(firstLine = '') {
+  const fieldsAt = (separator) => {
+    try {
+      return parseCsvLine(firstLine, separator).length
+    } catch {
+      return 0
+    }
+  }
+
+  return fieldsAt(',') !== 4 && fieldsAt(';') === 4 ? ';' : ','
+}
+
+/** Parse the whole file, with `,` or `;` between fields. Throws with the 1-based line number on any malformed row. */
 export function parseDanbooruCsv(text) {
   const rows = []
   const lines = text.replace(/^﻿/, '').split(/\r?\n/)
+  const separator = detectSeparator(lines.find((line) => line !== ''))
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
     if (line === '') continue // tolerate a trailing newline / blank lines
     try {
-      rows.push(parseRow(line))
+      rows.push(parseRow(line, separator))
     } catch (err) {
       throw new Error(`danbooru.csv line ${i + 1}: ${err.message}`)
     }
@@ -68,9 +86,13 @@ export function parseDanbooruCsv(text) {
   return rows
 }
 
-function parseRow(line) {
-  const fields = parseCsvLine(line)
-  if (fields.length !== 4) throw new Error(`expected 4 fields, got ${fields.length}`)
+function parseRow(line, separator) {
+  const fields = parseCsvLine(line, separator)
+  if (fields.length !== 4) {
+    throw new Error(
+      `expected 4 fields (tag${separator}category${separator}count${separator}aliases), got ${fields.length}`,
+    )
+  }
   const [tag, code, countText, aliasField] = fields
 
   const category = CATEGORY_CODES[code]

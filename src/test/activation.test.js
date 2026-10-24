@@ -164,6 +164,16 @@ test('mergeSidecar refreshes Civitai fields but keeps hand-edited ones', () => {
   assert.deepEqual(kept, ['activation text', 'negative text', 'notes'])
 })
 
+test("mergeSidecar adds the model page link to the user's notes, unless they link the model already", () => {
+  const fresh = {'civitai model id': 572988, notes: 'https://civitai.red/models/572988/edo-era-anime'}
+  const notes = (existing) => mergeSidecar({notes: existing}, fresh).sidecar.notes
+
+  assert.equal(notes(''), 'https://civitai.red/models/572988/edo-era-anime')
+  assert.equal(notes('great with style X'), 'great with style X\nhttps://civitai.red/models/572988/edo-era-anime')
+  assert.equal(notes('see https://civitai.com/models/572988?modelVersionId=1'), 'see https://civitai.com/models/572988?modelVersionId=1')
+  assert.equal(mergeSidecar({}, fresh).sidecar.notes, 'https://civitai.red/models/572988/edo-era-anime')
+})
+
 test('mergeSidecar takes fresh activation text when the existing one is empty', () => {
   const {kept, sidecar} = mergeSidecar({'activation text': ''}, {'activation text': 'EdoEraAnime'})
 
@@ -187,6 +197,9 @@ test('createJsonMetadata writes "sd version" from Civitai baseModel (read by wc 
 
   assert.equal(sidecar['sd version'], 'Anima')
   assert.equal(typeof sidecar['sd version'], 'string')
+  // the notes link to the model's page, on the domain that had the LoRA
+  assert.equal(sidecar.notes, 'https://civitai.red/models/572988/edo-era-anime')
+  assert.equal(sidecar['civitai url'], 'https://civitai.red/models/572988?modelVersionId=3271798')
   assert.equal(createJsonMetadata({...discovery, data: {}}, 'x.safetensors', 'civitai.red', weight)['sd version'], 'Unknown')
 })
 

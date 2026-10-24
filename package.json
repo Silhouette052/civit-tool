@@ -27,7 +27,7 @@
         "description": "Bulk file operations: rename by find/replace or by sequence."
       },
       "img": {
-        "description": "Generated images: sort into one folder per model, extract their metadata or prompts, rank the LoRAs they used."
+        "description": "Generated images: sort into one folder per model (following your Forge filename pattern), extract their metadata or prompts, rank the LoRAs they used."
       },
       "lora": {
         "description": "LoRA files: activation words and wildcard block, Civitai links, duplicates."

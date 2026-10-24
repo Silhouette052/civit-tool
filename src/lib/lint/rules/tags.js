@@ -1,4 +1,6 @@
-// R1–R4: is each tag a real, well-used, canonical Danbooru tag?
+// R1–R4: is each tag a real, well-used, canonical Danbooru tag? Accepted tags (lint.acceptedTags) aren't asked.
+
+import {isAccepted} from '../accepted.js'
 
 /**
  * R4: colour words that are not tags on their own (bare colour words are invalid without a
@@ -31,17 +33,20 @@ const COLOUR_WORDS = new Set([
   'crimson',
 ])
 
-/** Look up every `tag` occurrence of the entry, in one batch per entry. */
-export function checkTags(ctx, index) {
+/** Look up every `tag` occurrence of the entry, in one batch per entry. `accepted`: acceptedSet() of the config. */
+export function checkTags(ctx, index, accepted = new Set()) {
   // Text with a stray `__` is a broken reference: S-ref reports it, so R1 would only repeat it.
-  const tags = ctx.extracted.tags.filter((t) => t.kind === 'tag' && !t.text.includes('__'))
+  const tags = ctx.extracted.tags.filter(
+    (t) => t.kind === 'tag' && !t.text.includes('__') && !isAccepted(accepted, t.text),
+  )
   const results = index.lookup(tags.map((t) => t.text))
   tags.forEach((tag, i) => checkTag(ctx, tag, asA1111Reads(tag.text, results[i], index)))
 }
 
 /**
- * `(long_hair)` is unknown as written, but A1111 reads the bare parentheses as emphasis, so the model
- * sees `long_hair`. If dropping unescaped parentheses gives a known tag, judge that tag; R5 still
+ * Parentheses around a whole tag (`((long_hair))`) are emphasis, already left out of its text. Others, such as
+ * an unclosed `(long_hair`, are unknown as written, but A1111 reads a bare parenthesis as emphasis, so the
+ * model sees `long_hair`. If dropping unescaped parentheses gives a known tag, judge that tag; R5 still
  * reports the parentheses. (`bow_(weapon)` is found as written, so it never gets here.)
  */
 function asA1111Reads(text, result, index) {
@@ -88,7 +93,8 @@ function checkTag(ctx, tag, result) {
         return
       }
       const hint = result.suggestions?.length ? `; did you mean ${result.suggestions.join(', ')}?` : ''
-      ctx.report('R1', at, `unknown tag "${tag.text}"${hint}${where}`)
+      // the tag as written, for wc lint --calibrate (an internal field: not in the JSON findings)
+      ctx.report('R1', at, `unknown tag "${tag.text}"${hint}${where}`).tag = tag.text
     }
   }
 }

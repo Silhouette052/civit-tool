@@ -4,7 +4,7 @@
 // Only what lint uses: no slot taxonomy (tags_extended.csv), no suggest().
 
 export {parseAliasOverrides, loadAliasOverrides} from './aliases-local.js'
-export {parseCsvLine, parseDanbooruCsv, loadDanbooruCsv} from './csv.js'
+export {detectSeparator, parseCsvLine, parseDanbooruCsv, loadDanbooruCsv} from './csv.js'
 export {boundedEditDistance} from './edit-distance.js'
 export {escapeTag, normalizeTag} from './normalize.js'
 export {DEFAULT_MIN_COUNT, loadTagIndex, TagIndex} from './tag-index.js'

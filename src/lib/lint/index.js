@@ -3,8 +3,9 @@
 //
 // The CLI part is src/commands/wc/lint.js.
 
-export {RULE_SEVERITY} from './types.js'
-export {DEFAULT_CONFIG, loadLintConfig, makeLintConfig, parseIgnoreArg} from './config.js'
+export {RULE_DESCRIPTION, RULE_SEVERITY} from './types.js'
+export {DEFAULT_CONFIG, loadLintConfig, makeExempt, makeLintConfig, parseIgnoreArg, rulesOff} from './config.js'
+export {acceptedSet, isAccepted, mergeAccepted, plainTags, validateAcceptedTags} from './accepted.js'
 export {lintFiles, applyIgnores} from './lint.js'
 export {applyFixes, applyEdits} from './fix.js'
 export {formatText, formatJson, toFindings} from './format.js'

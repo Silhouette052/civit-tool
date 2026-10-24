@@ -15,7 +15,8 @@
 // `maxVariations` (256) the segment is reported and falls back to option-by-option, so it is
 // never silently skipped.
 //
-// `(text:1.2)` emphasis markup is found first and dropped from the tag text; the weight is kept.
+// Emphasis markup (`(text:1.2)`, and `((tag))` around whole tags) is found first and dropped from the tag text;
+// a `(text:1.2)` weight is kept.
 
 export const DEFAULT_MAX_VARIATIONS = 256
 
@@ -295,9 +296,47 @@ function span(node) {
 
 // ---- Emphasis ----------------------------------------------------------------------------
 
+/** Characters that end a tag: the comma between tags, and a {…|…} group's braces and bars. */
+const TAG_EDGE = new Set([',', '{', '|', '}'])
+const WEIGHT_END = /^:(?:\d+(?:\.\d+)?|\.\d+)\s*\)/
+
+const LORA_BEFORE = /<(?:lora|lyco):[^>]*>$/
+const LORA_AFTER = /^<(?:lora|lyco):[^>]*>/
+
 /**
- * Find `(text:number)` emphasis in the raw value. Only that exact form counts; any other
- * bare `(`…`)` stays as text (rule R5 in lint flags it). Escaped `\(` `\)` are never markup.
+ * Whether the bare pair `(` at `open`, `)` at `close` wraps whole tags, as A1111 emphasis does: `((tag))`,
+ * `(red hair, blue eyes)`, `{(tag)|other}`. Outside it, past spaces, further `(` / `)` and `<lora:…>` (which
+ * A1111 removes from the prompt, as the tag extractor does), comes the start or end of the value or a tag edge.
+ * A pair inside a tag (`bow_(weapon)`, `some (thing)`) wraps no whole tag.
+ */
+function wrapsWholeTags(value, open, close) {
+  let before = open - 1
+  for (;;) {
+    const lora = value[before] === '>' && LORA_BEFORE.exec(value.slice(0, before + 1))
+    if (lora) before -= lora[0].length
+    else if (before >= 0 && (value[before] === '(' || /\s/.test(value[before]))) before--
+    else break
+  }
+
+  let after = close + 1
+  for (;;) {
+    const lora = value[after] === '<' && LORA_AFTER.exec(value.slice(after))
+    if (lora) after += lora[0].length
+    else if (after < value.length && (value[after] === ')' || /\s/.test(value[after]))) after++
+    else break
+  }
+
+  const escaped = before > 0 && value[before - 1] === '\\'
+  const startsTag = before < 0 || (TAG_EDGE.has(value[before]) && !escaped)
+  // the end of the value, a tag edge, or the end of a weighted pair around it: ((tag):1.2)
+  const endsTag = after >= value.length || TAG_EDGE.has(value[after]) || WEIGHT_END.test(value.slice(after))
+  return startsTag && endsTag
+}
+
+/**
+ * Find emphasis in the raw value: `(text:number)`, whose weight is kept, and bare parentheses around whole tags,
+ * such as `(((tag)))` (wrapsWholeTags). Any other bare `(`…`)` stays as text (rule R5 in lint flags it). Escaped
+ * `\(` `\)` are never markup.
  */
 export function findEmphasis(value) {
   const markup = new Set()
@@ -318,6 +357,9 @@ export function findEmphasis(value) {
         markup.add(open)
         for (let k = colon; k <= i; k++) markup.add(k)
         ranges.push({open, close: i, weight: Number(m[1])})
+      } else if (wrapsWholeTags(value, open, i)) {
+        markup.add(open)
+        markup.add(i)
       }
     }
   }

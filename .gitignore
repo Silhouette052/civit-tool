@@ -3,6 +3,7 @@ oclif.manifest.json
 civit-tool.config.json
 *.log
 testlora/
+data
 # Logs
 logs
 *.log

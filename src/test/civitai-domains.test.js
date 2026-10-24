@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict'
 import {test} from 'node:test'
 
-import {buildModelUrl, CIVITAI_DOMAINS, domainOrder, withDomainFallback} from '../lib/civitaiClient.js'
+import {
+  buildModelPageUrl,
+  buildModelUrl,
+  CIVITAI_DOMAINS,
+  domainOrder,
+  modelSlug,
+  withDomainFallback,
+} from '../lib/civitaiClient.js'
 
 test('domainOrder: civitai.red first by default; the preferred domain first, then the other', () => {
   assert.deepEqual(CIVITAI_DOMAINS, ['civitai.red', 'civitai.com'])
@@ -32,6 +39,18 @@ test('withDomainFallback: the first domain that answers wins; when all fail, eve
     }),
     {message: 'civitai.red: HTTP 404 on civitai.red; civitai.com: HTTP 404 on civitai.com'},
   )
+})
+
+test('buildModelPageUrl links to the model page with the slug Civitai makes from its name', () => {
+  assert.equal(
+    buildModelPageUrl({displayDomain: 'civitai.red', modelId: 3017367, modelName: '//ASHLEY WOOD//'}),
+    'https://civitai.red/models/3017367/ashley-wood',
+  )
+  assert.equal(modelSlug('Edo Era Anime'), 'edo-era-anime')
+  assert.equal(modelSlug('Café-Style  v2.0 (Illustrious)'), 'cafe-style-v20-illustrious')
+  assert.equal(modelSlug('R&B_mix'), 'randbmix')
+  assert.equal(buildModelPageUrl({modelId: 1, modelName: 'ノート'}), 'https://civitai.com/models/1')
+  assert.equal(buildModelPageUrl({modelName: 'x'}), null)
 })
 
 test('buildModelUrl links to the given domain', () => {

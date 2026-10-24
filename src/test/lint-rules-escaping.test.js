@@ -21,13 +21,30 @@ test('R5 on the real l.694 pattern: unescaped inside a group option', () => {
   )
 })
 
-test('R5: emphasis wrapping an escaped tag is fine; bare (text) without a weight is not', () => {
+test('R5: parentheses around whole tags are emphasis; parentheses inside a tag need escaping', () => {
   assert.deepEqual(lintYaml('simple:\n  - (bow_\\(weapon\\):1.1)\n').findings, [])
-  // A1111 reads `(long_hair)` as emphasis of long_hair: only R5, not also R1
+  // A1111 reads these as emphasis of whole tags, and the tags inside are checked as usual
+  for (const entry of ['(((long_hair)))', '(long_hair, red_ribbon)', '"{(long_hair)|chain}"', '((long_hair):1.2)']) {
+    assert.deepEqual(lintYaml(`simple:\n  - ${entry}\n`).findings, [], entry)
+  }
   assert.deepEqual(
-    brief(lintYaml('simple:\n  - (long_hair)\n')).map((b) => b[0]),
-    ['R5'],
+    brief(lintYaml('simple:\n  - ((chains))\n')).map((b) => b[0]),
+    ['R3'],
   )
+
+  // inside a tag, or around only part of one, they are text: R5 (and --fix escapes them)
+  const r5 = (entry) => lintYaml(`simple:\n  - ${entry}\n`).findings.filter((f) => f.rule === 'R5')
+  const [inner] = r5('(bow_(weapon))') // the outer pair is emphasis, the inner one is part of the tag
+  assert.deepEqual(inner.fix, {replace: 'bow_(weapon)', with: 'bow_\\(weapon\\)'})
+  for (const entry of ['some (thing)', '(long_hair) chain', '(long_hair', 'long_hair)']) {
+    assert.equal(r5(entry).length, 1, entry)
+  }
+
+  // A1111 removes a <lora:…> from the prompt, so one next to the pair doesn't make it part of a tag
+  for (const entry of ['<lora:possill:1> (((long_hair)))', '"(((long_hair)))<lora:possill:1>, chain"']) {
+    assert.deepEqual(r5(entry), [], entry)
+  }
+  assert.equal(r5('<lora:possill:1> bow_(weapon)').length, 1)
 })
 
 test('R5 applies to an anima sentence too (A1111 parses it the same way)', () => {

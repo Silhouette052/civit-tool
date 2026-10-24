@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import readline from 'node:readline'
 
+import {DEFAULT_YAML_NAME, loadConfig} from '../../lib/config.js'
 import {hashCacheFile, openHashCache} from '../../lib/hashCache.js'
 import {namesOfLora, readLoraFolder} from '../../lib/safetensors.js'
 
@@ -405,13 +406,14 @@ export default class Duplicates extends Command {
     if (failed.length > 0) this.log(chalk.red(`${failed.length} file(s) could not be deleted (see above).`))
 
     // lora activation's loras.yaml lists the LoRAs of its folder, so it may still name a deleted copy
+    const yamlName = loadConfig().activation?.yamlName ?? DEFAULT_YAML_NAME
     const stale = [
       ...new Set(
         deleted.filter((file) => file.toLowerCase().endsWith('.safetensors')).map((file) => path.dirname(file)),
       ),
-    ].filter((folder) => fs.existsSync(path.join(folder, 'loras.yaml')))
+    ].filter((folder) => fs.existsSync(path.join(folder, yamlName)))
     if (stale.length > 0) {
-      this.log('These folders have a loras.yaml that may still list a deleted copy; run lora activation there again:')
+      this.log(`These folders have a ${yamlName} that may still list a deleted copy; run lora activation there again:`)
       for (const folder of stale) this.log(`  ${folder}`)
     }
   }

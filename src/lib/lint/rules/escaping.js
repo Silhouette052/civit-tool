@@ -1,6 +1,8 @@
 // R5/R6: characters that must be escaped everywhere.
 //
-// R5: a bare `(` or `)` is read as emphasis by A1111/Forge, except the deliberate `(text:1.2)` form.
+// R5: a bare `(` or `)` is read as emphasis by A1111/Forge, so one inside a tag (`bow_(weapon)`, `some (thing)`)
+//     must be escaped. Emphasis itself is fine: `(text:1.2)`, and parentheses around whole tags such as
+//     `(((tag)))` or `(red hair, blue eyes)` (findEmphasis in the wildcard parser).
 // R6: a bare `@` breaks prompt-postprocessor. (`{@a|b}` is a sampler prefix: it lives in the group
 //     header, not in text, so it is never flagged.)
 //
